@@ -1,1 +1,1 @@
-# MedicalApp
+# MedicalApp semester project
