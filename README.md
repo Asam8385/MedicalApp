@@ -1,1 +1,2 @@
-# MedicalApp semester project
+# MedicalApp semester project merge test
+
