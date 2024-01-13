@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://subairasam8733260:wQ9IrKvm0F6XBPn4@cluster0.cwfwse6.mongodb.net/?retryWrites=true&w=majority
+      database: DoctorBooking
+server:
+  port: 8080
+
