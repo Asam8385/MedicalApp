@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import './AdminSidebar.css';
 import { FaHome } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa";
@@ -10,6 +10,12 @@ import { FaBriefcase } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const AdminSidebar = () => {
+    const [activeItem, setActiveItem] = useState('dashboard');
+
+    const handleItemClick = (itemName) => {
+        setActiveItem(itemName);
+    };
+
     return (
         <div className="sidebar" id="sidebar">
             <div className="sidebar-inner slimscroll">
@@ -18,13 +24,13 @@ const AdminSidebar = () => {
                         <li className="menu-title">
                             <span>Main</span>
                         </li>
-                        <li className="active">
-                            <Link to={'/admin/dashboard'}>
+                        <li className={activeItem === 'dashboard' ? 'active' : ''}>
+                            <Link to={'/admin/dashboard'} onClick={() => handleItemClick('dashboard')}>
                                 <FaHome /> <span>Dashboard</span>
                             </Link>
                         </li>
-                        <li>
-                            <Link to={'/admin/appointments'}>
+                        <li className={activeItem === 'appointments' ? 'active' : ''}>
+                            <Link to={'/admin/appointments'} onClick={() => handleItemClick('appointments')}>
                                 <FaListUl /> <span>Appointments</span>
                             </Link>
 
