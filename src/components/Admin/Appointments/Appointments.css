@@ -81,3 +81,18 @@
     color: #333;
     font-weight: 600;
 }
+
+.custom-scrollbar {
+    max-height: 600px; /* Adjust as needed */
+    overflow-y: auto;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Border radius of the scrollbar thumb */
+  }
+  

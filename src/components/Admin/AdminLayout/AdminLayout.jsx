@@ -2,27 +2,60 @@ import React from 'react'
 import AdminSidebar from '../../UI/AdminSidebar'
 import AdminHeader from '../../UI/AdminHeader'
 import './AdminLayout.css';
+import { Navigate,  Outlet, useNavigate } from 'react-router-dom'
+import { Avatar, Button, Dropdown,  Image,Layout, Space, theme } from 'antd'
+
+const { Header, Content, Sider, Footer } = Layout
+
 const AdminLayout = ({ children }) => {
+    
+    const {
+        token: { colorBgContainer },
+      } = theme.useToken()
     return (
-        <div className="main-wrapper">
+        <><Layout style={{
+            height: '100svh',
+            overflow: 'hidden'
+        }}>
+            <Header>
             <AdminHeader />
-            <AdminSidebar />
-            <div className="page-wrapper">
-                <div className="content container-fluid">
-                    <div className="page-header">
-                        <div className="row">
-                            <div className="col-sm-12">
-                                <h3 className="page-title">Welcome Admin!</h3>
-                                <ul className="breadcrumb">
-                                    <li className="breadcrumb-item active">Dashboard</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+            </Header>
+            <Layout>
+                <Sider
+                    className='main-sider'
+                    breakpoint='md'
+                    collapsedWidth={60}
+                    width={200}
+                    style={{
+                        background: "#1b5a90",
+                        padding: '2rem 0',
+                        marginTop: 8,
+                        marginBottom: 8
+                    }}
+                >
+                    <AdminSidebar />
+                </Sider>
+                <Content
+                    style={{
+                        padding: 24,
+                        margin: 8,
+                        minHeight: 280,
+                        background: colorBgContainer,
+                        overflow: 'auto'
+                    }}
+                >
                     {children}
-                </div>
-            </div>
-        </div>
+                </Content>
+            </Layout>
+            <Footer style={{
+                textAlign: 'center',
+                background: colorBgContainer,
+                height: '2rem',
+                padding: '0.5rem'
+            }}>AFHR Technologies &copy; 2023</Footer>
+        </Layout>
+        
+            </>
     )
 }
 

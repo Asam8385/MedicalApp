@@ -1,89 +1,61 @@
-import React , { useState } from 'react';
+import React , {useLayoutEffect, useState } from 'react';
 import './AdminSidebar.css';
 import { FaHome } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa";
-import { FaPeopleArrows } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { FaUserAstronaut } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { FaBriefcase } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link ,useLocation } from 'react-router-dom';
+import { Menu } from "antd"
 
 const AdminSidebar = () => {
-    const [activeItem, setActiveItem] = useState('dashboard');
+    const [selectedKey, setSelectedKey] = useState()
 
-    const handleItemClick = (itemName) => {
-        setActiveItem(itemName);
-    };
+    const location = useLocation()
 
+    useLayoutEffect(() => {
+        const path = location.pathname.split('/')[1]
+        setSelectedKey(path)
+        console.log(selectedKey)
+    }, [location])
+    
     return (
-        <div className="sidebar" id="sidebar">
-            <div className="sidebar-inner slimscroll">
-                <div id="sidebar-menu" className="sidebar-menu">
-                    <ul>
-                        <li className="menu-title">
-                            <span>Main</span>
-                        </li>
-                        <li className={activeItem === 'dashboard' ? 'active' : ''}>
-                            <Link to={'/admin/dashboard'} onClick={() => handleItemClick('dashboard')}>
-                                <FaHome /> <span>Dashboard</span>
-                            </Link>
-                        </li>
-                        <li className={activeItem === 'appointments' ? 'active' : ''}>
-                            <Link to={'/admin/appointments'} onClick={() => handleItemClick('appointments')}>
-                                <FaListUl /> <span>Appointments</span>
-                            </Link>
-
-
-                        </li>
-                        <li>
-                            <Link to={'/admin/specialites'}>
-                                <FaPeopleArrows /> <span>Specialities</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'/admin/doctors'}>
-                                <FaUserAstronaut /> <span>Doctors</span>
-                            </Link>
-
-                        </li>
-                        <li>
-                            <Link to={'/admin/patients'}>
-                                <FaRegUser /> <span>Patients</span>
-                            </Link>
-
-                        </li>
-                        <li>
-                            <Link to={'/admin/reviews'}>
-                                <FaRegStar /> <span>Reviews</span>
-                            </Link>
-
-                        </li>
-                        <li>
-                            <Link to={'/admin/transaction'}>
-                                <FaBriefcase /><span>Transactions</span>
-                            </Link>
-
-                        </li>
-
-                        <li className="submenu">
-                            <a href="#"><i className="fe fe-document"></i> <span> Reports</span> <span className="menu-arrow"></span></a>
-                            <ul style={{ display: "none" }}>
-                                <li><a >Invoice Reports</a></li>
-                            </ul>
-                        </li>
-                        <li className="menu-title">
-                            <span>Pages</span>
-                        </li>
-                        <li className='text-white'>
-                            <Link to={'/admin/profile'}>
-                                <FaRegUser /> <span>Profile</span>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <><Menu
+            mode="inline"
+            defaultSelectedKeys={['']}
+            defaultOpenKeys={['sub1']}
+            selectedKeys={[selectedKey]}
+            onSelect={({ key }) => setSelectedKey(key)}
+            style={{
+                height: '100%',
+                borderRight: 0,
+                backgroundColor: "#1b5a90", // Background color of the sidebar
+                color: 'white', // Foreground (text) color of the menu items
+            }}
+        >
+            <Menu.Item key="" icon={<FaHome />} style={selectedKey === '' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/dashboard">Dashboard</Link>
+            </Menu.Item>
+            <Menu.Item key="appointement" icon={<FaListUl />} style={selectedKey === 'appointement' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/appointments">Appointment</Link>
+            </Menu.Item>
+            <Menu.Item key="doctor" icon={ <FaUserAstronaut />} style={selectedKey === 'doctor' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/doctors">Doctor</Link>
+            </Menu.Item>
+            <Menu.Item key="patients" icon={<FaRegUser />}  style={selectedKey === 'patients' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/patients">Patients</Link>
+            </Menu.Item>
+            <Menu.Item key="reviews" icon={<FaRegStar />} style={selectedKey === 'reviews' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/reviews">Reviews</Link>
+            </Menu.Item>
+            <Menu.Item key="transaction" icon={<FaBriefcase />} style={selectedKey === 'transaction' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/transaction">Transaction</Link>
+            </Menu.Item>
+            <Menu.Item key="profile" icon={<FaRegUser />} style={selectedKey === 'profile' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/profile">Profile</Link>
+            </Menu.Item>
+        </Menu></>
     )
 }
 

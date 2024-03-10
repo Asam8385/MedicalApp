@@ -2,18 +2,20 @@ import React from 'react'
 import AdminLayout from '../AdminLayout/AdminLayout'
 import userImg from '../../../images/avatar.jpg';
 import './Dashboard.css';
+import { FaMoneyBill, FaRegCalendar, FaRegUser, FaUserAstronaut } from 'react-icons/fa';
 
 const AdminDashboard = () => {
     return (
         <>
             <AdminLayout >
+                {/* 4 cards */}
                 <div className="row">
                     <div className="col-xl-3 col-sm-6 col-12">
                         <div className="card">
                             <div className="card-body">
                                 <div className="dash-widget-header">
                                     <span className="dash-widget-icon text-primary border-primary">
-                                        <i className="fe fe-users"></i>
+                                        <i className="fe fe-users"><FaUserAstronaut/></i>
                                     </span>
                                     <div className="dash-count">
                                         <h3>168</h3>
@@ -33,7 +35,7 @@ const AdminDashboard = () => {
                             <div className="card-body">
                                 <div className="dash-widget-header">
                                     <span className="dash-widget-icon text-success">
-                                        <i className="fe fe-credit-card"></i>
+                                        <i className="fe fe-credit-card"><FaRegUser/></i>
                                     </span>
                                     <div className="dash-count">
                                         <h3>487</h3>
@@ -54,7 +56,7 @@ const AdminDashboard = () => {
                             <div className="card-body">
                                 <div className="dash-widget-header">
                                     <span className="dash-widget-icon text-danger border-danger">
-                                        <i className="fe fe-money"></i>
+                                        <i className="fe fe-money"><FaRegCalendar/></i>
                                     </span>
                                     <div className="dash-count">
                                         <h3>485</h3>
@@ -75,7 +77,7 @@ const AdminDashboard = () => {
                             <div className="card-body">
                                 <div className="dash-widget-header">
                                     <span className="dash-widget-icon text-warning border-warning">
-                                        <i className="fe fe-folder"></i>
+                                        <i className="fe fe-folder"><FaMoneyBill/></i>
                                     </span>
                                     <div className="dash-count">
                                         <h3>$62523</h3>
@@ -92,6 +94,7 @@ const AdminDashboard = () => {
                         </div>
                     </div>
                 </div>
+                {/* revenue */}
                 <div className="row">
                     <div className="col-md-12 col-lg-6">
 
@@ -120,6 +123,7 @@ const AdminDashboard = () => {
 
                     </div>
                 </div>
+                {/* Doctors List */}
                 <div className="row">
                     <div className="col-md-6 d-flex">
                         <div className="card card-table flex-fill">
@@ -162,6 +166,7 @@ const AdminDashboard = () => {
                         </div>
 
                     </div>
+                    {/* Patients List */}
                     <div className="col-md-6 d-flex">
 
                         <div className="card  card-table flex-fill">
@@ -200,6 +205,7 @@ const AdminDashboard = () => {
 
                     </div>
                 </div>
+                {/* Appointment List */}
                 <div className="row">
                     <div className="col-md-12">
 
@@ -215,8 +221,7 @@ const AdminDashboard = () => {
                                                 <th>Doctor Name</th>
                                                 <th>Speciality</th>
                                                 <th>Patient Name</th>
-                                                <th>Apointment Time</th>
-                                                <th>Status</th>
+                                                <th>Apointment Time</th>                  
                                                 <th className="text-right">Amount</th>
                                             </tr>
                                         </thead>
@@ -236,12 +241,6 @@ const AdminDashboard = () => {
                                                     </h2>
                                                 </td>
                                                 <td>9 Nov 2019 <span className="text-primary d-block">11.00 AM - 11.15 AM</span></td>
-                                                <td>
-                                                    <div className="status-toggle">
-                                                        <input type="checkbox" id="status_1" className="check" checked/>
-                                                            <label for="status_1" className="checktoggle">checkbox</label>
-                                                    </div>
-                                                </td>
                                                 <td className="text-right">
                                                     $200.00
                                                 </td>
@@ -251,7 +250,6 @@ const AdminDashboard = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </AdminLayout>
