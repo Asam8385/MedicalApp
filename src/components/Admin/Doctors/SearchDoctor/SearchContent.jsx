@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import showImg from '../../../images/specialities/specialities-01.png'
+import showImg from '../../../../images/specialities/specialities-01.png'
 import StarRatings from 'react-star-ratings';
 import { Tag } from 'antd';
 import './index.css';

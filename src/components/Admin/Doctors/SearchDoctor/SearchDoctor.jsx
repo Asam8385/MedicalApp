@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import Footer from '../../Shared/Footer/Footer';
 import SearchSidebar from './SearchSidebar';
 import SearchContent from './SearchContent';
-import { useDebounced } from '../../../utils/hooks/useDebounced';
-import { useGetDoctorsQuery } from '../../../redux/api/doctorApi';
+import { useDebounced } from '../../../../utils/hooks/useDebounced';
+import { useGetDoctorsQuery } from '../../../../redux/api/doctorApi';
 import { Empty } from 'antd';
 import { Pagination } from 'antd';
-import Header from '../../Shared/Header/Header';
-import SubHeader from '../../Shared/SubHeader';
+import { Link } from 'react-router-dom';
 
-const SearchDoctor = () => {
+
+const SearchDoctorAdmin = () => {
     const query = {};
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(10);
@@ -76,8 +75,13 @@ const SearchDoctor = () => {
 
     return (
         <div>
-            <Header />
-            <SubHeader title='Doctors' subtitle='Lorem ipsum dolor sit amet.' />
+             <div class="container">
+                    <div class="row justify-content-end">
+                        <div className="col-auto">
+                                 <Link to="/admin/doctors/add" className="btn btn-primary btn-lg add-button">Add Doctor</Link>
+                    </div>
+                    </div>
+                </div>
             <div className="container" style={{ marginBottom: 200, marginTop: 80 }}>
                 <div className="container-fluid">
                     <div className="row">
@@ -103,9 +107,8 @@ const SearchDoctor = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
 
-export default SearchDoctor
+export default SearchDoctorAdmin

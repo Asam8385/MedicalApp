@@ -2,7 +2,7 @@ import React from 'react'
 import { Slider, Button, DatePicker, Radio } from 'antd';
 import { FaSearch, FaRedoAlt } from "react-icons/fa";
 import Search from 'antd/es/input/Search';
-import { doctorSpecialistOptions } from '../../../constant/global';
+import { doctorSpecialistOptions } from '../../../../constant/global';
 
 const SearchSidebar = ({ setSearchTerm, setSorByGender, setSpecialist, setPriceRange, resetFilter, query }) => {
   const handleDateChange = (_date, _dateString) => { }

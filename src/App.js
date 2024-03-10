@@ -43,6 +43,7 @@ import TreatmentEdit from './components/Doctor/Treatment/TreatmentEdit';
 import Chat from './components/chat/chat';
 import SignInAdmin from './components/Admin/Login/SignIn';
 import SignInFormAdmin from './components/Admin/Login/SignInForm';
+import AddDoc from './components/Admin/Doctors/Add/SignInForm';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },
@@ -86,6 +87,7 @@ const router = createBrowserRouter([
   { path: '/admin/dashboard', element: <AdminDashboard /> },
   { path: '/admin/appointments', element: <AdminAppointments /> },
   { path: '/admin/doctors', element: <Doctors /> },
+  { path: '/admin/doctors/add', element: <AddDoc /> },
   { path: '/admin/patients', element: <Patients /> },
   { path: '/admin/profile', element: <Profile /> },
   { path: '/admin/reviews', element: <AdminReviews /> },
