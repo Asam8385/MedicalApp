@@ -3,11 +3,9 @@ import axios from "axios";
 
 
 import "./chat.css";
-import ChatHistory from "./components/ChatHistory";
-import ChatUI from "./components/ChatUI";
+import { FaPaperPlane } from "react-icons/fa";
 
-const baseURL =
-  process.env.REACT_APP_BACKEND_URL || "http://localhost:8090/api";
+const baseURL = "http://localhost:8000/ask";
 
 function Chat() {
   const [chats, setChats] = useState([]);
@@ -17,17 +15,9 @@ function Chat() {
   const messagesEndRef = useRef(null);
   const [isAssistantTyping, setIsAssistantTyping] = useState(false);
 
-  useEffect(() => {
-    fetchChats();
-  }, []);
 
-  useEffect(() => {
-    if (selectedChatId) {
-      fetchMessages(selectedChatId);
-    } else {
-      setMessages([]);
-    }
-  }, [selectedChatId]);
+
+
 
   useEffect(() => {
     scrollToBottom();
@@ -37,84 +27,37 @@ function Chat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
   };
 
-  const fetchChats = async () => {
-    try {
-      const response = await axios.get(`${baseURL}/chats/`);
-      setChats(response.data);
-    } catch (error) {
-      console.error("Error fetching chats:", error);
-    }
-  };
 
-  const fetchMessages = async (chatId) => {
-    try {
-      const response = await axios.get(`${baseURL}/chats/${chatId}/`);
-      setMessages(response.data);
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-    }
-  };
+
 
   const sendMessage = async () => {
     // Update the local state before sending the message to the backend
-    setMessages([
-      ...messages,
-      {
-        content: inputMessage,
-        role: "user",
-      },
-    ]);
-    setInputMessage("");
-
+    const userMessage = { role: 'user', content: inputMessage };
+    setMessages(prevMessages => [...prevMessages, userMessage]); // Add user message to the messages array
     setIsAssistantTyping(true);
-
+  
     try {
-      // Simulate a delay for the typewriting effect
-      const delay = 1000 + Math.random() * 1000; // Random delay between 1-2 seconds
-      setTimeout(async () => {
-        try {
-          const response = await axios.post(`${baseURL}/chats/`, {
-            chat_id: selectedChatId || undefined,
-            message: inputMessage,
-          });
-
-          // If there was no selected chat, set the selected chat to the newly created one
-          if (!selectedChatId) {
-            setSelectedChatId(response.data.chat_id);
-            setChats([{ id: response.data.chat_id }, ...chats]);
-          } else {
-            fetchMessages(selectedChatId);
-          }
-        } catch (error) {
-          console.error("Error sending message:", error);
-          setMessages([
-            ...messages,
-            {
-              content:
-                "⚠️ An error occurred while sending the message. Please make sure the backend is running and OPENAI_API_KEY is set in the .env file.",
-              role: "assistant",
-            },
-          ]);
-        } finally {
-          setIsAssistantTyping(false);
-        }
-      }, delay);
+      const response = await axios.post(`${baseURL}/`, {
+        message: inputMessage,
+      }, {
+        headers: {
+          'Content-Type': 'application/json', // Adjust content type as needed
+        },
+      });
+  
+      // Update the messages state with the response
+      const assistantMessage = { role: 'assistant', content: response.data['data'] };
+      setMessages(prevMessages => [...prevMessages, assistantMessage]);
+      setIsAssistantTyping(false);
     } catch (error) {
       console.error("Error sending message:", error);
+      setMessages(prevMessages => [...prevMessages, { content: "⚠️ An error occurred while sending the message.", role: 'assistant' }]);
+      setIsAssistantTyping(false);
     }
   };
+  
 
-  const createNewChat = async () => {
-    try {
-      const response = await axios.post(`${baseURL}/chats/`);
-      const newChat = response.data;
 
-      setChats([newChat, ...chats]);
-      setSelectedChatId(newChat.id);
-    } catch (error) {
-      console.error("Error creating a new chat:", error);
-    }
-  };
 
   function formatMessageContent(content) {
     const sections = content.split(/(```[\s\S]*?```|`[\s\S]*?`)/g);
@@ -140,24 +83,52 @@ function Chat() {
       </div>
       <div className="chat-container">
         <div className="chat-history-container">
-          <button className="new-chat-button" onClick={createNewChat}>
-            <strong>+ New Chat</strong>
-          </button>
-          <ChatHistory
-            chats={chats}
-            selectedChatId={selectedChatId}
-            setSelectedChatId={setSelectedChatId}
-          />
+         
+          
         </div>
-        <ChatUI
-          messages={messages}
-          inputMessage={inputMessage}
-          setInputMessage={setInputMessage}
-          sendMessage={sendMessage}
-          formatMessageContent={formatMessageContent}
-          isAssistantTyping={isAssistantTyping}
-          messagesEndRef={messagesEndRef}
+        <div className="chat-ui">
+      <div className="chat-messages">
+        {messages.map((message, index) => (
+          <div
+          className={`message ${
+            message.role === "user" ? "user" : "assistant"
+          }`}
+          dangerouslySetInnerHTML={{
+            __html: formatMessageContent(message.content),
+          }}
         />
+        ))}
+        {isAssistantTyping && (
+          <div className="message assistant">
+            <div className="typing-indicator">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          </div>
+        )}
+        <div ref={messagesEndRef}></div>
+      </div>
+      <div className="chat-input">
+      <textarea
+        placeholder="Type a message"
+        value={inputMessage}
+        onChange={(e) => setInputMessage(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            if (inputMessage) {
+              sendMessage();
+            }
+          }          
+        }}
+      />
+
+      <button onClick={sendMessage} disabled={!inputMessage}>
+        <FaPaperPlane/>
+      </button>
+    </div>
+    </div>
       </div>
     </div>
   );
