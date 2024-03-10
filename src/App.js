@@ -41,6 +41,8 @@ import Prescription from './components/Doctor/Prescription/Prescription';
 import PrescriptionView from './components/Doctor/Prescription/PrescriptionView';
 import TreatmentEdit from './components/Doctor/Treatment/TreatmentEdit';
 import Chat from './components/chat/chat';
+import SignInAdmin from './components/Admin/Login/SignIn';
+import SignInFormAdmin from './components/Admin/Login/SignInForm';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },
@@ -80,6 +82,7 @@ const router = createBrowserRouter([
   { path: '/booking/invoice/:id', element: <BookingInvoice /> },
 
   // Dashboard
+  { path: '/admin/', element: <SignInFormAdmin /> },
   { path: '/admin/dashboard', element: <AdminDashboard /> },
   { path: '/admin/appointments', element: <AdminAppointments /> },
   { path: '/admin/doctors', element: <Doctors /> },
