@@ -1,8 +1,15 @@
 import React from 'react';
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FloatButton, ConfigProvider, Space } from 'antd';
+import { FaRobot } from 'react-icons/fa';
+
 
 const HeroSection = () => {
+    const history = useNavigate();
+    const handleButtonClick = () => {
+        history('/chat');
+      };
     return (
         <section id="hero" class="d-flex align-items-center">
             <div className="container">
@@ -15,6 +22,20 @@ const HeroSection = () => {
                     <Link to={'/doctors'} className="btn-get-started scrollto">Search Doctors</Link>
                     <Link to={'/track-appointment'} className="btn-get-started scrollto">booking doctors</Link>
                     <Link to={'/chat'} className="btn-get-started scrollto">let us know</Link>
+                    <FloatButton icon={<FaRobot/>} onClick={handleButtonClick}  tooltip={<div>Chat bot</div>}/>
+                    <ConfigProvider
+                                   theme={{
+                                     token: {
+                                        colorBgElevated: '#1677ff',
+                                        colorText : '#ffffff'
+                                       
+                                     },
+                                   }}
+                                 >
+                                   <Space>
+                                   <FloatButton icon={<FaRobot/>} onClick={handleButtonClick}  tooltip={<div>Chat bot</div>}/> 
+                                   </Space>
+                    </ConfigProvider>
                 </div>
             </div>
         </section>
