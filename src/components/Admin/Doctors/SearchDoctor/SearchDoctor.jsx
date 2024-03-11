@@ -51,7 +51,7 @@ const SearchDoctorAdmin = () => {
 
     const { data, isLoading, isError } = useGetDoctorsQuery({ ...query })
     const doctorsData = data?.doctors || [];
-    console.log(doctorsData);
+   // console.log(doctorsData);
     const meta = data?.meta;
 
     //what to render

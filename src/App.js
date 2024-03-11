@@ -44,6 +44,7 @@ import Chat from './components/chat/chat';
 import SignInAdmin from './components/Admin/Login/SignIn';
 import SignInFormAdmin from './components/Admin/Login/SignInForm';
 import AddDoc from './components/Admin/Doctors/Add/SignInForm';
+import DoctorProfileSetting from './components/Doctor/ProfileSetting/DoctorProfileSetting';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },
@@ -59,6 +60,8 @@ const router = createBrowserRouter([
 
   { path: '/doctors', element: <SearchDoctor /> },
   { path: '/doctors/profile/:id', element: <DoctorProfile /> },
+  { path: '/doctor/update/as', element: <DoctorProfileSetting /> },
+
 
   { path: '/dashboard', element: <Dashboard /> },
   { path: '/dashboard/my-patients', element: <MyPatients /> },
