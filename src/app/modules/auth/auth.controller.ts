@@ -71,6 +71,7 @@ const VerifyUser = catchAsync(async (req: Request, res: Response) => {
                 await prisma.$transaction(async (tx) => {
                     await tx.admin.update({
                         where: {
+ 
                             id: isUserExist.id
                         },
                         data: {
