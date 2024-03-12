@@ -1,17 +1,13 @@
-import { Model } from "mongoose";
-
-type IBloodGroup = 'O+' | 'O-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'A+' | 'A-'
 
 export interface IAdmin {
-    name: {
-        firstName: string;
-        lastName: string;
-        middleName?: string;
-    },
-    email: string;
-    phoneNumber: number;
-    address: string;
-    status: boolean;
-    bloodGroup: IBloodGroup;
+  id: string;
+  createdAt: Date; 
+  updatedAt: Date;
+  firstName: string;
+  lastName: string;
+  address: string | null;
+  verified: boolean | null;
+  email: string;
+  phoneNumber: number;
 }
-export type IAdminModel = Model<IAdmin, {}>;
+

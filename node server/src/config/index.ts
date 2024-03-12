@@ -6,7 +6,7 @@ dotenv.config({path: path.join(process.cwd(), '.env')});
 
 export default {
     env: process.env.NODE_ENV,
-    port: 5000,
+    port: process.env.PORT,
     // database_url: process.env.MONGO,
     default_doctor_pass: process.env.DOCTOR_PASS,
     jwt: {

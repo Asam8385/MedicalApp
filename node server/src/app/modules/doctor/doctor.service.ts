@@ -14,13 +14,13 @@ import { EmailtTransporter } from "../../../helpers/emailTransporter";
 const { v4: uuidv4 } = require('uuid');
 
 const sendVerificationEmail = async (data: Doctor) => {
-    const currentUrl = "http://localhost:5000/api/v1/auth/";
+    const currentUrl = "http://localhost:6003/api/v1/auth/";
     const uniqueString = uuidv4() + data.id;
     const uniqueStringHashed = await bcrypt.hashSync(uniqueString, 12);
 
     const url = currentUrl + 'user/verify/' + data.id + '/' + uniqueString
-    const currentTime = moment();
-    const expiresDate = moment(currentTime).add(6, 'hours')
+    // const currentTime = moment();
+    const expiresDate = moment().add(6, 'hours')
     const verficationData = await prisma.userVerfication.create({
         data: {
             userId: data.id,
@@ -35,41 +35,36 @@ const sendVerificationEmail = async (data: Doctor) => {
         }
         const replacementObj = obj;
         const subject = "Email Verification"
-        const fromMail = "ujjalzaman+doctor@gmail.com"
-        const toMail = data.email;
+        const fromMail = "subairasam8733260@gmail.com"
+        const toMail = "asam.ugeng8385@gmail.com";
         EmailtTransporter({ pathName, replacementObj, fromMail, toMail, subject })
     }
 }
-const create = async (payload: any): Promise<any> => {
-    try {
-        const data = await prisma.$transaction(async (tx) => {
-            const { password, ...othersData } = payload;
-            const doctor = await tx.doctor.create({
-                data: othersData,
-            });
 
-            if (doctor) {
-                const auth = await tx.auth.create({
-                    data: {
-                        email: doctor.email,
-                        password: password && await bcrypt.hashSync(password, 12),
-                        role: UserRole.doctor,
-                        userId: doctor.id
-                    },
-                });
-                return {
-                    doctor,
-                    auth,
-                };
-            }
-        });
-        if (data?.doctor.id) {
-            sendVerificationEmail(data.doctor)
+const create = async (payload: any): Promise<any> => {
+    const data = await prisma.$transaction(async (tx) => {
+        const { password, ...othersData } = payload;
+        const existEmail = await tx.auth.findUnique({ where: { email: othersData.email } });
+        if (existEmail) {
+            throw new Error("Email Already Exist !!")
         }
-        return data;
-    } catch (error: any) {
-        throw new ApiError(httpStatus.BAD_REQUEST, error.message)
+        const doctor = await tx.doctor.create({ data: othersData });
+        await tx.auth.create({
+            data: {
+                email: doctor.email,
+                password: password && await bcrypt.hashSync(password, 12),
+                role: UserRole.doctor,
+                userId: doctor.id
+            },
+        });
+        return doctor
+    });
+
+    if (data.id) {
+        sendVerificationEmail(data)
     }
+    return data;
+
 }
 
 const getAllDoctors = async (filters: IDoctorFilters, options: IOption): Promise<IGenericResponse<Doctor[]>> => {

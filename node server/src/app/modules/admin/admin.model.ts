@@ -3,25 +3,20 @@ import { IAdmin, IAdminModel } from "./admin.interface";
 import { BloodGroup } from "../../../constants";
 
 const AdminSchema = new Schema<IAdmin, IAdminModel>({
-    name: {
-        firstName: {
+   
+    firstName: {
             type: String,
             required: true,
         },
-        lastName: {
+    lastName: {
             type: String,
             required: true,
         },
-        middleName: {
-            type: String,
-        }
-    },
     address: {
         type: String,
     },
     bloodGroup: {
-        type: String,
-        enum: BloodGroup
+        type: String,        enum: BloodGroup
     },
     email: {
         type: String,

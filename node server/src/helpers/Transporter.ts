@@ -4,7 +4,7 @@ import config from '../config';
 export const Transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: "ujjalzaman@gmail.com",
-        pass: config.emailPass
+        user: "subairasam8733260@gmail.com",
+        pass: "nasazuigpioownuc"
     }
 });

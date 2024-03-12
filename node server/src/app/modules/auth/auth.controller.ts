@@ -25,11 +25,30 @@ const Login = catchAsync(async (req: Request, res: Response) => {
         data: result,
     })
 })
+const ResetPassword = catchAsync(async (req: Request, res: Response) => {
+    const result = await AuthService.ResetPassword(req.body);
+    sendResponse(res, {
+        statusCode: 200,
+        message: 'Successfully Passwrod Reset!!',
+        success: true,
+        data: result,
+    })
+})
+
+const PasswordResetConfirm = catchAsync(async (req: Request, res: Response) => {
+    const result = await AuthService.PassworResetConfirm(req.body);
+    sendResponse(res, {
+        statusCode: 200,
+        message: 'Successfully Passwrod Changed!!',
+        success: true,
+        data: result,
+    })
+})
 
 const VerifyUser = catchAsync(async (req: Request, res: Response) => {
     try {
         const { userId } = req.params;
-        const isUserExist = await prisma.doctor.findUnique({
+        const isUserExist = await prisma.admin.findUnique({
             where: {
                 id: userId
             }
@@ -45,22 +64,33 @@ const VerifyUser = catchAsync(async (req: Request, res: Response) => {
         if (getVerficationUser) {
             const expiresAt = moment(getVerficationUser.expiresAt);
             const currentTime = moment();
-            if (expiresAt.isBefore(currentTime)) {
-                await prisma.doctor.update({
-                    where: {
-                        id: isUserExist.id
-                    },
-                    data: {
-                        verified: true
-                    }
+            // check currenttime is before then expires Time
+            const isWithinNext6Hours = currentTime.isBefore(expiresAt);
+
+            if (isWithinNext6Hours) {
+                await prisma.$transaction(async (tx) => {
+                    await tx.admin.update({
+                        where: {
+ 
+                            id: isUserExist.id
+                        },
+                        data: {
+                            verified: true
+                        }
+                    });
+                    await tx.userVerfication.delete({
+                        where: {
+                            id: getVerficationUser.id
+                        }
+                    })
                 })
-                res.redirect('/api/v1/auth/expired/link');
-            } else {
                 res.redirect('/api/v1/auth/verified');
+            } else {
+                res.redirect('/api/v1/auth/expired/link');
             }
         }
     } catch (error) {
-        throw new ApiError(httpStatus.NOT_FOUND, "Internal Server Error");
+        throw new ApiError(httpStatus.NOT_FOUND, "Internal Server Error" + error);
     }
 })
 
@@ -76,5 +106,7 @@ export const AuthController = {
     Login,
     VerifyUser,
     Verified,
-    VerficationExpired
+    VerficationExpired,
+    ResetPassword,
+    PasswordResetConfirm
 }
