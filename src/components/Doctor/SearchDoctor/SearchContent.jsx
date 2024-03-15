@@ -8,7 +8,7 @@ import { FaLocationArrow, FaRegThumbsUp, FaDollarSign, FaComment } from "react-i
 
 const SearchContent = ({ data }) => {
     console.log("search" + data?.firstName)
-    const services = data?.services.split(',')
+    const services = data?.services ? data.services.split(',') : [];
     if (!data) {
         return null; // Or some other fallback UI
       }

@@ -9,6 +9,7 @@ import { Button, Popover, message } from 'antd';
 import { loggedOut } from '../../../service/auth.service';
 import { FaBars } from "react-icons/fa";
 
+// logo
 const Header = () => {
     const { authChecked, data } = useAuthCheck();
     const [isLoggedIn, setIsLogged] = useState(false);
@@ -58,9 +59,9 @@ const Header = () => {
             <header id="header" className={`fixed-top ${!show && "stickyHeader"}`}>
                 <div className="container d-flex align-items-center">
 
-                    <Link to={'/'} className="logo me-auto">
-                        <img src={img} alt="" className="img-fluid" />
-                    </Link>
+                <Link  to={'/'} className="logo me-auto">
+            <img src={img} alt="" width={60} height={60} />
+                         </Link>
 
                     <nav id="navbar" className="navbar order-last order-lg-0">
                         <ul>
