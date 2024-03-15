@@ -8,8 +8,6 @@ import { FaPaperPlane } from "react-icons/fa";
 const baseURL = "http://localhost:8000/ask";
 
 function Chat() {
-  const [chats, setChats] = useState([]);
-  const [selectedChatId, setSelectedChatId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const messagesEndRef = useRef(null);

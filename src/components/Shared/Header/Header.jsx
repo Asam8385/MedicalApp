@@ -60,7 +60,7 @@ const Header = () => {
                 <div className="container d-flex align-items-center">
 
                 <Link  to={'/'} className="logo me-auto">
-            <img src={img} alt="" width={60} height={60} />
+            <img src={img} alt="" />
                          </Link>
 
                     <nav id="navbar" className="navbar order-last order-lg-0">
