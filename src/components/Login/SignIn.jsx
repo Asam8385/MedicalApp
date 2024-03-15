@@ -34,22 +34,6 @@ const SignIn = ({ handleResponse }) => {
 
     return (
         <form className="sign-in-form" onSubmit={handleSubmit(onSubmit)}>
-            <Toast show={show} onClose={() => setShow(!show)} className="signInToast">
-                <Toast.Header>
-                    <strong className="mr-auto">Demo credential</strong>
-                </Toast.Header>
-                <Toast.Body>Use this account to sign in as a doctor <br />
-                    <hr />
-                    <div className='bg-dark text-white p-2 px-3 rounded'>
-                        email : doctor@gmail.com <br />
-                        password : 123456 <br />
-                    </div>
-                    <hr />
-                    <div className='bg-primary p-2 rounded text-white'>
-                        Please do not abuse the facility
-                    </div>
-                </Toast.Body>
-            </Toast>
             <h2 className="title">Sign in</h2>
             <div className="input-field">
                 <span className="fIcon"><FaEnvelope /></span>

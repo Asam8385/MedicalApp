@@ -13,8 +13,7 @@ import dImage from '../../../images/avatar.jpg'
 
 const DoctorProfileSetting = () => {
     const [selectedItems, setSelectedItems] = useState([]);
-    const [updateDoctor, { isLoading, isSuccess, isError, error }] = useUpdateDoctorMutation()
-    const { data } = useAuthCheck();
+    const [updateDoctor, { isLoading, isSuccess, isError, error }] = useUpdateDoctorMutation() 
     const { register, handleSubmit } = useForm({});
     const [userId, setUserId] = useState('');
     const [selectValue, setSelectValue] = useState({});
@@ -22,7 +21,16 @@ const DoctorProfileSetting = () => {
     const [showCalender, setShowCalender] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [file, setFile] = useState(null);
+    const [data, setDoctorData] = useState(null);
 
+    useEffect(() => {
+      const storedDoctor = localStorage.getItem('doctor');
+      if (storedDoctor) {
+        setDoctorData(JSON.parse(storedDoctor));
+      }
+    }, []);
+
+    console.log(data)
     const buttonRef = useRef(null);
 
     const handleDateChange = (date) => { setValue(date) }

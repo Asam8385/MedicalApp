@@ -32,7 +32,8 @@ const Contact = () => {
                 <div>
                     <div className="container">
                         {/* eslint-disable-next-line */}
-                        <iframe style={{ border: 0, width: "100%", height: "350px" }} src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+                        <iframe style={{ border: 0, width: "100%", height: "350px" }} src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63480.83754043947!2d80.17079707013771!3d6.055975350251288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae173bb6932fce3%3A0x4a35b903f9c64c03!2sGalle!5e0!3m2!1sen!2slk!4v1710315094917!5m2!1sen!2slk" frameborder="0" allowfullscreen></iframe>
+                        
                     </div>
                 </div>
 
@@ -45,7 +46,7 @@ const Contact = () => {
                                     <FaLocationArrow className='icon' />
                                     <div>
                                         <h4>Location:</h4>
-                                        <p>1212 Dhaka, Kazi Nozrul Avenur, Sylhet, Bangladesh 03214</p>
+                                        <p>Galle, Sri Lanka</p>
                                     </div>
                                 </div>
 
@@ -53,7 +54,7 @@ const Contact = () => {
                                     <FaEnvelope className='icon' />
                                     <div>
                                         <h4>Email:</h4>
-                                        <p>ujjalzaman@gmail.com</p>
+                                        <p>healthy@gmail.com</p>
                                     </div>
                                 </div>
 
@@ -61,7 +62,7 @@ const Contact = () => {
                                     <FaPhoneAlt className='icon' />
                                     <div>
                                         <h4>Call:</h4>
-                                        <p>+88 01751 040425</p>
+                                        <p>+94 768 946 416 </p>
                                     </div>
                                 </div>
                             </div>

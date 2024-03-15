@@ -79,12 +79,9 @@ function Chat() {
 
   return (
     <div className="App">
-      <div className="headline">
-      </div>
       <div className="chat-container">
-        <div className="chat-history-container">
-         
-          
+        <div className="chat-history-container bg-info">
+     
         </div>
         <div className="chat-ui">
       <div className="chat-messages">
