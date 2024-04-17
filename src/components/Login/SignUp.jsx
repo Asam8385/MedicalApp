@@ -108,10 +108,13 @@ const SignUp = ({ setSignUp }) => {
         }
     }
 
+    const handleUserTypeChange = (e) => {
+        setUserType(e.target.value);
+    }
     const hanldeOnSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        
+
         if (userType === "doctor") {
             doctorSignUp(user);
         } else {
@@ -139,7 +142,18 @@ const SignUp = ({ setSignUp }) => {
                 <span className="fIcon"><FaLock /></span>
                 <input type="password" name="password" placeholder="password" onChange={(e) => hanldeOnChange(e)} value={user.password} />
             </div>
-          
+            <div className='input-field d-flex align-items-center gap-2 justify-content-center'>
+                <div className='text-nowrap'>I'M A</div>
+                <select
+                    className="form-select w-50"
+                    aria-label="select"
+                    onChange={(e) => handleUserTypeChange(e)}
+                    defaultValue='patient'
+                >
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                </select>
+            </div>
             {error.length && <h6 className="text-danger text-center">{error}</h6>}
             {infoError && <h6 className="text-danger text-center">{infoError}</h6>}
             <button type="submit"

@@ -28,7 +28,7 @@ const SignIn = ({ handleResponse }) => {
         }
         if(isSuccess){
             message.success('Successfully Logged in');
-            navigate("/")
+            navigate("/admin/dashboard")
         }
     }, [isError, error, isSuccess, navigate])
 
@@ -50,8 +50,6 @@ const SignIn = ({ handleResponse }) => {
             <button className="iBtn" type="submit" value="sign In" >
                 {isLoading ? <Spinner animation="border" variant="info" /> : "Sign In"}
             </button>
-            <p className="social-text">Or Sign in with social platforms</p>
-            <SocialSignUp handleResponse={handleResponse} />
         </form>
     );
 };
