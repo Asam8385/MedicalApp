@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import SearchSidebar from './SearchSidebar';
-import SearchContent from './SearchContent';
+import SearchContent from './SearchContentUn';
 import { useDebounced } from '../../../../utils/hooks/useDebounced';
-import { useGetDoctorsQuery } from '../../../../redux/api/doctorApi';
+import { useGetverifyDoctorsQuery } from '../../../../redux/api/doctorApi';
 import { Empty } from 'antd';
 import { Pagination } from 'antd';
 import { Link } from 'react-router-dom';
 
 
-const SearchDoctorAdmin = () => {
+const VerifyDoctorAdmin = () => {
     const query = {};
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(10);
@@ -49,7 +49,7 @@ const SearchDoctorAdmin = () => {
 
     if (!!debounced) { query.searchTerm = debounced }
 
-    const { data, isLoading, isError } = useGetDoctorsQuery({ ...query })
+    const { data, isLoading, isError } = useGetverifyDoctorsQuery({ ...query })
     const doctorsData = data?.doctors || [];
    // console.log(doctorsData);
     const meta = data?.meta;
@@ -78,14 +78,6 @@ const SearchDoctorAdmin = () => {
             <div className="container" style={{ marginBottom: 200, marginTop: 80 }}>
                 <div className="container-fluid">
                     <div className="row">
-                        <SearchSidebar
-                            setSearchTerm={setSearchTerm}
-                            setSorByGender={setSorByGender}
-                            setSpecialist={setSpecialist}
-                            setPriceRange={setPriceRange}
-                            resetFilter={resetFilter}
-                            query={query}
-                        />
                         <div className="col-md-12 col-lg-8 col-xl-9">
                             {content}
                             <div className='text-center mt-5 mb-5'>
@@ -104,4 +96,4 @@ const SearchDoctorAdmin = () => {
     )
 }
 
-export default SearchDoctorAdmin
+export default VerifyDoctorAdmin

@@ -14,9 +14,10 @@ export default function useAuthCheck() {
 
     useEffect(() => {
         const localAuth = getUserInfo();
-
         if (localAuth && localAuth !== null) {
+            console.log(localAuth.role)
             if (localAuth.role === 'patient') {
+                
                 setUserId(localAuth?.userId)
                 setIsSkip(false);
                 setData(patientData)

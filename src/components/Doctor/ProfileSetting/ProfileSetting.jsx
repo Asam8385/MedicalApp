@@ -5,10 +5,11 @@ import DoctorProfileSetting from './DoctorProfileSetting';
 import useAuthCheck from '../../../redux/hooks/useAuthCheck';
 
 const ProfileSetting = (props) => {
-    const  role  = useAuthCheck();
+    const  {role, ...otherData}  = useAuthCheck();
+    console.log(role)
     return (
         <DashboardLayout>
-            {role === 'doctor' ? <DoctorProfileSetting />: <PatientProfileSetting/>}
+            {role === 'patient' ? <PatientProfileSetting /> : <DoctorProfileSetting/>}
         </DashboardLayout>
     )
 }

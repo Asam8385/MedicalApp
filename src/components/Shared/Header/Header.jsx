@@ -15,6 +15,7 @@ const Header = () => {
     const [isLoggedIn, setIsLogged] = useState(false);
     const [show, setShow] = useState(true);
     // const lastScrollRef = useRef(0);
+    console.log(data)
     const handleScroll = () => {
         const currentScroll = window.scrollY;
         // if (currentScroll > lastScrollRef.current) { // Undo scroll up effect
@@ -33,9 +34,11 @@ const Header = () => {
     useEffect(() => { authChecked && setIsLogged(true) }, [authChecked]);
 
     const hanldeSignOut = () => {
+        localStorage.clear();
         loggedOut();
         message.success("Successfully Logged Out")
         setIsLogged(false)
+        
     }
 
 

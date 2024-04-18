@@ -83,7 +83,7 @@ const SearchContent = ({ data }) => {
                             </ul>
                         </div>
                         <div className="clinic-booking">
-                        <Link to={`/doctors/profile/${data?.id}`} className="view-pro-btn">View</Link>
+                        <Link to={`/doctors/profile/${data?.id}`} className="view-pro-btn">Verify</Link>
                         <Link to={`/booking/${data?.id}`} className="apt-btn">Show Boookings</Link>
                     </div>
                     </div>

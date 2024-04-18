@@ -113,13 +113,6 @@ const PatientProfileSetting = () => {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="form-group mb-2 card-label">
-                            <label>Email <span className="text-danger">*</span></label>
-                            <input defaultValue={data?.email} {...register("email")} className="form-control" />
-                        </div>
-                    </div>
-
-                    <div className="col-md-6">
                         <div className="form-group mb-2 rounded border-0 card-label">
                             {data?.dateOfBirth &&
                                 <label>Current Date of Birth {moment(data?.dateOfBirth).format("MMM Do YY")}</label>
