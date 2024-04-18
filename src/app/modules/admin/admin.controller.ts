@@ -19,7 +19,7 @@ const getAllAdmin = catchAsync(async (req: Request, res: Response) => {
     const result = await AdminService.getAllAdmin();
     sendResponse<IAdmin[]>(res, {
         statusCode: 200,
-        message: 'Successfully Retriev All Admin !!',
+        message: 'Successfully Retrieve All Admin !!',
         success: true,
         data: result,
     })

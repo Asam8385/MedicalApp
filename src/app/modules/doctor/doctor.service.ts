@@ -116,9 +116,79 @@ const getAllDoctors = async (filters: IDoctorFilters, options: IOption): Promise
     const result = await prisma.doctor.findMany({
         skip,
         take: limit,
-        where: whereCondition,
+        where: {
+            ...whereCondition,
+            verified: true,
+        },
     });
 
+    const total = await prisma.doctor.count({ where: whereCondition });
+    return {
+        meta: {
+            page,
+            limit,
+            total,
+        },
+        data: result
+    }
+}
+
+
+
+const getAllunverifiedDoctors = async (filters: IDoctorFilters, options: IOption): Promise<IGenericResponse<Doctor[]>> => {
+    const { limit, page, skip } = calculatePagination(options);
+    const { searchTerm, max, min, specialist, ...filterData } = filters;
+
+    const andCondition = [];
+    if (searchTerm) {
+        andCondition.push({
+            OR: DoctorSearchableFields.map((field) => ({
+                [field]: {
+                    contains: searchTerm,
+                    mode: 'insensitive'
+                }
+            }))
+        })
+    }
+
+    if (Object.keys(filterData).length > 0) {
+        andCondition.push({
+            AND: Object.entries(filterData).map(([key, value]) => ({
+                [key]: { equals: value }
+            }))
+        })
+    }
+
+    if (min || max) {
+        andCondition.push({
+            AND: ({
+                price: {
+                    gte: min,
+                    lte: max
+                }
+            })
+        })
+    }
+
+    if (specialist) {
+        andCondition.push({
+            AND: ({
+                services: {
+                    contains: specialist
+                }
+            })
+        })
+    }
+
+    const whereCondition = andCondition.length > 0 ? { AND: andCondition } : {};
+    const result = await prisma.doctor.findMany({
+        skip,
+        take: limit,
+        where: {
+            ...whereCondition,
+            verified: false,
+        },
+    });
     const total = await prisma.doctor.count({ where: whereCondition });
     return {
         meta: {
@@ -155,6 +225,9 @@ const deleteDoctor = async (id: string): Promise<any> => {
     return result;
 }
 
+
+
+
 const updateDoctor = async (req: Request): Promise<Doctor> => {
     const file = req.file as IUpload;
     const id = req.params.id as string;
@@ -180,5 +253,6 @@ export const DoctorService = {
     updateDoctor,
     deleteDoctor,
     getAllDoctors,
+    getAllunverifiedDoctors,
     getDoctor
 }

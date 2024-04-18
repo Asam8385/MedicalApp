@@ -28,6 +28,19 @@ const getAllDoctors = catchAsync(async (req: Request, res: Response) => {
     })
 })
 
+const getAllunverifiedDoctors = catchAsync(async (req: Request, res: Response) => {
+    const filter = pick(req.query, IDoctorFiltersData);
+    const options = pick(req.query, IDoctorOptions);
+    const result = await DoctorService.getAllunverifiedDoctors(filter, options);
+    sendResponse(res, {
+        statusCode: 200,
+        message: 'Successfully Retrieve doctors !!',
+        success: true,
+        data: result,
+    })
+})
+
+
 const getDoctor = catchAsync(async (req: Request, res: Response) => {
     const result = await DoctorService.getDoctor(req.params.id);
     sendResponse<Doctor>(res, {
@@ -63,5 +76,6 @@ export const DoctorController = {
     updateDoctor,
     deleteDoctor,
     getAllDoctors,
+    getAllunverifiedDoctors,
     getDoctor
 }

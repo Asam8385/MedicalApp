@@ -48,7 +48,7 @@ const PasswordResetConfirm = catchAsync(async (req: Request, res: Response) => {
 const VerifyUser = catchAsync(async (req: Request, res: Response) => {
     try {
         const { userId } = req.params;
-        const isUserExist = await prisma.admin.findUnique({
+        const isUserExist = await prisma.doctor.findUnique({
             where: {
                 id: userId
             }
@@ -69,7 +69,7 @@ const VerifyUser = catchAsync(async (req: Request, res: Response) => {
 
             if (isWithinNext6Hours) {
                 await prisma.$transaction(async (tx) => {
-                    await tx.admin.update({
+                    await tx.doctor.update({
                         where: {
  
                             id: isUserExist.id
