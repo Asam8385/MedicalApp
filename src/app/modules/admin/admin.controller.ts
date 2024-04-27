@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
-import { IAdmin } from "./admin.interface";
 import { AdminService } from "./admin.service";
 
 
@@ -15,11 +14,11 @@ const createAdmin = catchAsync(async (req: Request, res: Response) => {
     })
 })
 
-const getAllAdmin = catchAsync(async (req: Request, res: Response) => {
-    const result = await AdminService.getAllAdmin();
-    sendResponse<IAdmin[]>(res, {
+const getAdmin = catchAsync(async (req: Request, res: Response) => {
+    const result = await AdminService.getAdmin(req.params.id);
+    sendResponse(res, {
         statusCode: 200,
-        message: 'Successfully Retrieve All Admin !!',
+        message: 'Successfully Retrieve Admin !!',
         success: true,
         data: result,
     })
@@ -59,6 +58,6 @@ const getAllAdmin = catchAsync(async (req: Request, res: Response) => {
 // })
 
 export const AdminController = {
-    getAllAdmin,
+    getAdmin,
     createAdmin
 }

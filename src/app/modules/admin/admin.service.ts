@@ -62,17 +62,15 @@ const create = async (payload: any): Promise<any> => {
 }
 
 
-const getAllAdmin = async (): Promise<IAdmin[] | null> => {
-     try {
-    const allAdmins = await prisma.admin.findMany();
-    return allAdmins;
-  } catch (error) {
-    console.error('Error retrieving admin records:', error);
-    return null;
-  }
-  
-    
+const getAdmin = async (id: string) => {
+    const result = await prisma.admin.findUnique({
+        where: {
+            id: id
+        }
+    });
+    return result;
 }
+
 
 // const getSingleAdmin = async (payload: string): Promise<IAdmin | null> => {
 //     const result = await AdminModel.findOne({_id: payload});
@@ -90,5 +88,5 @@ const getAllAdmin = async (): Promise<IAdmin[] | null> => {
 
 export const AdminService = {
     create,
-    getAllAdmin
+    getAdmin
 }
