@@ -62,12 +62,7 @@ const VerifyUser = catchAsync(async (req: Request, res: Response) => {
             }
         })
         if (getVerficationUser) {
-            const expiresAt = moment(getVerficationUser.expiresAt);
-            const currentTime = moment();
-            // check currenttime is before then expires Time
-            const isWithinNext6Hours = currentTime.isBefore(expiresAt);
-
-            if (isWithinNext6Hours) {
+         
                 await prisma.$transaction(async (tx) => {
                     await tx.doctor.update({
                         where: {
@@ -84,10 +79,11 @@ const VerifyUser = catchAsync(async (req: Request, res: Response) => {
                         }
                     })
                 })
-                res.redirect('/api/v1/auth/verified');
-            } else {
-                res.redirect('/api/v1/auth/expired/link');
-            }
+                sendResponse(res, {
+                    statusCode: 200,
+                    message: 'Successfully doctor is Verified!!',
+                    success: true,
+                })
         }
     } catch (error) {
         throw new ApiError(httpStatus.NOT_FOUND, "Internal Server Error" + error);
@@ -98,15 +94,11 @@ const Verified = catchAsync(async (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../../../../template/verfied.html"))
 })
 
-const VerficationExpired = catchAsync(async (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, "../../../../template/expiredVarification.html"))
-})
 
 export const AuthController = {
     Login,
     VerifyUser,
     Verified,
-    VerficationExpired,
     ResetPassword,
     PasswordResetConfirm
 }
