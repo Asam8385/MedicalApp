@@ -1,15 +1,15 @@
 import React from 'react'
 import AdminLayout from '../AdminLayout/AdminLayout'
 import './Doctors.css';
-import SearchDoctorAdmin from './SearchDoctor/SearchDoctor';
+import VerifyDoctorAdmin from './SearchDoctor/Doctorverify';
 
-const Doctors = () => {
+const UnverifiedDoctors = () => {
     return (
         <>
             <AdminLayout >
-               <SearchDoctorAdmin/>
+               <VerifyDoctorAdmin/>
             </AdminLayout>
         </>
     )
 }
-export default Doctors;
+export default UnverifiedDoctors;

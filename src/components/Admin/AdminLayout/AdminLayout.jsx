@@ -52,7 +52,7 @@ const AdminLayout = ({ children }) => {
                 background: colorBgContainer,
                 height: '2rem',
                 padding: '0.5rem'
-            }}>AFHR Technologies &copy; 2023</Footer>
+            }}>AFHR Technologies &copy; 2024</Footer>
         </Layout>
         
             </>
