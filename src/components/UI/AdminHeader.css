@@ -19,7 +19,7 @@
 	transition: all 0.2s ease-in-out;
 }
 .header .header-left .logo {
-	display: inline-block;
+	display: block;
 	line-height: 60px;
 }
 .header .header-left .logo img {

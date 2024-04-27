@@ -6,7 +6,7 @@ import './AdminHeader.css';
 const AdminHeader = () => {
     return (
         <div className="header">
-            <div className="header-left">
+            <div className="header-left ">
                 <a href="index.html" className="logo">
                     <img src={logo} alt="Logo" />
                 </a>
