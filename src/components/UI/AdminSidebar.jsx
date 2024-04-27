@@ -40,6 +40,9 @@ const AdminSidebar = () => {
             <Menu.Item key="appointement" icon={<FaListUl />} style={selectedKey === 'appointement' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
                 <Link to="/admin/appointments">Appointment</Link>
             </Menu.Item>
+            <Menu.Item key="undoctor" icon={ <FaUserAstronaut />} style={selectedKey === 'undoctor' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
+                <Link to="/admin/undoctors">Unverified Doctor</Link>
+            </Menu.Item>
             <Menu.Item key="doctor" icon={ <FaUserAstronaut />} style={selectedKey === 'doctor' ? { backgroundColor: '#f0f2f5', color: '#1890ff' } : null}>
                 <Link to="/admin/doctors">Doctor</Link>
             </Menu.Item>
