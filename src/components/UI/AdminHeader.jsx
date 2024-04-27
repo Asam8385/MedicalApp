@@ -2,8 +2,47 @@ import React from 'react'
 import logo from '../../images/logo.png';
 import userImg from '../../images/avatar.jpg';
 import './AdminHeader.css';
+import { Button, Popover, message } from 'antd';
+import { loggedOut } from '../../service/auth.service';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuthCheck from '../../redux/hooks/useAuthCheck';
+import avatar from '../../images/avatar.jpg';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const AdminHeader = () => {
+
+    
+    const { authChecked, data, role } = useAuthCheck();
+    const [isLoggedIn, setIsLogged] = useState(false);
+    console.log(data);
+    const navigate = useNavigate()
+
+    const hanldeSignOut = () => {
+        localStorage.clear();
+        loggedOut();
+        navigate('/admin/')
+        message.success("Successfully Logged Out")
+        setIsLogged(false)
+        
+    }
+
+    useEffect(() => { authChecked && setIsLogged(true) }, [authChecked]);
+    const content = (
+        <div className='nav-popover'>
+            <div className='my-2'>
+                <h5 className='text-capitalize'>{data?.firstName + ' ' + data?.lastName}</h5>
+                <p className='my-0'>{data?.email}</p>
+                <Link to="/admin/dashboard">Deshboard</Link>
+            </div>
+            <Button variant="outline-danger" className='w-100' size="sm" onClick={hanldeSignOut} >
+                Logged Out
+            </Button>
+        </div >
+    );
+
+
+
     return (
         <div className="header">
             <div className="header-left ">
@@ -28,31 +67,15 @@ const AdminHeader = () => {
             </a>
             <ul className="nav user-menu">
 
-                <li className="nav-item dropdown noti-dropdown">
-                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i className="fe fe-bell"></i> <span className="badge badge-pill">3</span>
-                    </a>
-                    <div className="dropdown-menu notifications">
+                <li >
+                    <div className='m-3'>
+                    <Popover content={content}>
+                                    <div className='profileImage'>
+                                        <img src={data?.img ? data?.img : avatar} alt="" className="profileImage shadow img-fluid" />
+                                    </div>
+                    </Popover>
                     </div>
-                </li>
-                <li className="nav-item dropdown has-arrow">
-                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <span className="user-img"><img className="rounded-circle" src={userImg} width="31" alt="Ryan Taylor" /></span>
-                    </a>
-                    <div className="dropdown-menu">
-                        <div className="user-header">
-                            <div className="avatar avatar-sm">
-                                <img src={userImg} alt="" className="avatar-img rounded-circle" />
-                            </div>
-                            <div className="user-text">
-                                <h6>Ryan Taylor</h6>
-                                <p className="text-muted mb-0">Administrator</p>
-                            </div>
-                        </div>
-                        <a className="dropdown-item" href="profile.html">My Profile</a>
-                        <a className="dropdown-item" href="settings.html">Settings</a>
-                        <a className="dropdown-item" href="login.html">Logout</a>
-                    </div>
+                    
                 </li>
 
             </ul>
