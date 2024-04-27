@@ -33,7 +33,21 @@ export const authApi = baseApi.injectEndpoints({
                 data,
             }),
         }),
+        verifyDoctor: build.mutation({
+            query: (userId) => ({
+                url: `/auth/user/verify/${userId}/`,
+                method: 'GET',
+                
+            }),
+        }),
+        counting: build.query({
+            query: () => ({
+                url: `/auth/count/`,
+                method: 'GET',
+                
+            }),
+        })
     })
 })
 
-export const { useUserLoginMutation, useDoctorSignUpMutation, usePatientSignUpMutation } = authApi
+export const { useUserLoginMutation, useDoctorSignUpMutation, usePatientSignUpMutation, useVerifyDoctorMutation, useCountingQuery } = authApi

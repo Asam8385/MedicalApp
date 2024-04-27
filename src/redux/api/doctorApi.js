@@ -50,7 +50,8 @@ export const doctorApi = baseApi.injectEndpoints({
                 },
             }),
             invalidatesTags: [tagTypes.doctor]
-        })
+        }),
+
     })
 })
 

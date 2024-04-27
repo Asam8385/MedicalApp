@@ -1,23 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import showImg from '../../../../images/specialities/specialities-01.png'
+import { useVerifyDoctorMutation } from '../../../../redux/api/authApi';
+import { useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Tag } from 'antd';
 import './index.css';
 import { FaLocationArrow, FaRegThumbsUp, FaDollarSign, FaComment } from "react-icons/fa";
+import { message } from 'antd';
 
 const SearchContent = ({ data }) => {
+
+    const [verifyDoctor, { data: pData, isSuccess: pIsSuccess, isError: pIsError, error: pError, isLoading: pIsLoading }] = useVerifyDoctorMutation();
     
     //const services = data?.services.split(',')
     const services = data?.services ? data.services.split(',') : [];
     console.log("search" + services)
-    const handleClick = () => {
-        localStorage.setItem('doctor', JSON.stringify(data));
+    const handleSuccess = () => {
+        message.success('Successfully Logged in');
+    }
+
+    useEffect(() => {
+        if (!pIsError && pIsSuccess) {
+            handleSuccess();
+        }
+    
+    }, [pIsError, pIsSuccess  ])
+
+    const handleClick = async () => {
+        if (!data) {
+          console.error('No data available');
+          return;
+        }
+    
+        try {
+          const response = await verifyDoctor(data.id);
+          console.log('Verification response:', response);
+        } catch (error) {
+          console.error('Error verifying doctor:', error);
+        }
       };
 
-    if (!data) {
-        return null; // Or some other fallback UI
-      }
+  
+
+   
     return (
 
         // Assuming this code is inside a component
@@ -76,15 +102,13 @@ const SearchContent = ({ data }) => {
                     <div className="doc-info-right me-3">
                         <div className="clini-infos">
                             <ul>
-                                <li><FaRegThumbsUp />  97%</li>
                                 <li><FaComment /> 4 Feedback</li>
-                                <li><FaLocationArrow /> Newyork, USA</li>
-                                <li><FaDollarSign /> $150 - $250</li>
+                                <li><FaLocationArrow /> Healthy, Sri Lanka</li>
                             </ul>
                         </div>
                         <div className="clinic-booking">
-                        <Link to={`/doctors/profile/${data?.id}`} className="view-pro-btn">Verify</Link>
-                        <Link to={`/booking/${data?.id}`} className="apt-btn">Show Boookings</Link>
+                        <Link onClick={handleClick}  className="view-pro-btn">Verify</Link>
+
                     </div>
                     </div>
                 </div>

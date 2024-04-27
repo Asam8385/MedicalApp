@@ -50,6 +50,8 @@ const VerifyDoctorAdmin = () => {
     if (!!debounced) { query.searchTerm = debounced }
 
     const { data, isLoading, isError } = useGetverifyDoctorsQuery({ ...query })
+
+    
     const doctorsData = data?.doctors || [];
    // console.log(doctorsData);
     const meta = data?.meta;
@@ -74,11 +76,11 @@ const VerifyDoctorAdmin = () => {
     }
 
     return (
-        <div>
+        <div >
             <div className="container" style={{ marginBottom: 200, marginTop: 80 }}>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-12 col-lg-8 col-xl-9">
+                        <div className="col-md-12 col-lg-8 col-xl-12">
                             {content}
                             <div className='text-center mt-5 mb-5'>
                                 <Pagination
