@@ -7,7 +7,6 @@ import path from 'path';
 import prisma from "../../../shared/prisma";
 import ApiError from "../../../errors/apiError";
 import httpStatus from "http-status";
-import moment from "moment";
 
 const Login = catchAsync(async (req: Request, res: Response) => {
     const result = await AuthService.loginUser(req.body);
@@ -90,6 +89,38 @@ const VerifyUser = catchAsync(async (req: Request, res: Response) => {
     }
 })
 
+
+const Count = catchAsync(async (req: Request, res: Response) => {
+    try {
+        const docCount = await prisma.doctor.count()
+        const appointmentCount =  await prisma.appointments.count()
+        const patientCount =  await prisma.patient.count()
+        const doctors = await prisma.doctor.findMany();
+        const appointments = await prisma.appointments.findMany();
+        const patients = await prisma.patient.findMany();
+        const data = {
+            docCount,
+            appointmentCount,
+            patientCount,
+            doctors,
+            appointments,
+            patients
+        };
+
+
+        sendResponse(res, {
+            statusCode: 200,
+            message: 'ok!!',
+            success: true,
+            data : data
+        })
+
+    } catch (error) {
+        throw new ApiError(httpStatus.NOT_FOUND, "Internal Server Error" + error);
+    }
+})
+
+
 const Verified = catchAsync(async (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../../../../template/verfied.html"))
 })
@@ -98,6 +129,7 @@ const Verified = catchAsync(async (req: Request, res: Response) => {
 export const AuthController = {
     Login,
     VerifyUser,
+    Count,
     Verified,
     ResetPassword,
     PasswordResetConfirm
