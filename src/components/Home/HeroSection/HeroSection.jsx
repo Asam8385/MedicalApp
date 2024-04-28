@@ -14,7 +14,7 @@ const HeroSection = () => {
         <section id="hero" class="d-flex align-items-center">
             <div className="container">
                 <div>
-                    <small>TOTAL HEALTH CARE SOLUTION</small>
+                    <small >TOTAL HEALTH CARE SOLUTION</small>
                     <h1>Your Most Trusted <br />Health Partner</h1>
                     {/* <small>serunt rem suscipit placeat.</small> */}
                 </div>

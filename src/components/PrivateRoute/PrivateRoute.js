@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const userInfo = getUserInfo();
 
-  return userInfo.userId ? children : 
+  return userInfo && userInfo.userId ? children : 
   <Navigate to='/login' state = {{from : location.pathname}} replace/>
 };
 

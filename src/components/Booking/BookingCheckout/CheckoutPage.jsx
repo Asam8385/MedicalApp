@@ -12,6 +12,7 @@ const CheckoutPage = ({ handleChange, selectValue, isCheck, setIsChecked, data, 
     let price = data?.price ? data.price : 60;
 
     const vat = (15 / 100) * (Number(price))
+    console.log(vat)
     return (
         <div className="container mt-5">
             <div className="row">

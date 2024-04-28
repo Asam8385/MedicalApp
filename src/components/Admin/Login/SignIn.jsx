@@ -33,6 +33,7 @@ const SignIn = ({ handleResponse }) => {
 
     return (
         <form className="sign-in-form" onSubmit={handleSubmit(onSubmit)}>
+           
             <h2 className="title">Sign in</h2>
             <div className="input-field">
                 <span className="fIcon"><FaEnvelope /></span>
@@ -48,7 +49,6 @@ const SignIn = ({ handleResponse }) => {
             <button className="iBtn" type="submit" value="sign In" >
                 {isLoading ? <Spinner animation="border" variant="info" /> : "Sign In"}
             </button>
-            <p className="social-text">Or Sign in with social platforms</p>
         </form>
     );
 };

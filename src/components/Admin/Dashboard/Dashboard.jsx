@@ -4,17 +4,11 @@ import userImg from '../../../images/avatar.jpg';
 import './Dashboard.css';
 import useAuthCheck from '../../../redux/hooks/useAuthCheck';
 import { useCountingQuery } from '../../../redux/api/authApi';
-import { Button, message } from 'antd';
-import { Link } from 'react-router-dom';
-import { loggedOut } from '../../../service/auth.service';
 
 const AdminDashboard = () => {
 
-
-
     const { data, isError, error } = useCountingQuery();
    // console.log(data)
-
 
     return (
         <>

@@ -15,7 +15,7 @@ import Schedule from './components/Doctor/Schedule/Schedule';
 import ProfileSetting from './components/Doctor/ProfileSetting/ProfileSetting';
 import ChangePassword from './components/Doctor/ChangePassword/ChangePassword';
 import AdminDashboard from './components/Admin/Dashboard/Dashboard';
-import AdminAppointments from './components/Admin/Appointments/Appointments';
+import AdminAppointments from './components/Admin/Doctors/Appointments/Appointments';
 import Doctors from './components/Admin/Doctors/Doctors';
 import Patients from './components/Admin/Patients/Patients';
 import Profile from './components/Admin/Profile/Profile';
@@ -85,16 +85,16 @@ const router = createBrowserRouter([
   { path: '/booking/invoice/:id', element: <BookingInvoice /> },
 
   // Dashboard
-  { path: '/admin/', element: <SignInFormAdmin /> },
-  { path: '/admin/dashboard', element: <AdminDashboard /> },
-  { path: '/admin/appointments', element: <AdminAppointments /> },
-  { path: '/admin/doctors', element: <Doctors /> },
-  { path: '/admin/undoctors', element: <UnverifiedDoctors/> },
-  { path: '/admin/patients', element: <Patients /> },
-  { path: '/admin/profile', element: <Profile /> },
-  { path: '/admin/reviews', element: <AdminReviews /> },
-  { path: '/admin/transaction', element: <Transactions /> },
-  { path: '/admin/specialites', element: <Specialites /> },
+  { path: '/admin/', element: <SignInFormAdmin /> }, 
+  { path: '/admin/dashboard',    element: <PrivateRoute><AdminDashboard />    </PrivateRoute>   },
+  { path: '/admin/appointments', element: <PrivateRoute><AdminAppointments /> </PrivateRoute>   },
+  { path: '/admin/doctors',      element: <PrivateRoute><Doctors />           </PrivateRoute>   },
+  { path: '/admin/undoctors',    element: <PrivateRoute><UnverifiedDoctors/>  </PrivateRoute>   },
+  { path: '/admin/patients',     element: <PrivateRoute><Patients />          </PrivateRoute>   },
+  { path: '/admin/profile',      element: <PrivateRoute><Profile />           </PrivateRoute>   },
+  { path: '/admin/reviews',      element: <PrivateRoute><AdminReviews />      </PrivateRoute>   },
+  { path: '/admin/transaction',  element: <PrivateRoute><Transactions />      </PrivateRoute>   },
+  { path: '/admin/specialites',  element: <PrivateRoute><Specialites />       </PrivateRoute>   },
 
   // { path: '/appointment', element: <PrivateRoute><AppointMent /></PrivateRoute> },
 ])

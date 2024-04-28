@@ -15,6 +15,7 @@ import { useCreateAppointmentMutation } from '../../../redux/api/appointmentApi'
 import { useDispatch } from 'react-redux';
 import { addInvoice } from '../../../redux/feature/invoiceSlice';
 import Header from '../../Shared/Header/Header';
+import useAuthCheck from '../../../redux/hooks/useAuthCheck';
 
 const DoctorBooking = () => {
     const dispatch = useDispatch();
@@ -34,11 +35,13 @@ const DoctorBooking = () => {
         cardExpiredYear: '',
         cvv: '',
     }
+    const {data:loggedInUser, role} = useAuthCheck();
     const [current, setCurrent] = useState(0);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectDay, setSelecDay] = useState('');
     const [selectTime, setSelectTime] = useState('');
     const [isCheck, setIsChecked] = useState(false);
+    const [patientId, setPatientId] = useState('');
     const [createAppointment, { data: appointmentData, isSuccess: createIsSuccess, isError: createIsError, error: createError, isLoading: createIsLoading }] = useCreateAppointmentMutation();
     const { doctorId } = useParams();
     const navigation = useNavigate();
@@ -117,7 +120,7 @@ const DoctorBooking = () => {
         },
         {
             title: 'Patient Information',
-            content: <PersonalInformation handleChange={handleChange} selectValue={selectValue} />
+            content: <PersonalInformation handleChange={handleChange} selectValue={selectValue} setPatientId={setPatientId}/>
         },
         {
             title: 'Payment',
@@ -145,10 +148,10 @@ const DoctorBooking = () => {
             lastName: selectValue.lastName,
             email: selectValue.email,
             phone: selectValue.phone,
-            patientId: selectValue.patientId,
             scheduleDate: selectedDate,
             scheduleTime: selectTime,
-            doctorId: doctorId
+            doctorId: doctorId,
+            patientId: role !== '' && role === 'patient' ? patientId : undefined,
         }
         obj.payment = {
             paymentType: selectValue.paymentType,
@@ -167,7 +170,7 @@ const DoctorBooking = () => {
             message.success("Succcessfully Appointment Scheduled")
             setSelectValue(initialValue);
             dispatch(addInvoice({ ...appointmentData }))
-            navigation(`/booking/   success/${appointmentData.id}`)
+            navigation(`/booking/success/${appointmentData.id}`)
         }
         if (createIsError) {
             message.error(error?.data?.message);
