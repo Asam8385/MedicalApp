@@ -13,7 +13,7 @@ model Auth {
   password String
   userId   String?
   role     UserRole
-
+                                      
   @@map("Auth")
 }
 
