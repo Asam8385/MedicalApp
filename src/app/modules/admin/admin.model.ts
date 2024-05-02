@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
-import { IAdmin, IAdminModel } from "./admin.interface";
-import { BloodGroup } from "../../../constants";
+import { IAdmin } from "./admin.interface";
 
-const AdminSchema = new Schema<IAdmin, IAdminModel>({
+
+const AdminSchema = new Schema<IAdmin>({
    
     firstName: {
             type: String,
@@ -15,9 +15,6 @@ const AdminSchema = new Schema<IAdmin, IAdminModel>({
     address: {
         type: String,
     },
-    bloodGroup: {
-        type: String,        enum: BloodGroup
-    },
     email: {
         type: String,
         required: true,
@@ -26,14 +23,10 @@ const AdminSchema = new Schema<IAdmin, IAdminModel>({
         type: Number,
         required: true,
     },
-    status: {
-        type: Boolean,
-        default: true,
-    }
 }, {
     timestamps: true,
     toJSON: {
         virtuals: true,
     }
 });
-export const AdminModel = model<IAdmin, IAdminModel>('Admin', AdminSchema);
+export const AdminModel = model<IAdmin>('Admin', AdminSchema);

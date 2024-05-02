@@ -1,5 +1,5 @@
 
-export interface IAdmin {
+export type IAdmin = {
   id: string;
   createdAt: Date; 
   updatedAt: Date;

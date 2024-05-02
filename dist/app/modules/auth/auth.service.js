@@ -1,94 +1,83 @@
-import bcrypt from 'bcrypt';
-import prisma from "../../../shared/prisma";
-import ApiError from '../../../errors/apiError';
-import httpStatus from 'http-status';
-import { JwtHelper } from '../../../helpers/jwtHelper';
-import config from '../../../config';
-import { Secret } from 'jsonwebtoken';
-import moment from 'moment';
-import { EmailtTransporter } from '../../../helpers/emailTransporter';
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthService = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const prisma_1 = __importDefault(require("../../../shared/prisma"));
+const apiError_1 = __importDefault(require("../../../errors/apiError"));
+const http_status_1 = __importDefault(require("http-status"));
+const jwtHelper_1 = require("../../../helpers/jwtHelper");
+const config_1 = __importDefault(require("../../../config"));
 const { v4: uuidv4 } = require('uuid');
-
-type ILginResponse = {
-    accessToken?: string;
-    user: {}
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const loginUser = async (user: any): Promise<ILginResponse> => {
+const loginUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const { email: IEmail, password } = user;
-    const isUserExist = await prisma.auth.findUnique({
+    const isUserExist = yield prisma_1.default.auth.findUnique({
         where: { email: IEmail }
-    })
-
+    });
     if (!isUserExist) {
-        throw new ApiError(httpStatus.NOT_FOUND, "User is not Exist !");
+        throw new apiError_1.default(http_status_1.default.NOT_FOUND, "User is not Exist !");
     }
     // check Verified doctor or not
     if (isUserExist.role === 'admin') {
-        const getAdminInfo = await prisma.admin.findUnique({
+        const getAdminInfo = yield prisma_1.default.admin.findUnique({
             where: {
                 email: isUserExist.email
             }
-        })
-        if (getAdminInfo && getAdminInfo?.verified === false) {
-            throw new ApiError(httpStatus.NOT_FOUND, "Please Verify Your Email First !");
+        });
+        if (getAdminInfo && (getAdminInfo === null || getAdminInfo === void 0 ? void 0 : getAdminInfo.verified) === false) {
+            throw new apiError_1.default(http_status_1.default.NOT_FOUND, "Please Verify Your Email First !");
         }
     }
-
     if (isUserExist.role === 'doctor') {
-        const getdoctorInfo = await prisma.doctor.findUnique({
+        const getdoctorInfo = yield prisma_1.default.doctor.findUnique({
             where: {
                 email: isUserExist.email
             }
-        })
-        if (getdoctorInfo && getdoctorInfo?.verified === false) {
-            throw new ApiError(httpStatus.NOT_FOUND, "Please Verify Your Email First !");
+        });
+        if (getdoctorInfo && (getdoctorInfo === null || getdoctorInfo === void 0 ? void 0 : getdoctorInfo.verified) === false) {
+            throw new apiError_1.default(http_status_1.default.NOT_FOUND, "Please Verify Your Email First !");
         }
     }
-
-
-    const isPasswordMatched = await bcrypt.compare(password, isUserExist.password);
-
+    const isPasswordMatched = yield bcrypt_1.default.compare(password, isUserExist.password);
     if (!isPasswordMatched) {
-        throw new ApiError(httpStatus.NOT_FOUND, "Password is not Matched !");
+        throw new apiError_1.default(http_status_1.default.NOT_FOUND, "Password is not Matched !");
     }
     const { role, userId } = isUserExist;
-    const accessToken = JwtHelper.createToken(
-        { role, userId },
-        config.jwt.secret as Secret,
-        config.jwt.JWT_EXPIRES_IN as string
-    )
-    return { accessToken, user: { role, userId } }
-}
-
+    const accessToken = jwtHelper_1.JwtHelper.createToken({ role, userId }, config_1.default.jwt.secret, config_1.default.jwt.JWT_EXPIRES_IN);
+    return { accessToken, user: { role, userId } };
+});
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const VerificationUser = async (user: any): Promise<ILginResponse> => {
+const VerificationUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const { email: IEmail, password } = user;
-    const isUserExist = await prisma.auth.findUnique({
+    const isUserExist = yield prisma_1.default.auth.findUnique({
         where: { email: IEmail }
-    })
-
+    });
     if (!isUserExist) {
-        throw new ApiError(httpStatus.NOT_FOUND, "User is not Exist !");
+        throw new apiError_1.default(http_status_1.default.NOT_FOUND, "User is not Exist !");
     }
-    const isPasswordMatched = await bcrypt.compare(password, isUserExist.password);
-
+    const isPasswordMatched = yield bcrypt_1.default.compare(password, isUserExist.password);
     if (!isPasswordMatched) {
-        throw new ApiError(httpStatus.NOT_FOUND, "Password is not Matched !");
+        throw new apiError_1.default(http_status_1.default.NOT_FOUND, "Password is not Matched !");
     }
     const { role, userId } = isUserExist;
-    const accessToken = JwtHelper.createToken(
-        { role, userId },
-        config.jwt.secret as Secret,
-        config.jwt.JWT_EXPIRES_IN as string
-    )
-    return { accessToken, user: { role, userId } }
-}
-
+    const accessToken = jwtHelper_1.JwtHelper.createToken({ role, userId }, config_1.default.jwt.secret, config_1.default.jwt.JWT_EXPIRES_IN);
+    return { accessToken, user: { role, userId } };
+});
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ResetPassword = async (payload: any) => {
-     const { email } = payload;
+const ResetPassword = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = payload;
     // const isUserExist = await prisma.auth.findUnique({
     //     where: { email: email }
     // })
@@ -100,13 +89,10 @@ const ResetPassword = async (payload: any) => {
     //     const uniqueString = uuidv4() + isUserExist.id;
     //     const uniqueStringHashed = await bcrypt.hashSync(uniqueString, 12);
     //     const encodedUniqueStringHashed = uniqueStringHashed.replace(/\//g, '-');
-
     //     const resetLink = clientUrl + isUserExist.id + '/' + encodedUniqueStringHashed;
     //     const currentTime = moment();
     //     const expiresTime = moment(currentTime).add(4, 'hours');
-
     //     await prisma.$transaction(async (tx) => {
-
     //         //Check if the forgotPassword record exists before attempting reset
     //         const existingForgotPassword = await tx.forgotPassword.findUnique({
     //             where: { id: isUserExist.id }
@@ -116,7 +102,6 @@ const ResetPassword = async (payload: any) => {
     //                 where: { id: isUserExist.id }
     //             })
     //         }
-
     //         const forgotPassword = await tx.forgotPassword.create({
     //             data: {
     //                 userId: isUserExist.id,
@@ -138,21 +123,17 @@ const ResetPassword = async (payload: any) => {
     //         return forgotPassword;
     //     });
     // }
-
     // return {
     //     message: "Password Reset Successfully !!"
     // };
-}
-
+});
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const PassworResetConfirm = async (payload: any): Promise<any> => {
-     const { userId, uniqueString, password } = payload;
-
+const PassworResetConfirm = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId, uniqueString, password } = payload;
     // await prisma.$transaction(async (tx) => {
     //     const isUserExist = await tx.auth.findUnique({
     //         where: { id: userId }
     //     });
-
     //     if (!isUserExist) { throw new ApiError(httpStatus.NOT_FOUND, "User is not Exist !") };
     //     const resetLink = `http://localhost:3000/reset-password/${isUserExist.id}/${uniqueString}`
     //     const getForgotRequest = await tx.forgotPassword.findFirst({
@@ -162,7 +143,6 @@ const PassworResetConfirm = async (payload: any): Promise<any> => {
     //         }
     //     })
     //     if (!getForgotRequest) { throw new ApiError(httpStatus.NOT_FOUND, "Forgot Request was not found or Invalid !") };
-
     //     const expiresAt = moment(getForgotRequest.expiresAt);
     //     const currentTime = moment();
     //     if (expiresAt.isBefore(currentTime)) {
@@ -186,11 +166,10 @@ const PassworResetConfirm = async (payload: any): Promise<any> => {
     // return {
     //     message: "Password Changed Successfully !!"
     // }
-}
-
-export const AuthService = {
+});
+exports.AuthService = {
     loginUser,
     VerificationUser,
     ResetPassword,
     PassworResetConfirm
-}
+};

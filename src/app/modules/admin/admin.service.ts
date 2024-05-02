@@ -1,5 +1,4 @@
 import { Admin, UserRole } from "@prisma/client";
-import { IAdmin } from "./admin.interface";
 import prisma from "../../../shared/prisma";
 import bcrypt from 'bcrypt';
 import { EmailtTransporter } from "../../../helpers/emailTransporter";
