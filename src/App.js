@@ -15,7 +15,7 @@ import Schedule from './components/Doctor/Schedule/Schedule';
 import ProfileSetting from './components/Doctor/ProfileSetting/ProfileSetting';
 import ChangePassword from './components/Doctor/ChangePassword/ChangePassword';
 import AdminDashboard from './components/Admin/Dashboard/Dashboard';
-import AdminAppointments from './components/Admin/Doctors/Appointments/Appointments';
+import AdminAppointments from './components/Admin/Appointments/Appointments';
 import Doctors from './components/Admin/Doctors/Doctors';
 import Patients from './components/Admin/Patients/Patients';
 import Profile from './components/Admin/Profile/Profile';
