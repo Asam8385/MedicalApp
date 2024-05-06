@@ -11,8 +11,7 @@ api/logs/winston
 # testing
 /coverage
 
-# production
-/build
+
 
 # misc
 .DS_Store
