@@ -25,7 +25,7 @@ const SignInForm = () => {
                 <div className="panel left-panel">
                     <div className="content">
                         <h3 className='text-white'>New here ?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi beatae quas magnam!</p>
+                       
                         <button className="iBtn transparent" onClick={() => setSignUp(true)}>Sign Up</button>
                     </div>
                     <img src={`${log}`} alt="" className="pImg" />
@@ -34,7 +34,7 @@ const SignInForm = () => {
                 <div className="panel right-panel">
                     <div className="content">
                         <h3 className='text-white'>One of us ?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi beatae quas magnam!</p>
+                    
                         <button className="iBtn transparent" onClick={() => setSignUp(false)}>Sign In</button>
                     </div>
                     <img src={`${register}`} alt="" className="pImg" />

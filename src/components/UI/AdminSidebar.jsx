@@ -1,6 +1,6 @@
 import React from 'react';
 import './AdminSidebar.css';
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUserNurse } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa";
 import { FaPeopleArrows } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
@@ -31,13 +31,13 @@ const AdminSidebar = () => {
 
                         </li>
                         <li>
-                            <Link to={'/admin/specialites'}>
-                                <FaPeopleArrows /> <span>Specialities</span>
+                            <Link to={'/admin/undoctors'}>
+                                <FaUserNurse /> <span>Unverified Doctors</span>
                             </Link>
                         </li>
                         <li>
                             <Link to={'/admin/doctors'}>
-                                <FaUserAstronaut /> <span>Doctors</span>
+                                <FaUserNurse /> <span>Doctors</span>
                             </Link>
 
                         </li>
@@ -58,16 +58,6 @@ const AdminSidebar = () => {
                                 <FaBriefcase /><span>Transactions</span>
                             </Link>
 
-                        </li>
-
-                        <li className="submenu">
-                            <a href="#"><i className="fe fe-document"></i> <span> Reports</span> <span className="menu-arrow"></span></a>
-                            <ul style={{ display: "none" }}>
-                                <li><a >Invoice Reports</a></li>
-                            </ul>
-                        </li>
-                        <li className="menu-title">
-                            <span>Pages</span>
                         </li>
                         <li className='text-white'>
                             <Link to={'/admin/profile'}>

@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminLayout from '../AdminLayout/AdminLayout'
 import userImg from '../../../images/avatar.jpg';
 import './Dashboard.css';
+import useAuthCheck from '../../../redux/hooks/useAuthCheck';
+import { useCountingQuery } from '../../../redux/api/authApi';
 
 const AdminDashboard = () => {
+
+    const { data, isError, error } = useCountingQuery();
+   // console.log(data)
+
     return (
         <>
             <AdminLayout >
@@ -16,7 +22,7 @@ const AdminDashboard = () => {
                                         <i className="fe fe-users"></i>
                                     </span>
                                     <div className="dash-count">
-                                        <h3>168</h3>
+                                        <h3>{data?.docCount}</h3>
                                     </div>
                                 </div>
                                 <div className="dash-widget-info">
@@ -36,7 +42,7 @@ const AdminDashboard = () => {
                                         <i className="fe fe-credit-card"></i>
                                     </span>
                                     <div className="dash-count">
-                                        <h3>487</h3>
+                                        <h3>{data?.patientCount}</h3>
                                     </div>
                                 </div>
                                 <div className="dash-widget-info">
@@ -57,7 +63,7 @@ const AdminDashboard = () => {
                                         <i className="fe fe-money"></i>
                                     </span>
                                     <div className="dash-count">
-                                        <h3>485</h3>
+                                        <h3>{data?.appointmentCount}</h3>
                                     </div>
                                 </div>
                                 <div className="dash-widget-info">
@@ -92,114 +98,85 @@ const AdminDashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-12 col-lg-6">
-
-                     
-                        <div className="card card-chart">
-                            <div className="card-header">
-                                <h4 className="card-title">Revenue</h4>
-                            </div>
-                            <div className="card-body">
-                                <div id="morrisArea"></div>
+                {/* Doctors list card */}
+                <div className="col-md-12 d-flex mt-4">
+                    <div className="card card-table flex-fill">
+                        <div className="card-header">
+                            <h4 className="card-title">Doctors List</h4>
+                        </div>
+                        <div className="card-body">
+                            <div className="table-responsive">
+                                <table className="table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Doctor Name</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>Designation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {data?.doctors.map((doctor, index) => (
+                                            <tr key={index}>
+                                                <td>
+                                                {doctor.firstName  + " " +  doctor.lastName} 
+                                                </td>
+                                                <td>{doctor.phone}</td>
+                                                <td>{doctor.email}</td>
+                                                <td>
+                                                    {doctor.designation}
+                                                 
+                                                 
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                    </div>
-                    <div className="col-md-12 col-lg-6">
-
-                     
-                        <div className="card card-chart">
-                            <div className="card-header">
-                                <h4 className="card-title">Status</h4>
-                            </div>
-                            <div className="card-body">
-                                <div id="morrisLine"></div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-6 d-flex">
-                        <div className="card card-table flex-fill">
-                            <div className="card-header">
-                                <h4 className="card-title">Doctors List</h4>
-                            </div>
-                            <div className="card-body">
-                                <div className="table-responsive">
-                                    <table className="table table-hover table-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>Doctor Name</th>
-                                                <th>Speciality</th>
-                                                <th>Earned</th>
-                                                <th>Reviews</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
+
+                {/* Patients list card */}
+                <div className="col-md-12  mt-4">
+                    <div className="card card-table flex-fill">
+                        <div className="card-header">
+                            <h4 className="card-title">Patients List</h4>
+                        </div>
+                        <div className="card-body">
+                            <div className="table-responsive">
+                                <table className="table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Patient Name</th>
+                                            <th>Phone</th>
+                                            <th>Last Visit</th>
+                                            <th>Paid</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {data?.patients.map((patient, index) => (
+                                            <tr key={index}>
                                                 <td>
                                                     <h2 className="table-avatar">
-                                                        <a className="avatar avatar-sm mr-2"><img className="avatar-img rounded-circle" src={userImg} alt=""/></a>
-                                                        <a>Dr. Ruby Perrin</a>
+                                                        <a href="profile.html" className="avatar avatar-sm mr-2">
+                                                            <img className="avatar-img rounded-circle" src={userImg} alt=""/>
+                                                        </a>
+                                                        <a href="profile.html">{patient.name}</a>
                                                     </h2>
                                                 </td>
-                                                <td>Dental</td>
-                                                <td>$3200.00</td>
-                                                <td>
-                                                    <i className="fe fe-star text-warning"></i>
-                                                    <i className="fe fe-star text-warning"></i>
-                                                    <i className="fe fe-star text-warning"></i>
-                                                    <i className="fe fe-star text-warning"></i>
-                                                    <i className="fe fe-star-o text-secondary"></i>
-                                                </td>
+                                                <td>{patient.phone}</td>
+                                                <td>{patient.lastVisit}</td>
+                                                <td className="text-right">{patient.paid}</td>
                                             </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                    </div>
-                    <div className="col-md-6 d-flex">
-
-                        <div className="card  card-table flex-fill">
-                            <div className="card-header">
-                                <h4 className="card-title">Patients List</h4>
-                            </div>
-                            <div className="card-body">
-                                <div className="table-responsive">
-                                    <table className="table table-hover table-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>Patient Name</th>
-                                                <th>Phone</th>
-                                                <th>Last Visit</th>
-                                                <th>Paid</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <h2 className="table-avatar">
-                                                        <a href="profile.html" className="avatar avatar-sm mr-2"><img className="avatar-img rounded-circle" src={userImg} alt=""/></a>
-                                                        <a href="profile.html">Charlene Reed </a>
-                                                    </h2>
-                                                </td>
-                                                <td>8286329170</td>
-                                                <td>20 Oct 2019</td>
-                                                <td className="text-right">$100.00</td>
-                                            </tr>
-                                           
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+                
                 <div className="row">
                     <div className="col-md-12">
 

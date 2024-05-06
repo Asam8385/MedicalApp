@@ -51,7 +51,7 @@ const SearchDoctorAdmin = () => {
 
     const { data, isLoading, isError } = useGetDoctorsQuery({ ...query })
     const doctorsData = data?.doctors || [];
-    console.log(doctorsData);
+   // console.log(doctorsData);
     const meta = data?.meta;
 
     //what to render
@@ -75,13 +75,6 @@ const SearchDoctorAdmin = () => {
 
     return (
         <div>
-             <div class="container">
-                    <div class="row justify-content-end">
-                        <div className="col-auto">
-                                 <Link to="/admin/doctors/add" className="btn btn-primary btn-lg add-button">Add Doctor</Link>
-                    </div>
-                    </div>
-                </div>
             <div className="container" style={{ marginBottom: 200, marginTop: 80 }}>
                 <div className="container-fluid">
                     <div className="row">

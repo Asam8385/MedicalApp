@@ -19,6 +19,20 @@ export const doctorApi = baseApi.injectEndpoints({
             },
             providesTags: [tagTypes.doctor]
         }),
+        getverifyDoctors: build.query({
+            query: (arg) => ({
+                url: `${DOC_URL}/unverified`,
+                method: 'GET',
+                params: arg
+            }),
+            transformResponse: (response) =>{
+                return {
+                    doctors: response.data,
+                    meta: response.meta
+                }
+            },
+            providesTags: [tagTypes.doctor]
+        }),
         getDoctor: build.query({
             query: (id) => ({
                 url: `${DOC_URL}/${id}`,
@@ -26,7 +40,7 @@ export const doctorApi = baseApi.injectEndpoints({
             }),
             providesTags: [tagTypes.doctor]
         }),
-        updateDoctor: build.mutation({
+        updateDoctor: build.mutation  ({
             query: ({ data, id }) => ({
                 url: `${DOC_URL}/${id}`,
                 method: 'PATCH',
@@ -36,8 +50,9 @@ export const doctorApi = baseApi.injectEndpoints({
                 },
             }),
             invalidatesTags: [tagTypes.doctor]
-        })
+        }),
+
     })
 })
 
-export const { useGetDoctorsQuery, useGetDoctorQuery, useUpdateDoctorMutation } = doctorApi
+export const { useGetDoctorsQuery, useGetverifyDoctorsQuery , useGetDoctorQuery, useUpdateDoctorMutation } = doctorApi

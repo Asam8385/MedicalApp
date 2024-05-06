@@ -114,7 +114,7 @@ const SignUp = ({ setSignUp }) => {
     const hanldeOnSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        
+
         if (userType === "doctor") {
             doctorSignUp(user);
         } else {

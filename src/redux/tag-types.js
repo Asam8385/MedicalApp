@@ -1,4 +1,5 @@
 export const tagTypes = {
+    admin: 'admin',
     favourite: 'favourite',
     prescription: 'prescription',
     patient: 'patient',
@@ -11,6 +12,7 @@ export const tagTypes = {
 }
 
 export const tagTypeList = [
+    tagTypes.admin,
     tagTypes.favourite,
     tagTypes.prescription,
     tagTypes.patient,

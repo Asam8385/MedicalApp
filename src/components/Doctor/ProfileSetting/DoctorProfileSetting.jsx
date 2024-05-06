@@ -13,8 +13,7 @@ import dImage from '../../../images/avatar.jpg'
 
 const DoctorProfileSetting = () => {
     const [selectedItems, setSelectedItems] = useState([]);
-    const [updateDoctor, { isLoading, isSuccess, isError, error }] = useUpdateDoctorMutation()
-    const { data } = useAuthCheck();
+    const [updateDoctor, { isLoading, isSuccess, isError, error }] = useUpdateDoctorMutation() 
     const { register, handleSubmit } = useForm({});
     const [userId, setUserId] = useState('');
     const [selectValue, setSelectValue] = useState({});
@@ -22,7 +21,10 @@ const DoctorProfileSetting = () => {
     const [showCalender, setShowCalender] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [file, setFile] = useState(null);
+    const { data } = useAuthCheck();
 
+
+    console.log(data)
     const buttonRef = useRef(null);
 
     const handleDateChange = (date) => { setValue(date) }
@@ -58,7 +60,7 @@ const DoctorProfileSetting = () => {
             const newDate = moment(value).format()
             newObj['dateOfBirth'] = newDate;
         }
-        newObj["services"] = selectedItems.join(',');
+        newObj["services"] = selectedItems?.join(',');
         const changedValue = Object.fromEntries(Object.entries(newObj).filter(([key, value]) => value !== ''));
         
         const formData = new FormData();
@@ -113,7 +115,7 @@ const DoctorProfileSetting = () => {
                     <div className="col-md-6">
                         <div className="form-group mb-2 card-label">
                             <label>Email</label>
-                            <input defaultValue={data?.email} {...register("email")} className="form-control" />
+                            <input defaultValue={data?.email} {...register("email")} className="form-control" readOnly  />
 
                         </div>
                     </div>

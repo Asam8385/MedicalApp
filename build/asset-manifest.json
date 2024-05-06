@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e307e64d.css",
+    "main.js": "/static/js/main.cdc49270.js",
+    "static/media/baby.png": "/static/media/baby.928305bb3baf9a5ab172.png",
+    "static/media/chair.png": "/static/media/chair.f9bf62b32af354944acd.png",
+    "static/media/banner.jpg": "/static/media/banner.d7417439c41033f97b05.jpg",
+    "static/media/doctor chair 2.jpg": "/static/media/doctor chair 2.fc978c794010fb342906.jpg",
+    "static/media/doctors-bg.jpg": "/static/media/doctors-bg.7b86f9afbc2aaae6cf72.jpg",
+    "static/media/doc1.jpg": "/static/media/doc1.4545b93070fb64e73556.jpg",
+    "static/media/doctor 5.jpg": "/static/media/doctor 5.16782b3788099896f9d6.jpg",
+    "static/media/doc4.jpg": "/static/media/doc4.d31b4e01c956c47f2afa.jpg",
+    "static/media/hero-bg.jpg": "/static/media/hero-bg.23c34f54d68f01d25e90.jpg",
+    "static/media/feature-06.jpg": "/static/media/feature-06.6962bf596e4125886d79.jpg",
+    "static/media/doctor 3.jpg": "/static/media/doctor 3.9a5f50d9e1dce3d79dd9.jpg",
+    "static/media/feature-03.jpg": "/static/media/feature-03.83604bf3f6914c5df51f.jpg",
+    "static/media/feature-02.jpg": "/static/media/feature-02.5f512084522e55e7d0b0.jpg",
+    "static/media/feature-01.jpg": "/static/media/feature-01.1eb95d47909144cd3761.jpg",
+    "static/media/feature-05.jpg": "/static/media/feature-05.bf33350e232bcb1c47c9.jpg",
+    "static/media/info.svg": "/static/media/info.4715ac4b40e0642cbd47c6259dec9057.svg",
+    "static/media/feature.png": "/static/media/feature.389ad37182b22862cc74.png",
+    "static/media/register.svg": "/static/media/register.c806b0814bdd52a1b23cf67f5052f5ff.svg",
+    "static/media/logo.png": "/static/media/logo.f0acb5471a449252a1d5.png",
+    "static/media/blogIcon.png": "/static/media/blogIcon.c322f577cf7372c45a5f.png",
+    "index.html": "/index.html",
+    "main.e307e64d.css.map": "/static/css/main.e307e64d.css.map",
+    "main.cdc49270.js.map": "/static/js/main.cdc49270.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e307e64d.css",
+    "static/js/main.cdc49270.js"
+  ]
+}

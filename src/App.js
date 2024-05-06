@@ -41,9 +41,9 @@ import Prescription from './components/Doctor/Prescription/Prescription';
 import PrescriptionView from './components/Doctor/Prescription/PrescriptionView';
 import TreatmentEdit from './components/Doctor/Treatment/TreatmentEdit';
 import Chat from './components/chat/chat';
-import SignInAdmin from './components/Admin/Login/SignIn';
 import SignInFormAdmin from './components/Admin/Login/SignInForm';
-import AddDoc from './components/Admin/Doctors/Add/SignInForm';
+import UnverifiedDoctors from './components/Admin/Doctors/unverifiedDoc';
+import DoctorProfileSetting from './components/Doctor/ProfileSetting/DoctorProfileSetting';
 
 const router = createBrowserRouter([
   { path: '/', element: <Home /> },
@@ -59,6 +59,8 @@ const router = createBrowserRouter([
 
   { path: '/doctors', element: <SearchDoctor /> },
   { path: '/doctors/profile/:id', element: <DoctorProfile /> },
+  { path: '/doctor/update/as', element: <DoctorProfileSetting /> },
+
 
   { path: '/dashboard', element: <Dashboard /> },
   { path: '/dashboard/my-patients', element: <MyPatients /> },
@@ -83,16 +85,16 @@ const router = createBrowserRouter([
   { path: '/booking/invoice/:id', element: <BookingInvoice /> },
 
   // Dashboard
-  { path: '/admin/', element: <SignInFormAdmin /> },
-  { path: '/admin/dashboard', element: <AdminDashboard /> },
-  { path: '/admin/appointments', element: <AdminAppointments /> },
-  { path: '/admin/doctors', element: <Doctors /> },
-  { path: '/admin/doctors/add', element: <AddDoc /> },
-  { path: '/admin/patients', element: <Patients /> },
-  { path: '/admin/profile', element: <Profile /> },
-  { path: '/admin/reviews', element: <AdminReviews /> },
-  { path: '/admin/transaction', element: <Transactions /> },
-  { path: '/admin/specialites', element: <Specialites /> },
+  { path: '/admin/', element: <SignInFormAdmin /> }, 
+  { path: '/admin/dashboard',    element: <PrivateRoute><AdminDashboard />    </PrivateRoute>   },
+  { path: '/admin/appointments', element: <PrivateRoute><AdminAppointments /> </PrivateRoute>   },
+  { path: '/admin/doctors',      element: <PrivateRoute><Doctors />           </PrivateRoute>   },
+  { path: '/admin/undoctors',    element: <PrivateRoute><UnverifiedDoctors/>  </PrivateRoute>   },
+  { path: '/admin/patients',     element: <PrivateRoute><Patients />          </PrivateRoute>   },
+  { path: '/admin/profile',      element: <PrivateRoute><Profile />           </PrivateRoute>   },
+  { path: '/admin/reviews',      element: <PrivateRoute><AdminReviews />      </PrivateRoute>   },
+  { path: '/admin/transaction',  element: <PrivateRoute><Transactions />      </PrivateRoute>   },
+  { path: '/admin/specialites',  element: <PrivateRoute><Specialites />       </PrivateRoute>   },
 
   // { path: '/appointment', element: <PrivateRoute><AppointMent /></PrivateRoute> },
 ])
