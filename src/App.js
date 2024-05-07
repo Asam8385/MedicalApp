@@ -86,15 +86,15 @@ const router = createBrowserRouter([
 
   // Dashboard
   { path: '/admin/', element: <SignInFormAdmin /> }, 
-  { path: '/admin/dashboard',    element: <PrivateRoute><AdminDashboard />    </PrivateRoute>   },
-  { path: '/admin/appointments', element: <PrivateRoute><AdminAppointments /> </PrivateRoute>   },
-  { path: '/admin/doctors',      element: <PrivateRoute><Doctors />           </PrivateRoute>   },
-  { path: '/admin/undoctors',    element: <PrivateRoute><UnverifiedDoctors/>  </PrivateRoute>   },
-  { path: '/admin/patients',     element: <PrivateRoute><Patients />          </PrivateRoute>   },
-  { path: '/admin/profile',      element: <PrivateRoute><Profile />           </PrivateRoute>   },
-  { path: '/admin/reviews',      element: <PrivateRoute><AdminReviews />      </PrivateRoute>   },
-  { path: '/admin/transaction',  element: <PrivateRoute><Transactions />      </PrivateRoute>   },
-  { path: '/admin/specialites',  element: <PrivateRoute><Specialites />       </PrivateRoute>   },
+  { path: '/admin/dashboard',    element: <PrivateRoute>   <AdminDashboard />    </PrivateRoute>   },
+  { path: '/admin/appointments', element: <PrivateRoute>   <AdminAppointments /> </PrivateRoute>   },
+  { path: '/admin/doctors',      element: <PrivateRoute>   <Doctors />           </PrivateRoute>   },
+  { path: '/admin/undoctors',    element: <PrivateRoute>   <UnverifiedDoctors/>  </PrivateRoute>   },
+  { path: '/admin/patients',     element: <PrivateRoute>   <Patients />          </PrivateRoute>   },
+  { path: '/admin/profile',      element: <PrivateRoute>   <Profile />           </PrivateRoute>   },
+  { path: '/admin/reviews',      element: <PrivateRoute>   <AdminReviews />      </PrivateRoute>   },
+  { path: '/admin/transaction',  element: <PrivateRoute>   <Transactions />      </PrivateRoute>   },
+  { path: '/admin/specialites',  element: <PrivateRoute>   <Specialites />       </PrivateRoute>   },
 
   // { path: '/appointment', element: <PrivateRoute><AppointMent /></PrivateRoute> },
 ])
