@@ -2,9 +2,10 @@ import './index.css';
 import { FaFacebookSquare, FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 import { Empty } from 'antd';
 import { useGetDoctorsQuery } from '../../../redux/api/doctorApi';
+import { Link } from 'react-router-dom';
 
 const OurDoctors = () => {
-    const { data, isLoading, isError } = useGetDoctorsQuery({ limit: 4 });
+    const { data, isLoading, isError } = useGetDoctorsQuery({ limit: 10 });
     const doctors = data?.doctors;
 
     let content = null;
@@ -28,6 +29,10 @@ const OurDoctors = () => {
                                     <a><FaInstagramSquare className='icon' /></a>
                                     <a><FaLinkedin className='icon' /></a>
                                 </div>
+                                <div className="d-flex justify-content-between mt-2 gap-2 align-items-center">
+									<Link to={`/doctors/profile/${item?.id}`} className="btn  btn-outline-info btn-sm view-profile-btn">Profile</Link>
+									<Link to={`/booking/${item?.id}`} className="btn btn-sm book-btn">Book</Link>
+								</div>
                             </div>
                         </div>
                     </div>
