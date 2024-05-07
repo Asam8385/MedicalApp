@@ -38,6 +38,7 @@ const AppointmentPage = () => {
   const [selectValue, setSelectValue] = useState(initialValue);
   const [IsDisable, setIsDisable] = useState(true);
   const [isConfirmDisable, setIsConfirmDisable] = useState(true);
+  const [patientId, setPatientId] = useState('');
   const navigation = useNavigate();
 
   const [createAppointmentByUnauthenticateUser, {data: appointmentData, isError, isSuccess, isLoading, error}] = useCreateAppointmentByUnauthenticateUserMutation()
@@ -62,7 +63,7 @@ const AppointmentPage = () => {
       lastName: selectValue.lastName,
       email: selectValue.email,
       phone: selectValue.phone,
-      patientId: role !== '' ? data.id : undefined,
+      patientId: role !== '' && role === 'patient' ? data.id : undefined,
       scheduleDate: selectedDate,
       scheduleTime: selectTime,
     }
@@ -104,7 +105,7 @@ const AppointmentPage = () => {
     },
     {
       title: 'Patient Information',
-      content: <PersonalInformation handleChange={handleChange} selectValue={selectValue} />
+      content: <PersonalInformation handleChange={handleChange} selectValue={selectValue} setPatientId={setPatientId}/>
     },
     {
       title: 'Payment',

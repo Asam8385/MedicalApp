@@ -32,7 +32,7 @@ const SelectApppointment = ({ selectedDate, handleDateChange, selectTime, setSel
                             </div>
                             <div className='d-flex gap-3'>
                                 <FaLocationArrow className='icon' />
-                                <p>Galle, Sri Lanka<br /><span className="form-text"></span></p>
+                                <p>Sylhet, Bangladesh<br /><span className="form-text">1020BD, Amertam, NorthEast,Srimongol</span></p>
                             </div>
                             <div className='d-flex gap-3'>
                                 <FaLink className='icon' />
