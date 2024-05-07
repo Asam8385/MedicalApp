@@ -18,7 +18,7 @@ const HeroSection = () => {
                     <h1>Your Most Trusted <br />Health Partner</h1>
                     {/* <small>serunt rem suscipit placeat.</small> */}
                 </div>
-                <div className="d-flex justify-content-start gap-2">
+                <div className="d-flex flex-wrap justify-content-start gap-2">
                     <Link to={'/doctors'} className="btn-get-started scrollto">Search Doctors</Link>
                     <Link to={'/track-appointment'} className="btn-get-started scrollto">booking doctors</Link>
                     <Link to={'/chat'} className="btn-get-started scrollto">let us know</Link>
