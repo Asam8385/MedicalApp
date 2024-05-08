@@ -11,7 +11,7 @@ const OverView = ({ doctorId }) => {
         <div className="col-md-12 col-lg-9">
             <div className='mb-3'>
                 <h5 className='overview-text'>About Me</h5>
-                <p className='text-secondary'>{data.biography}</p>
+                <p className='text-secondary'>{data?.biography}</p>
             </div>
 
             <div>
@@ -20,14 +20,14 @@ const OverView = ({ doctorId }) => {
                 <VerticalTimeline>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
-                        contentStyle={{ background: '#2e81c4', color: '#fff' }}
+                        contentStyle={{ background: '#2e81c4', color: 'black' }}
                         contentArrowStyle={{ borderRight: '7px solid  #2e81c4' }}
-                        date={data.awardYear}
+                        date={data?.awardYear}
                         iconStyle={{ background: '#2e81c4', color: '#fff' }}
                         icon={<FaBriefcase />}
                     >
-                        <h5 className="text-white">{data.degree}</h5>
-                        <h3 className="text-white">{data.college}</h3>
+                        <h5 className="text-white">{data?.degree}</h5>
+                        <h3 className="text-white">{data?.college}</h3>
                     </VerticalTimelineElement>
 
                 </VerticalTimeline>
@@ -39,7 +39,7 @@ const OverView = ({ doctorId }) => {
                 <VerticalTimeline>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
-                        contentStyle={{ background: '#2e81c4', color: '#fff' }}
+                        contentStyle={{ background: '#2e81c4', color: 'black' }}
                         contentArrowStyle={{ borderRight: '7px solid  #2e81c4' }}
                         date="2010 - Present (5 years)"
                         iconStyle={{ background: '#2e81c4', color: '#fff' }}
@@ -54,7 +54,7 @@ const OverView = ({ doctorId }) => {
 
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
-                        contentStyle={{ background: '#2e81c4', color: '#fff' }}
+                        contentStyle={{ background: '#2e81c4', color: 'color' }}
                         contentArrowStyle={{ borderRight: '7px solid  #2e81c4' }}
                         date="2007 - 2010 (3 years)"
                         iconStyle={{ background: '#2e81c4', color: '#fff' }}
