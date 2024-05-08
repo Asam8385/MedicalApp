@@ -72,6 +72,16 @@ const getAppointmentTimeOfEachDoctor = catchAsync(async (req: Request, res: Resp
     })
 })
 
+const getpreAppointmentTimeOfEachDoctor = catchAsync(async (req: Request, res: Response) => {
+    const result = await TimeSlotService.getpreTimeSlot(req.params.id, req.query);
+    sendResponse<DoctorTimeSlot>(res, {
+        statusCode: 200,
+        message: 'Successfully deleted Time Slot !!',
+        success: true,
+        data: result
+    })
+})
+
 
 export const doctorTimeSlotController = {
     getAllTimeSlot,
@@ -80,5 +90,6 @@ export const doctorTimeSlotController = {
     createTimeSlot,
     deleteTimeSlot,
     getMyTimeSlot,
-    getAppointmentTimeOfEachDoctor
+    getAppointmentTimeOfEachDoctor,
+    getpreAppointmentTimeOfEachDoctor
 }

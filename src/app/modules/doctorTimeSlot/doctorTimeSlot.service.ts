@@ -3,6 +3,7 @@ import ApiError from "../../../errors/apiError";
 import prisma from "../../../shared/prisma";
 import { DoctorTimeSlot, ScheduleDay } from "@prisma/client";
 import moment from "moment";
+import { fileURLToPath } from "url";
 
 const createTimeSlot = async (user: any, payload: any): Promise<DoctorTimeSlot | null> => {
     const { userId } = user;
@@ -80,6 +81,7 @@ const getTimeSlot = async (id: string): Promise<DoctorTimeSlot | null> => {
     return result;
 }
 
+
 const getMyTimeSlot = async (user: any, filter: any): Promise<DoctorTimeSlot[] | null> => {
     const { userId } = user;
     const isDoctor = await prisma.doctor.findUnique({
@@ -118,6 +120,27 @@ const getAllTimeSlot = async (): Promise<DoctorTimeSlot[] | null> => {
         }
     })
     return result;
+}
+
+
+
+const getpreTimeSlot =  async (id: string, filter: any): Promise<any> => {
+    const Appointments = await prisma.appointments.findMany({
+        where: {
+            doctorId: id
+        },
+    })
+
+    const datetime = filter.date;
+    const date = datetime.split(' ')[0];
+
+    const scheduleTimes = Appointments
+    .filter(item => date === item.scheduleDate?.split(" ")[0])
+    .map(item => item.scheduleTime);
+
+     return scheduleTimes
+ 
+
 }
 const updateTimeSlot = async (user: any, id: string, payload: any): Promise<{ message: string }> => {
     const { userId } = user;
@@ -186,6 +209,7 @@ const getAppointmentTimeOfEachDoctor = async (id: string, filter: any): Promise<
         },
     })
 
+
     const allSlots = doctorTimSlot.map((item) => {
         const { day, timeSlot, ...others } = item;
         return { day, timeSlot }
@@ -231,5 +255,6 @@ export const TimeSlotService = {
     createTimeSlot,
     deleteTimeSlot,
     getMyTimeSlot,
+    getpreTimeSlot,
     getAppointmentTimeOfEachDoctor
 }
