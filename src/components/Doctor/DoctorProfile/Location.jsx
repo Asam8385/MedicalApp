@@ -1,6 +1,9 @@
 import React from 'react'
 import img from '../../../images/chair.png'
-const Location = () => {
+import { useGetDoctorQuery } from '../../../redux/api/doctorApi';
+const Location = ({doctorId}) => {
+
+    const { data, isError, isLoading } = useGetDoctorQuery(doctorId);
     return (
         <div className="location-list ">
             {
@@ -10,8 +13,7 @@ const Location = () => {
 
                             <div className="col-md-6">
                                 <div className=" clinic-content">
-                                    <h4 className="clinic-name"><a href="#">Smile Cute Dental Care Center</a></h4>
-                                    <p className="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+                                    <h4 className="clinic-name"><a href="#">Healthy</a></h4>
                                     <div className="clinic-details mb-0">
                                         <h5 className="clinic-direction"> <i className="fas fa-map-marker-alt"></i> 2286  Sundown Lane, Austin, Texas 78749, USA <br /><a>Get Directions</a></h5>
                                         <ul>

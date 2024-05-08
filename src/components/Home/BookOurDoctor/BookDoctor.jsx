@@ -71,18 +71,7 @@ const BookDoctor = () => {
 									/>
 									<span className="d-inline-block text-secondary mt-2">(27)</span>
 								</div>
-								<ul className="available-info">
-									<li>
-										<FaLocationArrow className='icon' /> Georgia, USA
-									</li>
-									<li>
-										<FaClock className='icon' /> Available on Fri, 22 Mar
-									</li>
-									<li>
-										<FaDollarSign className='icon' /> $100 - $400
-									</li>
-								</ul>
-								<div className="d-flex justify-content-between align-items-center">
+								<div className="d-flex justify-content-evenly align-items-center">
 									<Link to={`/doctors/profile/${item?.id}`} className="btn  btn-outline-info btn-sm view-profile-btn">Profile</Link>
 									<Link to={`/booking/${item?.id}`} className="btn btn-sm book-btn">Book</Link>
 								</div>
@@ -96,22 +85,11 @@ const BookDoctor = () => {
 		<section className="section-doctor container">
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-lg-3 col-md-3 col-sm-12">
-						<div className='mb-2 section-title text-center'>
-							<h2>Book Our Doctor</h2>
-							<p className='m-0 text-secondary'>Lorem ipsum dolor sit.</p>
-						</div>
-						<div className="form-text">
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
-							<p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover  Various versions have evolved over the years, sometimes</p>
-							<Link to={'/doctors'} className='more-btn'>See More</Link>
-						</div>
-					</div>
-					<div className="col-lg-9 col-md-9 col-sm-12">
+					<div className="col-lg-12 col-md-12 col-sm-12">
 						<div className="d-flex justify-content-center align-items-center gap-3 border-0">
 							<Swiper
-								spaceBetween={10}
-								slidesPerView={3}
+								spaceBetween={20}
+								slidesPerView={4}
 								modules={[Navigation, Autoplay]}
 								navigation={true}
 								loop={true}

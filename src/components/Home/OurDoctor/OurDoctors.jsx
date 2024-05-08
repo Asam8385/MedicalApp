@@ -25,11 +25,8 @@ const OurDoctors = () => {
                                 <span>{item?.designation}</span>
                                 <p>{item?.specialization}</p>
                                 <div class="social">
-                                    <a><FaFacebookSquare className='icon' /></a>
-                                    <a><FaInstagramSquare className='icon' /></a>
-                                    <a><FaLinkedin className='icon' /></a>
                                 </div>
-                                <div className="d-flex justify-content-between mt-2 gap-2 align-items-center">
+                                <div className="d-flex justify-content-evenly mt-2 gap-2 align-items-center">
 									<Link to={`/doctors/profile/${item?.id}`} className="btn  btn-outline-info btn-sm view-profile-btn">Profile</Link>
 									<Link to={`/booking/${item?.id}`} className="btn btn-sm book-btn">Book</Link>
 								</div>
@@ -44,7 +41,6 @@ const OurDoctors = () => {
             <div class="container">
                 <div class="section-title text-center mb-3">
                     <h2>OUR DOCTORS</h2>
-                    <p className='form-text'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, adipisci?</p>
                 </div>
 
                 <div class="row">
