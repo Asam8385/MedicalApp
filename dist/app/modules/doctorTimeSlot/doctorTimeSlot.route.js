@@ -12,6 +12,7 @@ const router = express_1.default.Router();
 router.get('/my-slot', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR), doctorTimeSlot_controller_1.doctorTimeSlotController.getMyTimeSlot);
 router.get('/:id', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR), doctorTimeSlot_controller_1.doctorTimeSlotController.getTimeSlot);
 router.get('/appointment-time/:id', doctorTimeSlot_controller_1.doctorTimeSlotController.getAppointmentTimeOfEachDoctor);
+router.get('/pre-appointment-time/:id', doctorTimeSlot_controller_1.doctorTimeSlotController.getpreAppointmentTimeOfEachDoctor);
 router.post('/create', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR), doctorTimeSlot_controller_1.doctorTimeSlotController.createTimeSlot);
 router.get('/', doctorTimeSlot_controller_1.doctorTimeSlotController.getAllTimeSlot);
 router.patch('/', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR), doctorTimeSlot_controller_1.doctorTimeSlotController.updateTimeSlot);

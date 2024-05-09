@@ -78,6 +78,15 @@ const getAppointmentTimeOfEachDoctor = (0, catchAsync_1.default)((req, res) => _
         data: result
     });
 }));
+const getpreAppointmentTimeOfEachDoctor = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield doctorTimeSlot_service_1.TimeSlotService.getpreTimeSlot(req.params.id, req.query);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        message: 'Successfully deleted Time Slot !!',
+        success: true,
+        data: result
+    });
+}));
 exports.doctorTimeSlotController = {
     getAllTimeSlot,
     getTimeSlot,
@@ -85,5 +94,6 @@ exports.doctorTimeSlotController = {
     createTimeSlot,
     deleteTimeSlot,
     getMyTimeSlot,
-    getAppointmentTimeOfEachDoctor
+    getAppointmentTimeOfEachDoctor,
+    getpreAppointmentTimeOfEachDoctor
 };

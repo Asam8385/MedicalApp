@@ -134,6 +134,19 @@ const getAllTimeSlot = () => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
+const getpreTimeSlot = (id, filter) => __awaiter(void 0, void 0, void 0, function* () {
+    const Appointments = yield prisma_1.default.appointments.findMany({
+        where: {
+            doctorId: id
+        },
+    });
+    const datetime = filter.date;
+    const date = datetime.split(' ')[0];
+    const scheduleTimes = Appointments
+        .filter(item => { var _a; return date === ((_a = item.scheduleDate) === null || _a === void 0 ? void 0 : _a.split(" ")[0]); })
+        .map(item => item.scheduleTime);
+    return scheduleTimes;
+});
 const updateTimeSlot = (user, id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId } = user;
     const isDoctor = yield prisma_1.default.doctor.findUnique({
@@ -239,5 +252,6 @@ exports.TimeSlotService = {
     createTimeSlot,
     deleteTimeSlot,
     getMyTimeSlot,
+    getpreTimeSlot,
     getAppointmentTimeOfEachDoctor
 };
