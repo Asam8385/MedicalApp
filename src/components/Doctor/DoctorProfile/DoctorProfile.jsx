@@ -25,12 +25,12 @@ const DoctorProfile = () => {
         {
             key: '1',
             label: 'Overview',
-            children: <OverView />,
+            children: <OverView doctorId={id} />,
         },
         {
             key: '2',
             label: 'Locations',
-            children: <Location />,
+            children: <Location doctorId={id} />,
         },
         {
             key: '3',

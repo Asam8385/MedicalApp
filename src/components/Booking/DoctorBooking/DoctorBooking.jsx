@@ -6,7 +6,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Empty, Button, message, Steps } from 'antd';
 import { useGetDoctorQuery } from '../../../redux/api/doctorApi';
 import { FaArchway } from "react-icons/fa";
-import { useGetAppointmentTimeQuery } from '../../../redux/api/timeSlotApi';
+import { useGetAppointmentTimeQuery, useGetPreAppointmentTimeQuery } from '../../../redux/api/timeSlotApi';
 import moment from 'moment';
 import SelectDateAndTime from '../SelectDateAndTime';
 import PersonalInformation from '../PersonalInformation';
@@ -47,20 +47,26 @@ const DoctorBooking = () => {
     const navigation = useNavigate();
     const { data, isLoading, isError, error } = useGetDoctorQuery(doctorId);
     const { data: time, refetch, isLoading: dIsLoading, isError: dIsError, error: dError } = useGetAppointmentTimeQuery({ day: selectDay, id: doctorId });
-
+    const { data: Appointeddate, ...other } = useGetPreAppointmentTimeQuery({ date: selectedDate, id: doctorId });
     const [selectValue, setSelectValue] = useState(initialValue);
     const [IsdDisable, setIsDisable] = useState(true);
     const [IsConfirmDisable, setIsConfirmDisable] = useState(true);
+    const [filteredtime, setfilteredtime] = useState([]);
 
     const handleChange = (e) => { setSelectValue({ ...selectValue, [e.target.name]: e.target.value }) }
+
+    
 
     useEffect(() => {
         const { firstName, lastName, email, phone, nameOnCard, cardNumber, expiredMonth, cardExpiredYear, cvv, reasonForVisit } = selectValue;
         const isInputEmpty = !firstName || !lastName || !email || !phone || !reasonForVisit;
         const isConfirmInputEmpty = !nameOnCard || !cardNumber || !expiredMonth || !cardExpiredYear || !cvv || !isCheck;
+        const newFilteredAppointments = time?.filter(time => !Appointeddate.includes(time.slot.time));
+        setfilteredtime(newFilteredAppointments);
         setIsDisable(isInputEmpty);
         setIsConfirmDisable(isConfirmInputEmpty);
-    }, [selectValue, isCheck])
+    }, [selectValue, isCheck, Appointeddate, time])
+
 
 
     const handleDateChange = (_date, dateString) => {
@@ -81,7 +87,7 @@ const DoctorBooking = () => {
     if (!dIsLoading && !dIsError && time.length > 0) dContent =
         <>
             {
-                time && time.map((item, id) => (
+                filteredtime && filteredtime.map((item, id) => (
                     <div className="col-md-4" key={id + 155}>
                         <Button type={item?.slot?.time === selectTime ? "primary" : "default"} shape="round" size='large' className='mb-3' onClick={() => handleSelectTime(item?.slot?.time)}> {item?.slot?.time} </Button>
                     </div>

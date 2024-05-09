@@ -31,7 +31,17 @@ export const timeSlotApi = baseApi.injectEndpoints({
             query: ({ day, id }) => ({
                 url: `${TIMELOT_URL}/appointment-time/${id}`,
                 method: 'GET',
-                params: {day:day}
+                params: { day : day }
+            }
+            ),
+            providesTags: [tagTypes.timeSlot]
+        }),
+
+        getPreAppointmentTime: build.query({
+            query: ({ date, id }) => ({
+                url: `${TIMELOT_URL}/pre-appointment-time/${id}`,
+                method: 'GET',
+                params: { date : date }
             }
             ),
             providesTags: [tagTypes.timeSlot]
@@ -66,6 +76,7 @@ export const {
     useGetAllTimeSlotQuery,
     useDeleteTimeSlotQuery,
     useGetDoctorTimeSlotQuery,
+    useGetPreAppointmentTimeQuery,
     useGetTimeSlotQuery,
     useUpdateTimeSlotMutation,
     useCreateTimeSlotMutation,
