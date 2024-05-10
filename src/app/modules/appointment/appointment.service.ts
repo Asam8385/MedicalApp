@@ -28,7 +28,6 @@ const createAppointment = async (user: any, payload: any): Promise<Appointments 
 
     if (isUserExist) {
         patientInfo['patientId'] = isUserExist.id;
-        patientInfo['paymentStatus'] = paymentStatus.paid;
     }
     const result = await prisma.$transaction(async (tx) => {
         const previousAppointment = await tx.appointments.findFirst({
