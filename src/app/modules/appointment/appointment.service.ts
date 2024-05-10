@@ -98,7 +98,7 @@ const createAppointment = async (user: any, payload: any): Promise<Appointments 
         const firstName = appointment?.firstName;
         const lastName = appointment?.lastName;
         const subject = `Appointment Confirm With Dr ${appointment?.doctor?.firstName + ' ' + appointment?.doctor?.lastName} at ${appointment.scheduleDate} + ' ' + ${appointment.scheduleTime}`
-        const fromMail = "ujjalzaman+doctor@gmail.com"
+        const fromMail = "healthy.pro@gmail.com"
         const toMail = `${appointment.email + ',' + appointment.doctor?.email}`;
         EmailtTransporter({ pathName, replacementObj, firstName, lastName, fromMail, toMail, subject })
         return appointment;

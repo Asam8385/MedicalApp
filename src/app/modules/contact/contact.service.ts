@@ -8,12 +8,12 @@ const contactUs = async (payload: any): Promise<{message: string}> => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: "",
-            pass: config.emailPass
+            user: "subairasam8733260@gmail.com",
+            pass: "nasazuigpioownuc"
         }
     });
 
-    var mailOptions = {
+    const mailOptions = {
         from: `"${firstName + ' ' + lastName}" <${email}>`,
         to: 'subairasam8733260@gmail.com',
         subject: subject,
