@@ -7,7 +7,7 @@ import './index.css';
 import { FaLocationArrow, FaRegThumbsUp, FaDollarSign, FaComment } from "react-icons/fa";
 
 const SearchContent = ({ data }) => {
-    console.log("search" + data?.firstName)
+    console.log(data)
     const services = data?.services ? data.services.split(',') : [];
     if (!data) {
         return null; // Or some other fallback UI
@@ -69,8 +69,7 @@ const SearchContent = ({ data }) => {
                         <ul>
                             <li><FaRegThumbsUp />  97%</li>
                             <li><FaComment /> 4 Feedback</li>
-                            <li><FaLocationArrow /> Newyork, USA</li>
-                            <li><FaDollarSign /> $150 - $250</li>
+                            <li><FaDollarSign /> {data?.price ? data?.price : "Not Available Now"}</li>
                         </ul>
                     </div>
                     <div className="clinic-booking">
