@@ -4,6 +4,7 @@ import ApiError from '../errors/apiError';
 import httpStatus from 'http-status';
 import { Transporter } from './Transporter';
 
+
 type IEmailProps = {
     pathName: string;
     replacementObj: any,
@@ -25,6 +26,10 @@ export const EmailtTransporter = ({pathName,replacementObj,firstName, lastName, 
         })
     }
 
+
+ if (replacementObj?.paymentStatus === 'paid')
+        {
+            
     readHtmlFile(__dirname + `${pathName}`, function(err:any, html:any){
         if(err){
             console.log(err);
@@ -48,4 +53,34 @@ export const EmailtTransporter = ({pathName,replacementObj,firstName, lastName, 
             }
         });
     })
+        }
+else{
+            
+    readHtmlFile(__dirname + '../../../template/appointment2.html', function(err:any, html:any){
+        if(err){
+            console.log(err);
+            return;
+        }
+        const template = handlebars.compile(html);
+        const htmlToSend = template(replacementObj);
+        var mailOptions = {
+            from: `<${fromMail}>`,
+            to: toMail,
+            subject: subject,
+            html: htmlToSend
+        };
+
+        Transporter.sendMail(mailOptions, function (error: any, info: any) {
+            if (error) {
+                console.log(error)
+                throw new ApiError(httpStatus.NO_CONTENT, "Unable to send message !")
+            } else {
+                return
+            }
+        });
+    })
+        }
+
+
+
 }
