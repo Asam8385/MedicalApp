@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContactService = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
-const config_1 = __importDefault(require("../../../config"));
 const apiError_1 = __importDefault(require("../../../errors/apiError"));
 const http_status_1 = __importDefault(require("http-status"));
 const contactUs = (payload) => __awaiter(void 0, void 0, void 0, function* () {
@@ -22,11 +21,11 @@ const contactUs = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const transporter = nodemailer_1.default.createTransport({
         service: 'gmail',
         auth: {
-            user: "",
-            pass: config_1.default.emailPass
+            user: "subairasam8733260@gmail.com",
+            pass: "nasazuigpioownuc"
         }
     });
-    var mailOptions = {
+    const mailOptions = {
         from: `"${firstName + ' ' + lastName}" <${email}>`,
         to: 'subairasam8733260@gmail.com',
         subject: subject,

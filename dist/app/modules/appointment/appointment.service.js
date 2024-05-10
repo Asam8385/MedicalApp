@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppointmentService = void 0;
-const client_1 = require("@prisma/client");
 const prisma_1 = __importDefault(require("../../../shared/prisma"));
 const apiError_1 = __importDefault(require("../../../errors/apiError"));
 const http_status_1 = __importDefault(require("http-status"));
@@ -39,7 +38,6 @@ const createAppointment = (user, payload) => __awaiter(void 0, void 0, void 0, f
     }
     if (isUserExist) {
         patientInfo['patientId'] = isUserExist.id;
-        patientInfo['paymentStatus'] = client_1.paymentStatus.paid;
     }
     const result = yield prisma_1.default.$transaction((tx) => __awaiter(void 0, void 0, void 0, function* () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u;
@@ -108,7 +106,7 @@ const createAppointment = (user, payload) => __awaiter(void 0, void 0, void 0, f
         const firstName = appointment === null || appointment === void 0 ? void 0 : appointment.firstName;
         const lastName = appointment === null || appointment === void 0 ? void 0 : appointment.lastName;
         const subject = `Appointment Confirm With Dr ${((_s = appointment === null || appointment === void 0 ? void 0 : appointment.doctor) === null || _s === void 0 ? void 0 : _s.firstName) + ' ' + ((_t = appointment === null || appointment === void 0 ? void 0 : appointment.doctor) === null || _t === void 0 ? void 0 : _t.lastName)} at ${appointment.scheduleDate} + ' ' + ${appointment.scheduleTime}`;
-        const fromMail = "ujjalzaman+doctor@gmail.com";
+        const fromMail = "healthy.pro@gmail.com";
         const toMail = `${appointment.email + ',' + ((_u = appointment.doctor) === null || _u === void 0 ? void 0 : _u.email)}`;
         (0, emailTransporter_1.EmailtTransporter)({ pathName, replacementObj, firstName, lastName, fromMail, toMail, subject });
         return appointment;
