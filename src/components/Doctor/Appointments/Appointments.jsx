@@ -89,6 +89,7 @@ const Appointments = () => {
                                         <Link to={`/dashboard/prescription/${item?.prescription[0]?.id}`}>
                                             <Button type="primary" icon={<FaEye />} size="small" >Prescription</Button>
                                         </Link>
+                                        
                                 }
                                 {
                                     item?.isFollowUp && <Link to={`/dashboard/appointment/treatment/edit/${item?.prescription[0]?.id}`}>

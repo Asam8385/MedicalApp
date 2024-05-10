@@ -60,7 +60,6 @@ const Blog = () => {
         <div className="container" style={{ marginTop: "8.5rem", marginBottom: '7rem' }}>
             <div className='mb-5 section-title text-center'>
                 <h2>OUR BLOG</h2>
-                <p className='m-0'>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             </div>
             <div className="container">
                 <div className="row py-5 align-items-center justify-content-center rounded" style={{ background: '#f8f9fa' }}>

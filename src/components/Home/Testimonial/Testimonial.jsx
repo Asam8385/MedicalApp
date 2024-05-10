@@ -9,6 +9,7 @@ import { Navigation, Autoplay } from 'swiper/modules';
 
 const Testimonial = () => {
     const { data, isLoading, isError } = useGetAllReviewsQuery({});
+    console.log(data)
     let content = null;
     if (!isLoading && isError) content = <div>Something Went Wrong !</div>
     if (!isLoading && !isError && data?.length === 0) content = <div>Empty</div>
@@ -51,10 +52,10 @@ const Testimonial = () => {
                 <h2>TESTIMONIAL</h2>
                 <p className='m-0 text-secondary'>What Our Patients Says.</p>
             </div>
-            <div className="row d-flex justify-content-center">
+            <div className="row  col-lg-8 d-flex justify-content-center align-items-center">
                 <Swiper
                     spaceBetween={10}
-                    slidesPerView={2}
+                    slidesPerView={1}
                     modules={[Navigation, Autoplay]}
                     navigation={true}
                     loop={true}

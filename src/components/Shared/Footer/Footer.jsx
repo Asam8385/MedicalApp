@@ -6,7 +6,7 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 
 const Footer = () => {
 	return (
-		<footer className="footer position-relative">
+		<footer className="footer position-relative " >
 			<div className="footer-top">
 				<div className="container-fluid">
 					<div className="row">
@@ -18,7 +18,6 @@ const Footer = () => {
 									</Link>
 								</div>
 								<div className="footer-about-content">
-									<p className='form-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 								</div>
 							</div>
 						</div>
