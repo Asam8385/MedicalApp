@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { Toast } from 'react-bootstrap';
 import { useUserLoginMutation } from '../../redux/api/authApi';
 import { message } from 'antd';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { decodeToken } from '../../utils/jwt';
 
 const SignIn = ({ handleResponse }) => {
     const [infoError, setInfoError] = useState('');
@@ -20,6 +22,7 @@ const SignIn = ({ handleResponse }) => {
     const [userLogin, {isError, isLoading, isSuccess, error}] = useUserLoginMutation();
 
     const onSubmit = async (event) => {
+        console.log(event)
         userLogin({...event})
     }
     useEffect(() => {
@@ -50,7 +53,26 @@ const SignIn = ({ handleResponse }) => {
                 {isLoading ? <Spinner animation="border" variant="info" /> : "Sign In"}
             </button>
             <p className="social-text">Or Sign in with social platforms</p>
-            <SocialSignUp handleResponse={handleResponse} />
+
+            
+            
+            <GoogleLogin
+                shape='circle'
+                theme =  "filled_blue"
+                type='icon'
+                size='large'
+                use_fedcm_for_prompt = 'false'
+                onSuccess={credentialResponse => {
+                const token = decodeToken(credentialResponse.credential);
+                console.log(credentialResponse)
+                userLogin({email : token.email, password : `${token.family_name + token.given_name + "healthy"}`})
+  
+                
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+            />;
         </form>
     );
 };

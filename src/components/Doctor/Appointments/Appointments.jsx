@@ -23,7 +23,7 @@ const Appointments = () => {
             updateAppointment({ id, data: changeObj })
         }
     }
-
+ console.log(data)
     useEffect(() => {
         if (isSuccess) {
             message.success("Succcessfully Appointment Updated")
@@ -49,10 +49,10 @@ const Appointments = () => {
                         <div className="d-flex justify-content-between align-items-center">
                             <div className="d-flex align-items-center gap-3">
                                 <Link to={`/`} className="patient-img">
-                                    <img src={data?.patient?.img ? data?.patient?.img : img} alt="" />
+                                    <img src={item?.patient?.img ? item?.patient?.img : img} alt="" />
                                 </Link>
                                 <div className="patients-info">
-                                    <h5>{getInitPatientName()}</h5>
+                                    <h5>{item?.patient?.firstName + " " + item?.patient?.lastName }</h5>
                                     <Tooltip title="Copy Tracking Id">
                                         <Button>
                                             <h6>Tracking<Tag color="#87d068" className='ms-2 text-uppercase' onClick={() => clickToCopyClipBoard(item?.trackingId)}>{item?.trackingId}</Tag></h6>
@@ -60,10 +60,10 @@ const Appointments = () => {
                                     </Tooltip>
 
                                     <div className="info mt-2">
-                                        <p><FaClock className='icon' /> {moment(item?.appointmentTime).format("MMM Do YY")} </p>
+                                        <p><FaClock className='icon' /> {moment(item?.scheduleDate).format("MMM Do YY")} </p>
                                         {item?.patient?.address && <p><FaLocationArrow className='icon' /> {item?.patient?.address}</p>}
                                         {item?.patient?.email && <p><FaEnvelope className='icon' /> {item?.patient?.email}</p>}
-                                        {item?.patient?.address && <p><FaPhoneAlt className='icon' />{item?.patient?.address}</p>}
+                                        {item?.phone && <p><FaPhoneAlt className='icon' />{item?.phone}</p>}
 
                                     </div>
                                 </div>
