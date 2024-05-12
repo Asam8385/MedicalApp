@@ -223,6 +223,7 @@ const getDoctorPrescriptionById = async (user: any): Promise<Prescription[] | nu
 }
 
 const deletePrescription = async (id: string): Promise<any> => {
+    console.log(id)
     const result = await prisma.prescription.delete({
         where: {
             id: id

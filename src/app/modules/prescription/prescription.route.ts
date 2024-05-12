@@ -13,7 +13,7 @@ router.get('/', PrescriptionController.getAllPrescriptions);
 
 router.post('/create', auth(AuthUser.DOCTOR, AuthUser.ADMIN), PrescriptionController.createPrescription);
 
-router.delete('/:', auth(AuthUser.DOCTOR, AuthUser.ADMIN), PrescriptionController.deletePrescription);
+router.delete('/:id', auth(AuthUser.DOCTOR, AuthUser.ADMIN), PrescriptionController.deletePrescription);
 router.patch('/', auth(AuthUser.DOCTOR, AuthUser.ADMIN), PrescriptionController.updatePrescription);
 router.patch('/update-prescription-appointment', auth(AuthUser.DOCTOR, AuthUser.ADMIN), PrescriptionController.updatePrescriptionAndAppointment);
 
