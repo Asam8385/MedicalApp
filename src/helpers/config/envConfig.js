@@ -1,6 +1,6 @@
 // const url = process.env.NODE_ENV === "development" ?  "http://localhost:5051/api/v1" : 'https://fix-my-phone-backend.vercel.app/api/v1'
 
 export const getBaseUrl = () =>{
-    return  'http://localhost:6003/api/v1';
+    return  'https://medicalapp-1.onrender.com/api/v1';
 }
 
