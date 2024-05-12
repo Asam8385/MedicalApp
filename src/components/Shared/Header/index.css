@@ -129,7 +129,7 @@
     font-size: 14px;
     font-weight: 500;
     text-transform: none;
-    color: #082744;
+    color: #093054;
     border: none;
 }
 
@@ -173,7 +173,7 @@
 }
 
 .mobile-nav-toggle {
-    color: #2c4964;
+    color: #0c7de7;
     font-size: 28px;
     cursor: pointer;
     display: none;
@@ -205,7 +205,7 @@
 }
 
 .appointment-btn:hover {
-    background: #166ab5;
+    background: #107bd9;
     color: #fff;
 }
 
@@ -219,20 +219,27 @@
 .mobile-menu-nav {
     list-style: none;
     font-size: 1.2rem;
-    color: #1977cc !important;
+    color: #000000 !important;
 }
 .mobile-menu-nav .icon{
     font-size: 1.3rem;
     margin-right: 15px;
+    color: black !important;
 
 }
 .mobile-menu-nav li{
     margin-bottom: 10px;
     padding: 5px;
+    
 }
 .mobile-menu-nav li a{
     padding: 5px;
 }
 .ant-drawer-body{
-    background-color: #d2d2ff;
+    background-color: #6c63e8;
+}
+
+.logo
+{
+    width: 30px;
 }

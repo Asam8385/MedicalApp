@@ -93,7 +93,7 @@ const BookDoctor = () => {
 						<div className="d-flex justify-content-center align-items-center gap-3 border-0">
 							<Swiper
 								spaceBetween={20}
-								slidesPerView={3}
+								slidesPerView={2}
 								modules={[Navigation, Autoplay]}
 								navigation={true}
 								loop={true}
