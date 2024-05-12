@@ -23,7 +23,7 @@ const DashboardSidebar = () => {
                 {
                     role === 'doctor' ?
                         <div className="profile-info text-center">
-                            <Link to={'/'}><img src={img} alt="" /></Link>
+                            <Link><img src={data?.img} alt="" /></Link>
                             <div className='profile-details'>
                                 <h5 className='mb-0'>{data?.firstName + " " + data?.lastName}</h5>
                                 <div>
@@ -33,7 +33,7 @@ const DashboardSidebar = () => {
                         </div>
                         :
                         <div className="profile-info text-center">
-                            <Link to={'/'}><img src={img} alt="" /></Link>
+                            <Link ><img src={data?.img ? data?.img : img  } alt="" /></Link>
                             <div className='profile-details'>
                                 <h5 className='mb-0'>{data?.firstName + " " + data?.lastName}</h5>
                                 <div className='mt-2'>

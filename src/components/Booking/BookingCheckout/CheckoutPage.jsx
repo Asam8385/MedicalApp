@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './BookingCheckout.css';
 
 const CheckoutPage = ({ handleChange, selectValue, isCheck, setIsChecked, data, selectedDate, selectTime }) => {
-    const { nameOnCard, cardNumber, expiredMonth, cardExpiredYear, cvv, paymentType, paymentMethod } = selectValue;
+    const { nameOnCard, cardNumber, expiredMonth, cardExpiredYear, cvv, paymentType } = selectValue;
     const handleCheck = () => {
         setIsChecked(!isCheck)
     }
@@ -47,57 +47,36 @@ const CheckoutPage = ({ handleChange, selectValue, isCheck, setIsChecked, data, 
                             <di mb-3v className="col-md-6">
                                 <div className="form-group card-label mb-3">
                                     <label htmlFor="card_name">Name on Card</label>
-                                    <input className="form-control" id="card_name" value={nameOnCard && nameOnCard} type="text" onChange={(e) => handleChange(e)} name='nameOnCard' />
+                                    <input className="form-control" id="card_name" value={nameOnCard && nameOnCard} type="text" onChange={(e) => handleChange(e)} name='nameOnCard' readOnly={paymentType === 'cash'} required />
                                 </div>
                             </di>
                             <div className="col-md-6">
                                 <div className="form-group card-label mb-3">
                                     <label htmlFor="card_number">Card Number</label>
-                                    <input className="form-control" id="card_number" value={cardNumber && cardNumber} placeholder="1234  5678  9876  5432" type="number" onChange={(e) => handleChange(e)} name='cardNumber' />
+                                    <input className="form-control" id="card_number" value={cardNumber && cardNumber} placeholder="1234  5678  9876  5432" type="number" onChange={(e) => handleChange(e)} name='cardNumber' readOnly={paymentType === 'cash'} required/>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="form-group card-label mb-3">
                                     <label htmlFor="expiry_month">Expiry Month</label>
-                                    <input className="form-control" id="expiry_month" value={expiredMonth && expiredMonth} placeholder="MM" type="number" onChange={(e) => handleChange(e)} name='expiredMonth' />
+                                    <input className="form-control" id="expiry_month" value={expiredMonth && expiredMonth} placeholder="MM" type="number" onChange={(e) => handleChange(e)} name='expiredMonth' readOnly={paymentType === 'cash'} required />
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="form-group card-label mb-3">
                                     <label htmlFor="expiry_year">Expiry Year</label>
-                                    <input className="form-control" id="expiry_year" value={cardExpiredYear && cardExpiredYear} placeholder="YY" type="number" onChange={(e) => handleChange(e)} name='cardExpiredYear' />
+                                    <input className="form-control" id="expiry_year" value={cardExpiredYear && cardExpiredYear} placeholder="YY" type="number" onChange={(e) => handleChange(e)} name='cardExpiredYear' readOnly={paymentType === 'cash'} required />
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="form-group card-label mb-3">
                                     <label htmlFor="cvv">CVV</label>
-                                    <input className="form-control" id="cvv" type="number" value={cvv && cvv} onChange={(e) => handleChange(e)} name='cvv' />
+                                    <input className="form-control" id="cvv" type="number" value={cvv && cvv} onChange={(e) => handleChange(e)} name='cvv'  readOnly={paymentType === 'cash'} required/>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="d-flex gap-2 mt-3 mb-3">
-                            <div>
-                                <input type="radio"
-                                    name="paymentMethod"
-                                    value="paypal"
-                                    onChange={(e) => handleChange(e)}
-                                    checked={paymentMethod === 'paypal'}
-                                />
-                                <span className="checkmark ms-3"></span>
-                                Paypal
-                            </div>
-                            <div>
-                                <input type="radio"
-                                    name="paymentMethod"
-                                    value="payoneer"
-                                    onChange={(e) => handleChange(e)}
-                                    checked={paymentMethod === 'payoneer'}
-                                />
-                                <span className="checkmark ms-3"></span>
-                                Payoneer
-                            </div>
-                        </div>
+                        
                         <div className="terms-accept">
                             <div className="custom-checkbox">
                                 <input
@@ -105,7 +84,7 @@ const CheckoutPage = ({ handleChange, selectValue, isCheck, setIsChecked, data, 
                                     id="terms_accept" className='me-2'
                                     checked={isCheck}
                                     onChange={handleCheck} />
-                                <label htmlFor="terms_accept"> I have read and accept <a className='text-primary' style={{ cursor: 'pointer', textDecoration: 'none' }}>Terms &amp; Conditions</a></label>
+                                <label htmlFor="terms_accept"> I have read and accept <a className='text-primary' style={{ cursor: 'pointer', textDecoration: 'none' }} required>Terms &amp; Conditions</a></label>
                             </div>
                         </div>
                     </div>

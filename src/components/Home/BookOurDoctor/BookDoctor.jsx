@@ -83,13 +83,17 @@ const BookDoctor = () => {
 		</>
 	return (
 		<section className="section-doctor container">
+			 <div className='mb-5 section-title text-center'>
+                <h2>Book our doctors</h2>
+                <p className='m-0 text-secondary'></p>
+            </div> 
 			<div className="container-fluid">
+				
 				<div className="row">
-					<div className="col-lg-12 col-md-12 col-sm-12">
 						<div className="d-flex justify-content-center align-items-center gap-3 border-0">
 							<Swiper
 								spaceBetween={20}
-								slidesPerView={4}
+								slidesPerView={3}
 								modules={[Navigation, Autoplay]}
 								navigation={true}
 								loop={true}
@@ -99,7 +103,6 @@ const BookDoctor = () => {
 								{content}
 							</Swiper>
 						</div>
-					</div>
 				</div>
 			</div>
 		</section >

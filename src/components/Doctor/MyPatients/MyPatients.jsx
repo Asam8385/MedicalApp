@@ -13,6 +13,7 @@ const MyPatients = () => {
         return fullName.trim() || "Private Patient";
     }
     const { data, isLoading, isError } = useGetDoctorPatientsQuery();
+    console.log(data)
     let content = null;
     if (!isLoading && isError) content = <div>Something Went Wrong !</div>
     if (!isLoading && !isError && data?.length === 0) content = <Empty/>
@@ -21,8 +22,8 @@ const MyPatients = () => {
             {data && data?.map((item) => (
                 <div className="w-100 mb-3 rounded p-3 text-center" style={{ background: '#f8f9fa' }}>
                     <div className="">
-                        <Link to={'/'} className="my-3 patient-img">
-                            <img src={data?.patient?.img ? data?.patient?.img : img} alt="" />
+                        <Link  className="my-3 patient-img">
+                            <img src={item?.img ? item?.img : img} alt="" />
                         </Link>
                         <div className="patients-info mt-4">
                             <h5>{getInitPatientName(item)}</h5>
@@ -40,7 +41,7 @@ const MyPatients = () => {
     return (
         <DashboardLayout>
             <div className="row">
-                <div className="col-md-6 col-lg-4 col-xl-3">
+                <div className="d-flex gap-3 ">
                     {content}
                 </div>
             </div>

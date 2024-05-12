@@ -4,6 +4,8 @@ import SocialSignUp from './SocialSignUp';
 import Spinner from 'react-bootstrap/Spinner'
 import swal from 'sweetalert';
 import { useDoctorSignUpMutation, usePatientSignUpMutation } from '../../redux/api/authApi';
+import { GoogleLogin } from '@react-oauth/google';
+import { decodeToken } from '../../utils/jwt';
 
 // password regex
 // ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$
@@ -119,7 +121,7 @@ const SignUp = ({ setSignUp }) => {
             doctorSignUp(user);
         } else {
             patientSignUp(user)
-            console.log(user);
+            console.log(pError);
         }
     }
 
@@ -194,7 +196,31 @@ const SignUp = ({ setSignUp }) => {
             </div>
 
             <p className="social-text">Or Sign up with social account</p>
-            <SocialSignUp />
+            <GoogleLogin
+                shape='circle'
+                theme =  "filled_blue"
+                type='icon'
+                size='large'
+                use_fedcm_for_prompt = 'false'
+                onSuccess={credentialResponse => {
+                const token = decodeToken(credentialResponse.credential);
+                console.log(token)
+                const formField = {
+                    firstName: token.given_name,
+                    lastName: token.family_name,
+                    email: token.email,
+                    password: `${token.family_name + token.given_name + "healthy"}` ,
+
+
+                }
+                patientSignUp(formField)
+  
+                
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+            />;
         </form>
 
     );

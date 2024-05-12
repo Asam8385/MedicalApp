@@ -20,7 +20,7 @@ import useAuthCheck from '../../../redux/hooks/useAuthCheck';
 const DoctorBooking = () => {
     const dispatch = useDispatch();
     let initialValue = {
-        paymentMethod: 'paypal',
+        paymentMethod: '',
         paymentType: 'creditCard',
         firstName: '',
         lastName: '',
@@ -58,9 +58,9 @@ const DoctorBooking = () => {
     
 
     useEffect(() => {
-        const { firstName, lastName, email, phone, nameOnCard, cardNumber, expiredMonth, cardExpiredYear, cvv, reasonForVisit } = selectValue;
+        const { firstName, lastName, email, phone, nameOnCard, cardNumber, expiredMonth, cardExpiredYear, cvv, reasonForVisit, paymentType } = selectValue;
         const isInputEmpty = !firstName || !lastName || !email || !phone || !reasonForVisit;
-        const isConfirmInputEmpty = !nameOnCard || !cardNumber || !expiredMonth || !cardExpiredYear || !cvv || !isCheck;
+        const isConfirmInputEmpty = (!nameOnCard || !cardNumber || !expiredMonth || !cardExpiredYear || !cvv || !isCheck) && !(selectValue.paymentType === 'cash')   ;
         const newFilteredAppointments = time?.filter(time => !Appointeddate.includes(time.slot.time));
         setfilteredtime(newFilteredAppointments);
         setIsDisable(isInputEmpty);
@@ -155,6 +155,7 @@ const DoctorBooking = () => {
             email: selectValue.email,
             phone: selectValue.phone,
             scheduleDate: selectedDate,
+            paymentStatus: selectValue.paymentType === 'cash' ? "unpaid" : "paid" ,
             scheduleTime: selectTime,
             doctorId: doctorId,
             patientId: role !== '' && role === 'patient' ? patientId : undefined,
@@ -193,7 +194,7 @@ const DoctorBooking = () => {
                         disabled={current === 0 ? (selectTime ? false : true) : IsdDisable || !selectTime}
                         onClick={() => next()}>Next</Button>)}
 
-                    {current === steps.length - 1 && (<Button type="primary" disabled={IsConfirmDisable} loading={createIsLoading} onClick={handleConfirmSchedule}>Confirm</Button>)}
+                    {current === steps.length - 1 && (<Button type="primary" disabled={IsConfirmDisable } loading={createIsLoading} onClick={handleConfirmSchedule}>Confirm</Button>)}
                     {current > 0 && (<Button style={{ margin: '0 8px', }} onClick={() => prev()} >Previous</Button>)}
                 </div>
             </div>

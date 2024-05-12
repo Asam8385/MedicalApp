@@ -20,8 +20,7 @@ const HeroSection = () => {
                 </div>
                 <div className="d-flex flex-wrap justify-content-start gap-2">
                     <Link to={'/doctors'} className="btn-get-started scrollto">Search Doctors</Link>
-                    <Link to={'/track-appointment'} className="btn-get-started scrollto">Track your Appointment</Link>
-                    <Link to={'/chat'} className="btn-get-started scrollto">let us know</Link>
+                    <Link to={'/chat'} className="btn-get-started scrollto">Chat bot</Link>
                     <FloatButton icon={<FaRobot/>} onClick={handleButtonClick}  tooltip={<div>Chat bot</div>}/>
                     <ConfigProvider
                                    theme={{

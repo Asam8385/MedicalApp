@@ -12,6 +12,7 @@ import { clickToCopyClipBoard } from '../../utils/copyClipBoard';
 const BookingSuccess = () => {
     const { id } = useParams();
     const { data } = useGetSingleAppointmentQuery(id);
+    console.log(data)
 
     const navigate = useNavigate();
 
@@ -64,11 +65,13 @@ const BookingSuccess = () => {
                                 </div>
                                 <div className='d-flex gap-3 mb-1'>
                                     <div><FaLocationArrow style={{ fontSize: '1rem' }} /></div>
-                                    <p className='text-start'>Sylhet, Bangladesh<br /><span className="form-text">1020BD, Amertam, NorthEast,Srimongol</span></p>
+                                    <p className='text-start'>Galle, Sri Lanka<br /><span className="form-text">Sarasavi Asapuva</span></p>
                                 </div>
                                 <div className='d-flex gap-3 mb-2'>
                                     <div><FaLink style={{ fontSize: '1rem' }} /></div>
-                                    <div><a href='https://meet.google.com/udx-kieq-sng' target='_blank' rel='noreferrer'>https://meet.google.com/udx-kieq-sng</a></div>
+                                   {data?.paymentStatus === 'paid' ? <div><a href='https://meet.google.com/udx-kieq-sng' target='_blank' rel='noreferrer'>https://meet.google.com/udx-kieq-sng</a></div> :     
+                                   <div>Visit to the healthy </div>
+                                   } 
                                 </div>
                                 <div className='d-flex gap-3'>
                                     <div><FaCalendarAlt style={{ fontSize: '1rem' }} /> </div>

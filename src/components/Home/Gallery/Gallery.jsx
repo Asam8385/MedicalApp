@@ -7,6 +7,7 @@ import img6 from '../../../images/doc/doctor chair 2.jpg';
 import img7 from '../../../images/features/feature-03.jpg';
 import img8 from '../../../images/doc/doctor 5.jpg';
 import img9 from '../../../images/doc/doctor chair 2.jpg';
+
 import './index.css';
 import { Image } from 'antd';
 
@@ -17,7 +18,7 @@ const Gallery = () => {
             <div class="text-center mb-5">
                 <div class="section-title mb-3">
                     <h2>Gallery</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                   
                 </div>
             </div>
 

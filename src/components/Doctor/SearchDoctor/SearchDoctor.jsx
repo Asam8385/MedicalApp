@@ -77,7 +77,7 @@ const SearchDoctor = () => {
     return (
         <div>
             <Header />
-            <SubHeader title='Doctors' subtitle='Lorem ipsum dolor sit amet.' />
+            <SubHeader title='Doctors' subtitle='Book. Meet. Heal.' />
             <div className="container" style={{ marginBottom: 200, marginTop: 80 }}>
                 <div className="container-fluid">
                     <div className="row">

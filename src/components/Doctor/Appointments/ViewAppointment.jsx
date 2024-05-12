@@ -45,8 +45,12 @@ const ViewAppointment = () => {
                         APPOINTMENT INFOMATION
                     </h4>
                     <div className='border border-light-subtle rounded p-3'>
-                        <p className='mb-1'>Place of Meeting : <Tag bordered={false} color="#f50">ONLINE</Tag></p>
-                        <p className='mb-1'>Meeting Link : <a href="https://meet.google.com/udx-kieq-sng" target='_blank' rel='noreferrer'>https://meet.google.com/udx-kieq-sng</a></p>
+                       {data?.paymentStatus === 'paid' ? <p className='mb-1'>Place of Meeting : <Tag bordered={false} color="#f50">ONLINE</Tag></p> :
+                        
+                        <p className='mb-1'>Place of Meeting : <Tag bordered={false} color="#f50">PHYSICAL</Tag></p>
+                       
+                       }
+                       {data?.paymentStatus === 'paid' && <p className='mb-1'>Meeting Link : <a href="https://meet.google.com/udx-kieq-sng" target='_blank' rel='noreferrer'>https://meet.google.com/udx-kieq-sng</a></p>}
                         <p className='mb-1'>Meeting Date : <Tag bordered={false} color="orange">{moment(data?.scheduleDate).format('LL')}</Tag></p>
                         <p className='mb-1'>Meeting Time : <Tag bordered={false} color="orange">{data?.scheduleTime}</Tag></p>
                     </div>

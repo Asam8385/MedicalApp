@@ -67,7 +67,7 @@ const Header = () => {
                     </Link>
                     <HeaderNav isLoggedIn={isLoggedIn} data={data}
                         avatar={avatar} content={content} open={open} setOpen={setOpen} />
-                    <Link to={'/appointment'} className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span> Appointment</Link>
+                    <Link to={'/track-appointment'} className="appointment-btn scrollto"><span className="d-none d-md-inline">Track</span> Appointment</Link>
                 </div>
             </header>
         </>
