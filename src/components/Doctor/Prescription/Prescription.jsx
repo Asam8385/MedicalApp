@@ -89,6 +89,8 @@ const Prescription = () => {
         }
     }
 
+    console.log(data)
+
     return (
         <DashboardLayout>
             <div className="w-100 mb-3 rounded" style={{ background: '#f8f9fa' }}>
