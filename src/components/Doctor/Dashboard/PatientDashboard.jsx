@@ -14,6 +14,8 @@ const PatientDashboard = () => {
     const { data, isLoading: pIsLoading } = useGetPatientAppointmentsQuery();
     const { data: prescriptionData, prescriptionIsLoading } = useGetPatientPrescriptionQuery();
     const { data: invoices, isLoading: InvoicesIsLoading } = useGetPatientInvoicesQuery();
+
+    console.log(data)
     
     const InvoiceColumns = [
         {
@@ -22,69 +24,40 @@ const PatientDashboard = () => {
             width: 150,
             render: function (data) {
                 return (
+                    <>
                     <div className="avatar avatar-sm mr-2 d-flex gap-2">
                         <div>
-                            <img className="avatar-img rounded-circle" src={img} alt="" />
+                            <img className="avatar-img rounded-circle" src={data?.doctor?.img} alt="" />
                         </div>
                         <div>
-                            <h6 className='text-nowrap mb-0'>{data?.appointment?.doctor?.firstName + ' ' + data?.appointment?.doctor?.lastName}</h6>
-                            <p className='form-text'>{data?.appointment?.doctor?.designation}</p>
+                            <h6 className='text-nowrap mb-0'>{data?.doctor?.firstName + ' ' + data?.doctor?.lastName}</h6>
+                            <p className='form-text'>{data?.doctor?.designation}</p>
                         </div>
                     </div>
+                </>
                 )
-            }
-        },
-        {
-            title: 'Total Paid',
-            key: 2,
-            width: 100,
-            dataIndex: "totalAmount"
-        },
-        {
-            title: 'Paid On',
-            key: 3,
-            width: 100,
-            render: function (data) {
-                return <div>{moment(data?.createdAt).format("LL")}</div>
             }
         },
         {
             title: 'Payment Method',
             key: 4,
             width: 100,
-            dataIndex: "paymentMethod"
-        },
-        {
-            title: 'Payment Type',
-            key: 4,
-            width: 100,
-            dataIndex: "paymentType"
-        },
-        {
-            title: 'Action',
-            key: '5',
-            width: 100,
             render: function (data) {
-                return (
-                    <Link to={`/booking/invoice/${data?.appointment?.id}`}>
-                        <Button type='primary' size='medium'>View</Button>
-
-                    </Link>
-                )
+                return <Tag color="#f50">{data?.paymentStatus}</Tag>
             }
         },
+        
+       
     ];
+
     const prescriptionColumns = [
         {
             title: 'App Doctor',
             key: 11,
-            width: 150,
+            width: 170,
             render: function (data) {
                 return <>
                     <div className="avatar avatar-sm mr-2 d-flex gap-2">
-                        <div>
-                            <img className="avatar-img rounded-circle" src={img} alt="" />
-                        </div>
                         <div>
                             <h6 className='text-nowrap mb-0'>{data?.doctor?.firstName + ' ' + data?.doctor?.lastName}</h6>
                             <p className='form-text'>{data?.doctor?.designation}</p>
@@ -166,7 +139,7 @@ const PatientDashboard = () => {
                 return <>
                     <div className="avatar avatar-sm mr-2 d-flex gap-2">
                         <div>
-                            <img className="avatar-img rounded-circle" src={img} alt="" />
+                            <img className="avatar-img rounded-circle" src={data?.doctor?.img} alt="" />
                         </div>
                         <div>
                             <h6 className='text-nowrap mb-0'>{data?.doctor?.firstName + ' ' + data?.doctor?.lastName}</h6>
@@ -248,7 +221,7 @@ const PatientDashboard = () => {
             children: <CustomTable
                 loading={InvoicesIsLoading}
                 columns={InvoiceColumns}
-                dataSource={invoices}
+                dataSource={data}
                 showPagination={true}
                 pageSize={10}
                 showSizeChanger={true}

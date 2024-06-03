@@ -5,7 +5,7 @@ import axios from "axios";
 import "./chat.css";
 import { FaPaperPlane } from "react-icons/fa";
 
-const baseURL = "http://localhost:8000/ask";
+const baseURL = "https://medicalapp-3.onrender.com/api/v1/ask";
 
 function Chat() {
   const [messages, setMessages] = useState([]);
