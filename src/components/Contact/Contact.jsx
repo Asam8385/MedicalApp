@@ -27,7 +27,7 @@ const Contact = () => {
     return (
         <>
             <Header />
-            <SubHeader title="Contact us" subtitle="Lorem ipsum dolor sit amet consectetur adipisicing." />
+            <SubHeader title="Contact us" subtitle="" />
             <section id="contact" className="contact mt-5 mb-5">
                 <div>
                     <div className="container">

@@ -61,8 +61,7 @@ const Header = () => {
             </div>
             <header id="header" className={`fixed-top ${!show && "stickyHeader"}`}>
                 <div className="container d-flex align-items-center">
-
-                    <Link to={'/'} className="logo me-auto ">
+                    <Link style={{ width: '200px' }} to={'/'} className="logo me-auto ">
                         <img src={img} alt="" className="img-fluid" />
                     </Link>
                     <HeaderNav isLoggedIn={isLoggedIn} data={data}

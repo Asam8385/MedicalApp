@@ -12,10 +12,10 @@ import { truncate } from '../../utils/truncate';
 import { useGetDoctorsQuery } from '../../redux/api/doctorApi';
 
 const About = () => {
-    const { data, isError, isLoading } = useGetAllBlogsQuery({ limit: 4 });
+
     const { data: doctorData, isLoading: DoctorIsLoading, isError: doctorIsError } = useGetDoctorsQuery({ limit: 4 });
 
-    const blogData = data?.blogs;
+   
     const doctors = doctorData?.doctors;
 
     let doctorContent = null;
@@ -36,42 +36,18 @@ const About = () => {
             ))}
         </>
 
-    let content = null;
-    if (!isLoading && isError) content = <div>{message.error('Something went Wrong!')}</div>
-    if (!isLoading && !isError && blogData?.length === 0) content = <Empty />
-    if (!isLoading && !isError && blogData?.length > 0) content =
-        <>
-            {
-                blogData && blogData?.map((item, id) => (
-                    <div className="col-lg-3 col-md-6" key={id + item.id}>
-                        <div className="card shadow border-0 mb-5 mb-lg-0">
-                            <img src={item?.img} alt="blog Image" width={300} height={200} className="w-100  rounded-top image-hover" style={{ objectFit: 'contain' }} />
-
-                            <div className='p-2'>
-                                <Link to={`/blog/${item?.id}`}>
-                                    <h6 className="text-start mb-1 text-capitalize" style={{ color: '#223a66' }}>{truncate(item?.title, 40)}</h6>
-                                </Link>
-                                <div className="px-2">
-                                    <p className="form-text text-start text-capitalize">{truncate(item?.description, 80)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))
-            }
-        </>
     return (
         <>
             <Header />
-            <SubHeader title="about us" subtitle="Lorem ipsum dolor sit amet consectetur adipisicing." />
+            <SubHeader title="about us" subtitle="No need alter option to heal" />
             <div className="container" style={{ marginBottom: 100, marginTop: 100 }}>
                 <div className="row p-5">
                     <div className="col-lg-4">
                         <div className='section-title text-center'>
                             <h2 className='text-uppercase'>Our Doctors Acheivement</h2>
-                            <p className='form-text m-0'>Lorem ipsum dolor sit amet.</p>
+                            <p className='form-text m-0'></p>
                         </div>
-                        <p className='mt-3'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, quod laborum alias. Vitae dolorum, officia sit! Saepe ullam facere at, consequatur incidunt, quae esse, quis ut reprehenderit dignissimos, libero delectus.</p>
+                        <p className='mt-3'>Our doctors are highly skilled and experienced professionals dedicated to providing exceptional medical care. They work tirelessly to ensure the well-being of our patients, offering expert diagnoses and effective treatments. Our team is committed to maintaining the highest standards of medical excellence, and they are always ready to address any health concerns with compassion and precision. Trust our doctors to deliver the best healthcare services, ensuring you receive the attention and care you deserve.</p>
                     </div>
 
                     <div className="col-lg-8">
@@ -81,18 +57,13 @@ const About = () => {
                 </div>
             </div>
 
-            <div className="container" style={{ marginBottom: 100, marginTop: 100 }}>
-                <div className="row">
-                    {content}
-                </div>
-            </div>
-
+          
             <div className="container" style={{ marginBottom: 100, marginTop: 100 }}>
                 <div className="row align-items-center">
                     <div className="col-lg-4">
                         <div className='section-title text-center'>
                             <h2 className='text-uppercase'>Our Doctors Acheivement</h2>
-                            <p className='form-text m-0'>Lorem ipsum dolor sit amet.</p>
+                            <p className='form-text m-0'></p>
                         </div>
                     </div>
                     <div className="col-lg-8">
@@ -132,7 +103,7 @@ const About = () => {
                     <div className="col-lg-6 offset-lg-6">
                         <div className='mb-4 section-title text-center'>
                             <h2 className='text-uppercase'>What Doctor's Say</h2>
-                            <p className='form-text m-0'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ipsum!</p>
+                            <p className='form-text m-0'></p>
                         </div>
                     </div>
                 </div>
@@ -144,7 +115,8 @@ const About = () => {
                             <span>John Partho</span>
                         </div>
                         <p className='form-text'>
-                            They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
+                        They provide excellent service with great attention to detail. Their expertise and dedication are unmatched. They handle each case with care and professionalism, ensuring the best outcomes for their patients. Their facility is equipped with state-of-the-art technology, and they are committed to providing top-notch care. Whether it's a routine check-up or a complex procedure,
+                         you can trust them to deliver the highest quality service.
                         </p>
                     </div>
                 </div>

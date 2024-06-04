@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FaAngleDoubleRight } from "react-icons/fa";
 
 const Footer = () => {
+
 	return (
 		<footer className="footer position-relative " >
 			<div className="footer-top">
@@ -30,7 +31,7 @@ const Footer = () => {
 									<li><Link to={'/login'}><FaAngleDoubleRight className='icon' />  Login</Link></li>
 									<li><Link to={'/login'}><FaAngleDoubleRight className='icon' />  Register</Link></li>
 									<li><Link to={'/doctors'}><FaAngleDoubleRight className='icon' />  Booking</Link></li>
-									<li><Link to={'/'}><FaAngleDoubleRight className='icon' />  Patient Dashboard</Link></li>
+									<li><Link to={'/'}><FaAngleDoubleRight className='icon' />  Home</Link></li>
 								</ul>
 							</div>
 						</div>
@@ -57,7 +58,6 @@ const Footer = () => {
 										<p> 121, Simply city boarding,<br /> Galle, Sri Lanka 03214 </p>
 									</div>
 									<p>
-										<i className="fas fa-phone-alt"></i>
 										+94 768 496 416
 									</p>
 									<p className="mb-0">

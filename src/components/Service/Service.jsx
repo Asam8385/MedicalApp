@@ -21,7 +21,7 @@ const Service = () => {
   return (
     <>
       <Header />
-      <SubHeader title="Service" subtitle="Lorem ipsum dolor sit amet consectetur adipisicing." />
+      <SubHeader title="Service" subtitle="" />
 
       <div class="container" style={{ marginTop: 200, marginBottom: 100 }}>
         <div class="row">
@@ -32,7 +32,7 @@ const Service = () => {
                   <img src={img} alt="" class="img-fluid" style={{ maxHeight: '17rem', objectFit: 'cover' }} />
                   <div class="p-2">
                     <h4 class="mt-4 mb-2">Child care</h4>
-                    <p class="mb-4">Saepe nulla praesentium eaque omnis perferendis a doloremque.</p>
+                    <p class="mb-4">They often provide everything with complete excellence and care.</p>
                   </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@ const Service = () => {
               <div class="d-flex align-items-center">
                 <div className='mb-4 section-title text-center'>
                   <h2 className='text-uppercase'>We are pleased to offer you the</h2>
-                  <p className='form-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, sed.</p>
+                  <p className='form-text'>They often provide everything with complete excellence and care.</p>
                   <Link to={'/doctors'} className="btn-get-started scrollto">Get Started</Link>
                 </div>
 

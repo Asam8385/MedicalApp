@@ -29,7 +29,7 @@ const CheckoutPage = ({ handleChange, selectValue, isCheck, setIsChecked, data, 
                                         checked={paymentType === 'creditCard'}
                                     />
                                     <span className="ms-2"></span>
-                                    Credit card
+                                    Credit card ( For Virtual )
                                 </label>
                             </div>
                             <div className="col-md-6 mb-2">
@@ -44,49 +44,99 @@ const CheckoutPage = ({ handleChange, selectValue, isCheck, setIsChecked, data, 
                                     Cash
                                 </label>
                             </div>
-                            <di mb-3v className="col-md-6">
-                                <div className="form-group card-label mb-3">
-                                    <label htmlFor="card_name">Name on Card</label>
-                                    <input className="form-control" id="card_name" value={nameOnCard && nameOnCard} type="text" onChange={(e) => handleChange(e)} name='nameOnCard' readOnly={paymentType === 'cash'} required />
-                                </div>
-                            </di>
-                            <div className="col-md-6">
-                                <div className="form-group card-label mb-3">
-                                    <label htmlFor="card_number">Card Number</label>
-                                    <input className="form-control" id="card_number" value={cardNumber && cardNumber} placeholder="1234  5678  9876  5432" type="number" onChange={(e) => handleChange(e)} name='cardNumber' readOnly={paymentType === 'cash'} required/>
+                            {paymentType !== 'cash' && (
+  <>
+    <div className="col-md-6">
+      <div className="form-group card-label mb-3">
+        <label htmlFor="card_name">Name on Card</label>
+        <input
+          className="form-control"
+          id="card_name"
+          value={nameOnCard && nameOnCard}
+          type="text"
+          onChange={(e) => handleChange(e)}
+          name='nameOnCard'
+          required
+        />
+      </div>
+    </div>
+    <div className="col-md-6">
+      <div className="form-group card-label mb-3">
+        <label htmlFor="card_number">Card Number</label>
+        <input
+          className="form-control"
+          id="card_number"
+          value={cardNumber && cardNumber}
+          placeholder="1234  5678  9876  5432"
+          type="number"
+          onChange={(e) => handleChange(e)}
+          name='cardNumber'
+          required
+        />
+      </div>
+    </div>
+    <div className="col-md-4">
+      <div className="form-group card-label mb-3">
+        <label htmlFor="expiry_month">Expiry Month</label>
+        <input
+          className="form-control"
+          id="expiry_month"
+          value={expiredMonth && expiredMonth}
+          placeholder="MM"
+          type="number"
+          onChange={(e) => handleChange(e)}
+          name='expiredMonth'
+          required
+        />
+      </div>
+    </div>
+    <div className="col-md-4">
+      <div className="form-group card-label mb-3">
+        <label htmlFor="expiry_year">Expiry Year</label>
+        <input
+          className="form-control"
+          id="expiry_year"
+          value={cardExpiredYear && cardExpiredYear}
+          placeholder="YY"
+          type="number"
+          onChange={(e) => handleChange(e)}
+          name='cardExpiredYear'
+          required
+        />
+      </div>
+    </div>
+    <div className="col-md-4">
+      <div className="form-group card-label mb-3">
+        <label htmlFor="cvv">CVV</label>
+        <input
+          className="form-control"
+          id="cvv"
+          type="number"
+          value={cvv && cvv}
+          onChange={(e) => handleChange(e)}
+          name='cvv'
+          required
+        />
+      </div>
+    </div>
+
+            
+    <div className="terms-accept">
+                                <div className="custom-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        id="terms_accept" className='me-2'
+                                        checked={isCheck}
+                                        onChange={handleCheck} />
+                                    <label htmlFor="terms_accept"> I have read and accept <a className='text-primary' style={{ cursor: 'pointer', textDecoration: 'none' }} required>Terms &amp; Conditions</a></label>
                                 </div>
                             </div>
-                            <div className="col-md-4">
-                                <div className="form-group card-label mb-3">
-                                    <label htmlFor="expiry_month">Expiry Month</label>
-                                    <input className="form-control" id="expiry_month" value={expiredMonth && expiredMonth} placeholder="MM" type="number" onChange={(e) => handleChange(e)} name='expiredMonth' readOnly={paymentType === 'cash'} required />
-                                </div>
-                            </div>
-                            <div className="col-md-4">
-                                <div className="form-group card-label mb-3">
-                                    <label htmlFor="expiry_year">Expiry Year</label>
-                                    <input className="form-control" id="expiry_year" value={cardExpiredYear && cardExpiredYear} placeholder="YY" type="number" onChange={(e) => handleChange(e)} name='cardExpiredYear' readOnly={paymentType === 'cash'} required />
-                                </div>
-                            </div>
-                            <div className="col-md-4">
-                                <div className="form-group card-label mb-3">
-                                    <label htmlFor="cvv">CVV</label>
-                                    <input className="form-control" id="cvv" type="number" value={cvv && cvv} onChange={(e) => handleChange(e)} name='cvv'  readOnly={paymentType === 'cash'} required/>
-                                </div>
-                            </div>
+  </>
+)}
+
                         </div>
 
-                        
-                        <div className="terms-accept">
-                            <div className="custom-checkbox">
-                                <input
-                                    type="checkbox"
-                                    id="terms_accept" className='me-2'
-                                    checked={isCheck}
-                                    onChange={handleCheck} />
-                                <label htmlFor="terms_accept"> I have read and accept <a className='text-primary' style={{ cursor: 'pointer', textDecoration: 'none' }} required>Terms &amp; Conditions</a></label>
-                            </div>
-                        </div>
+                    
                     </div>
                 </div>
 

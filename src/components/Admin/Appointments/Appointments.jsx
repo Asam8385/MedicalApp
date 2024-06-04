@@ -1,64 +1,107 @@
-import React from 'react'
-import AdminLayout from '../AdminLayout/AdminLayout'
+import React from "react";
+import AdminLayout from "../AdminLayout/AdminLayout";
+import img from "../../../images/doc/doctor 3.jpg";
+import moment from "moment";
+import { useGetAllAppointmentsQuery, useGetPatientInvoicesQuery } from "../../../redux/api/appointmentApi";
+import { useGetPatientPrescriptionQuery } from "../../../redux/api/prescriptionApi";
+import { Button, Tabs, Tag, Tooltip } from "antd";
+import CustomTable from "../../UI/component/CustomTable";
+import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import { FaRegEye } from "react-icons/fa";
+import { clickToCopyClipBoard } from "../../../utils/copyClipBoard";
 
-import './Appointments.css';
+import "./Appointments.css";
 
 const AdminAppointments = () => {
+	const { data, isLoading: pIsLoading } = useGetAllAppointmentsQuery();
+    const { data: prescriptionData, prescriptionIsLoading } = useGetPatientPrescriptionQuery();
+    const { data: invoices, isLoading: InvoicesIsLoading } = useGetPatientInvoicesQuery();
+
+
+
+    console.log(data)
+
+
+	const appointmentColumns = [
+        {
+            title: 'Doctor',
+            key: 20,
+            width: 150,
+            render: function (data) {
+                return <>
+                    <div className="avatar avatar-sm mr-2 d-flex gap-2">
+                        <div>
+                            <img className="avatar-img rounded-circle" src={data?.doctor?.img} alt="" />
+                        </div>
+                        <div>
+                            <h6 className='text-nowrap mb-0'>{data?.doctor?.firstName + ' ' + data?.doctor?.lastName}</h6>
+                            <p className='form-text'>{data?.doctor?.designation}</p>
+                        </div>
+                    </div>
+                </>
+            }
+        },
+        {
+            title: 'App Date',
+            key: 22,
+            width: 100,
+            render: function (data) {
+                return (
+                    <div>{moment(data?.scheduleDate).format("LL")} <span className="d-block text-info">{data?.scheduleTime}</span></div>
+                )
+            }
+        },
+        {
+            title: 'Booking Date',
+            key: 22,
+            width: 100,
+            render: function (data) {
+                return <div>{moment(data?.createdAt).format("LL")}</div>
+            }
+        },
+        {
+            title: 'Status',
+            key: 24,
+            width: 100,
+            render: function (data) {
+                return <Tag color="#f50">{data?.status}</Tag>
+            }
+        },
+        {
+            title: 'Action',
+            key: 25,
+            width: 100,
+            render: function (data) {
+                return (
+                    <Link to={`/dashboard/appointments/${data.id}`}>
+                        <Button type='primary'>View</Button>
+                    </Link>
+                )
+            }
+        },
+    ];
+
+	const items = [
+        {
+            key: '1',
+            label: 'Appointment',
+            children: <CustomTable
+                loading={pIsLoading}
+                columns={appointmentColumns}
+                dataSource={data}
+                showPagination={true}
+                pageSize={10}
+                showSizeChanger={true}
+            />,
+        },
+      
+    ];
+
     return (
         <>
             <AdminLayout >
-            <div className="row">
-						<div className="col-md-12">
-						
-						
-							<div className="card">
-								<div className="card-body">
-									<div className="table-responsive">
-										<table className="datatable table table-hover table-center mb-0">
-											<thead>
-												<tr>
-													<th>Doctor Name</th>
-													<th>Speciality</th>
-													<th>Patient Name</th>
-													<th>Apointment Time</th>
-													<th>Status</th>
-													<th className="text-right">Amount</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														<h2 className="table-avatar">
-															<a href="profile.html" className="avatar avatar-sm mr-2"><img className="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt=""/></a>
-															<a href="profile.html">Dr. Ruby Perrin</a>
-														</h2>
-													</td>
-													<td>Dental</td>
-													<td>
-														<h2 className="table-avatar">
-															<a href="profile.html" className="avatar avatar-sm mr-2"><img className="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt=""/></a>
-															<a href="profile.html">Charlene Reed </a>
-														</h2>
-													</td>
-													<td>9 Nov 2019 <span className="text-primary d-block">11.00 AM - 11.15 AM</span></td>
-													<td>
-														<div className="status-toggle">
-															<input type="checkbox" id="status_1" className="check" checked/>
-															<label for="status_1" className="checktoggle">checkbox</label>
-														</div>
-													</td>
-													<td className="text-right">
-														$200.00
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
+			<Tabs defaultActiveKey="1" items={items} />
             </AdminLayout>
         </>
     )
