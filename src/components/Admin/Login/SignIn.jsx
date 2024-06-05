@@ -28,7 +28,7 @@ const SignIn = ({ handleResponse }) => {
         if(isSuccess){
             
             message.success('Successfully Logged in');
-            navigate("/admin/dashboard")
+            navigate("/admin/dashboard");
         }
     }, [isError, error, isSuccess, navigate])
 

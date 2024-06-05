@@ -15,12 +15,10 @@ import "./Appointments.css";
 
 const AdminAppointments = () => {
 	const { data, isLoading: pIsLoading } = useGetAllAppointmentsQuery();
-    const { data: prescriptionData, prescriptionIsLoading } = useGetPatientPrescriptionQuery();
-    const { data: invoices, isLoading: InvoicesIsLoading } = useGetPatientInvoicesQuery();
+    const reversedData = Array.isArray(data) ? [...data].reverse() : [];
 
 
 
-    console.log(data)
 
 
 	const appointmentColumns = [
@@ -89,7 +87,7 @@ const AdminAppointments = () => {
             children: <CustomTable
                 loading={pIsLoading}
                 columns={appointmentColumns}
-                dataSource={data}
+                dataSource={reversedData}
                 showPagination={true}
                 pageSize={10}
                 showSizeChanger={true}

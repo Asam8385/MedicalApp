@@ -6,8 +6,8 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const userInfo = getUserInfo();
 console.log(userInfo)
-  return userInfo.role === 'admin' ? children : 
-  <Navigate to='/login' state = {{from : location.pathname}} replace/>
+  return userInfo?.role === 'admin' ? children : 
+  <Navigate to='/admin' state = {{from : location.pathname}} replace/>
 };
 
 export default PrivateRoute;
