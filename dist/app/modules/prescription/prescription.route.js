@@ -14,7 +14,7 @@ router.get('/patient/prescription', (0, auth_1.auth)(enums_1.AuthUser.PATIENT), 
 router.get('/:id', prescription_controller_1.PrescriptionController.getPrescriptionById);
 router.get('/', prescription_controller_1.PrescriptionController.getAllPrescriptions);
 router.post('/create', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR, enums_1.AuthUser.ADMIN), prescription_controller_1.PrescriptionController.createPrescription);
-router.delete('/:', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR, enums_1.AuthUser.ADMIN), prescription_controller_1.PrescriptionController.deletePrescription);
+router.delete('/:id', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR, enums_1.AuthUser.ADMIN), prescription_controller_1.PrescriptionController.deletePrescription);
 router.patch('/', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR, enums_1.AuthUser.ADMIN), prescription_controller_1.PrescriptionController.updatePrescription);
 router.patch('/update-prescription-appointment', (0, auth_1.auth)(enums_1.AuthUser.DOCTOR, enums_1.AuthUser.ADMIN), prescription_controller_1.PrescriptionController.updatePrescriptionAndAppointment);
 exports.PrescriptionRouter = router;

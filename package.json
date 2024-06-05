@@ -15,7 +15,6 @@
     "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "prettier:fix": "prettier --write .",
     "lint-prettier": "npm run lint:check && npm run prettier:check"
-    
   },
   "author": "asam",
   "license": "ISC",
@@ -43,6 +42,7 @@
     "vercel": "^34.1.7",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1",
+    "yarn": "^1.22.22",
     "zod": "^3.21.4"
   },
   "devDependencies": {

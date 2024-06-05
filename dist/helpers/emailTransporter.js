@@ -20,28 +20,55 @@ const EmailtTransporter = ({ pathName, replacementObj, firstName, lastName, from
             }
         });
     };
-    readHtmlFile(__dirname + `${pathName}`, function (err, html) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        const template = handlebars_1.default.compile(html);
-        const htmlToSend = template(replacementObj);
-        var mailOptions = {
-            from: `<${fromMail}>`,
-            to: toMail,
-            subject: subject,
-            html: htmlToSend
-        };
-        Transporter_1.Transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-                throw new apiError_1.default(http_status_1.default.NO_CONTENT, "Unable to send message !");
-            }
-            else {
+    if ((replacementObj === null || replacementObj === void 0 ? void 0 : replacementObj.paymentStatus) === 'paid') {
+        readHtmlFile(__dirname + `${pathName}`, function (err, html) {
+            if (err) {
+                console.log(err);
                 return;
             }
+            const template = handlebars_1.default.compile(html);
+            const htmlToSend = template(replacementObj);
+            var mailOptions = {
+                from: `<${fromMail}>`,
+                to: toMail,
+                subject: subject,
+                html: htmlToSend
+            };
+            Transporter_1.Transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    throw new apiError_1.default(http_status_1.default.NO_CONTENT, "Unable to send message !");
+                }
+                else {
+                    return;
+                }
+            });
         });
-    });
+    }
+    else {
+        readHtmlFile(__dirname + '../../../template/appointment2.html', function (err, html) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            const template = handlebars_1.default.compile(html);
+            const htmlToSend = template(replacementObj);
+            var mailOptions = {
+                from: `<${fromMail}>`,
+                to: toMail,
+                subject: subject,
+                html: htmlToSend
+            };
+            Transporter_1.Transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    throw new apiError_1.default(http_status_1.default.NO_CONTENT, "Unable to send message !");
+                }
+                else {
+                    return;
+                }
+            });
+        });
+    }
 };
 exports.EmailtTransporter = EmailtTransporter;
