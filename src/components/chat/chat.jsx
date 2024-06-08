@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
+import { getGptUrl } from "../../helpers/config/envConfig";
 
 import "./chat.css";
 import { FaPaperPlane } from "react-icons/fa";
 
-const baseURL = "https://medicalapp-3.onrender.com/api/v1/ask";
+const baseURL = getGptUrl()
+console.log(baseURL)
 
 function Chat() {
   const [messages, setMessages] = useState([]);
@@ -29,22 +30,20 @@ function Chat() {
 
 
   const sendMessage = async () => {
-    // Update the local state before sending the message to the backend
     const userMessage = { role: 'user', content: inputMessage };
     setMessages(prevMessages => [...prevMessages, userMessage]); // Add user message to the messages array
     setIsAssistantTyping(true);
   
     try {
       const response = await axios.post(`${baseURL}/`, {
-        message: inputMessage,
+        input : inputMessage,
       }, {
         headers: {
-          'Content-Type': 'application/json', // Adjust content type as needed
+          'Content-Type': 'application/json', 
         },
       });
   
-      // Update the messages state with the response
-      const assistantMessage = { role: 'assistant', content: response.data['data'] };
+      const assistantMessage = { role: 'assistant', content: response.data['reply'] };
       setMessages(prevMessages => [...prevMessages, assistantMessage]);
       setIsAssistantTyping(false);
     } catch (error) {
