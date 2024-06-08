@@ -10,12 +10,9 @@ app.use(express.json());
 
 app.use('/chat', chatRouter);
 
-app.get('/',(req, res)=>{
-
-    res.json{"gpt server"}
-})
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
 
+module.exports = app;
