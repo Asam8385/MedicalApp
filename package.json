@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
+    "@vercel/node": "^3.1.7",
     "antd": "^5.18.0",
     "axios": "^1.6.2",
     "bootstrap": "^5.0.2",
@@ -35,6 +36,8 @@
     "react-vertical-timeline-component": "^3.6.0",
     "sweetalert": "^2.1.2",
     "swiper": "^11.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
