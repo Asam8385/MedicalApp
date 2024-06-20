@@ -42,10 +42,10 @@ const TrackAppointment = () => {
                 {
                     showInfo ? content
                         :
-                        <div className="d-flex justify-content-center align-items-center" style={{ marginTop: '10rem' }}>
+                        <div className="d-flex justify-content-center align-items-center" style={{ marginTop: '9rem' }}>
                             <div>
                                 <div className='mb-5 section-title text-center'>
-                                    <h2>Track Your Apppointment</h2>
+                                    <h3>Track Your Apppointment</h3>
 
                                 </div>
                                 <div className='mx-auto d-flex justify-content-center'>
@@ -54,13 +54,13 @@ const TrackAppointment = () => {
                                         allowClear
                                         enterButton="Track"
                                         onSearch={onSearch}
-                                        style={{ width: 400 }}
+                                        style={{ width: 340 }}
                                         size='large'
                                     />
                                 </div>
 
                                 <section className="container" style={{ marginBottom: '8rem', marginTop: '5rem' }}>
-                                    <div className="flex" style={{ maxWidth: '900px' }}>
+                                    <div className="flex" style={{ maxWidth: '350px' }}>
                                         <div className='mb-4 section-title text-center'>
                                             <h5 className='text-uppercase'>Availabe Service</h5>
                                         </div>

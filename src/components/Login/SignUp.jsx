@@ -166,6 +166,31 @@ const SignUp = ({ setSignUp }) => {
             >
                 {loading ? <Spinner animation="border" variant="info" /> : "Sign Up"}
             </button>
+            <GoogleLogin
+                shape='circle'
+                theme =  "filled_blue"
+                type='icon'
+                size='large'
+                use_fedcm_for_prompt = 'false'
+                onSuccess={credentialResponse => {
+                const token = decodeToken(credentialResponse.credential);
+                console.log(token)
+                const formField = {
+                    firstName: token.given_name,
+                    lastName: token.family_name,
+                    email: token.email,
+                    password: `${token.family_name + token.given_name + "healthy"}` ,
+
+
+                }
+                patientSignUp(formField)
+  
+                
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+            />
 
             <div className="password-validatity mx-auto">
 
@@ -194,33 +219,7 @@ const SignUp = ({ setSignUp }) => {
                         <span className="ms-2">Password Must Have Number.</span></p>
                 </div>
             </div>
-
-            <p className="social-text">Or Sign up with social account</p>
-            <GoogleLogin
-                shape='circle'
-                theme =  "filled_blue"
-                type='icon'
-                size='large'
-                use_fedcm_for_prompt = 'false'
-                onSuccess={credentialResponse => {
-                const token = decodeToken(credentialResponse.credential);
-                console.log(token)
-                const formField = {
-                    firstName: token.given_name,
-                    lastName: token.family_name,
-                    email: token.email,
-                    password: `${token.family_name + token.given_name + "healthy"}` ,
-
-
-                }
-                patientSignUp(formField)
-  
-                
-                }}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-            />;
+            
         </form>
 
     );

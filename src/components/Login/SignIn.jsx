@@ -72,7 +72,7 @@ const SignIn = ({ handleResponse }) => {
                 onError={() => {
                   console.log('Login Failed');
                 }}
-            />;
+            />
         </form>
     );
 };
