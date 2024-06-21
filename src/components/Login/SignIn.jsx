@@ -9,12 +9,14 @@ import { useUserLoginMutation } from '../../redux/api/authApi';
 import { message } from 'antd';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { decodeToken } from '../../utils/jwt';
+import { getUserInfo } from '../../service/auth.service';
 
 const SignIn = ({ handleResponse }) => {
     const [infoError, setInfoError] = useState('');
     const [show, setShow] = useState(true);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const userInfo = getUserInfo();
 
     setTimeout(() => {
         setShow(false);
@@ -33,7 +35,7 @@ const SignIn = ({ handleResponse }) => {
             message.success('Successfully Logged in');
             navigate("/")
         }
-    }, [isError, error, isSuccess, navigate])
+    }, [userInfo])
 
     return (
         <form className="sign-in-form" onSubmit={handleSubmit(onSubmit)}>

@@ -49,21 +49,6 @@ const SearchContent = ({ data }) => {
         
                             <div className="clinic-details">
                                 <p className="form-text text-secondary"><FaLocationArrow /> {data?.address}, {data?.country}</p>
-                                <ul className="clinic-gallery mt-3">
-                                    <li>
-                                        <img src={showImg} alt="Feature" style={{ maxWidth: "30px" }} />
-                                    </li>
-                                    <li>
-                                        <img src={showImg} alt="Feature" style={{ maxWidth: "30px" }} />
-                                    </li>
-                                    <li>
-                                        <img src={showImg} alt="Feature" style={{ maxWidth: "30px" }} />
-        
-                                    </li>
-                                    <li>
-                                        <img src={showImg} alt="Feature" style={{ maxWidth: "30px" }} />
-                                    </li>
-                                </ul>
                             </div>
                             {
                                 services.map((item, id) => (
@@ -76,15 +61,14 @@ const SearchContent = ({ data }) => {
                     <div className="doc-info-right me-3">
                         <div className="clini-infos">
                             <ul>
-                                <li><FaRegThumbsUp />  97%</li>
-                                <li><FaComment /> 4 Feedback</li>
-                                <li><FaLocationArrow /> Newyork, USA</li>
-                                <li><FaDollarSign /> $150 - $250</li>
+                            <li><FaRegThumbsUp />  97%</li>
+                            <li><FaComment /> 4 Feedback</li>
+                            <li><FaDollarSign /> {data?.price ? data?.price : "Not Available Now"}</li>
                             </ul>
                         </div>
                         <div className="clinic-booking">
-                        <Link to={`/doctors/profile/${data?.id}`} className="view-pro-btn">View</Link>
-                        <Link to={`/booking/${data?.id}`} className="apt-btn">Show Boookings</Link>
+                        <Link to={`/doctors/profile/${data?.id}`} className="view-pro-btn">Appointment Details</Link>
+                        <Link to={`/booking/${data?.id}`} style={{backgroundColor : 'red', color : 'white'}}>Delete Doctor</Link>
                     </div>
                     </div>
                 </div>

@@ -6,12 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { Toast } from 'react-bootstrap';
 import { useUserLoginMutation } from '../../../redux/api/authApi';
 import { message } from 'antd';
+import { getUserInfo } from '../../../service/auth.service';
 
 const SignIn = ({ handleResponse }) => {
     const [infoError, setInfoError] = useState('');
     const [show, setShow] = useState(true);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const userInfo = getUserInfo();
 
     setTimeout(() => {
         setShow(false);
@@ -19,7 +21,7 @@ const SignIn = ({ handleResponse }) => {
     const [userLogin, {isError, isLoading, isSuccess, error}] = useUserLoginMutation();
 
     const onSubmit = async (event) => {
-        userLogin({...event})
+        await userLogin({...event})
     }
     useEffect(() => {
         if(isError){
@@ -27,10 +29,11 @@ const SignIn = ({ handleResponse }) => {
         }
         if(isSuccess){
             
-            message.success('Successfully Logged in');
+            message.success('Successfully Logged in')
+            // localStorage.setItem('adminRole', "admin")
             navigate("/admin/dashboard");
         }
-    }, [isError, error, isSuccess, navigate])
+    }, [userInfo])
 
     return (
         <form className="sign-in-form" onSubmit={handleSubmit(onSubmit)}>

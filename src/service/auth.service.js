@@ -5,7 +5,7 @@ export const setUserInfo = ({ accessToken }) => {
     return setLocalStorage(authKey, accessToken);
 }
 
-export const getUserInfo = () => {
+export const getUserInfo =  () => {
     const authToken = getFromLocalStorage(authKey);
     if (authToken) {
         const decodedToken = decodeToken(authToken);
