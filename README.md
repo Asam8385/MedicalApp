@@ -26,14 +26,14 @@ To get started with MedicalApp, follow these steps:
 ```bash
     git clone https://github.com/Asam8385/MedicalApp.git
     cd MedicalApp
-
+```
 2. **Install dependencies:**
 
 ```bash
    npm install
-
+```
 3. **Development Mode:**
 
 ```bash
    npm start
-
+```
