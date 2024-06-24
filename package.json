@@ -34,13 +34,14 @@
     "react-star-ratings": "^2.3.0",
     "react-to-print": "^2.15.1",
     "react-vertical-timeline-component": "^3.6.0",
+    "serve": "^14.2.3",
     "sweetalert": "^2.1.2",
     "swiper": "^11.0.5",
     "ts-node": "^10.9.2",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
@@ -72,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
     "babel-jest": "^29.7.0",
