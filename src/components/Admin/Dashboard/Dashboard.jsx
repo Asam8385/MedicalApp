@@ -8,6 +8,7 @@ import { SettingFilled } from '@ant-design/icons';
 
 const AdminDashboard = () => {
     const { data, isError, error } = useCountingQuery();
+    console.log(data)
 
     const doctorColumns = [
         {
@@ -40,82 +41,28 @@ const AdminDashboard = () => {
             key: 'name',
             render: (text, record) => (
                 <span>
-                    <Avatar src={userImg} style={{ marginRight: 8 }} />
-                    {record.name}
+                    <Avatar src={record?.img} style={{ marginRight: 8 }} />
+                    {record?.firstName}
                 </span>
             )
         },
         {
             title: 'Phone',
             dataIndex: 'phone',
-            key: 'phone'
+            key: 'phone',
+            render: (text, record) => `${record?.mobile}`
         },
         {
-            title: 'Last Visit',
-            dataIndex: 'lastVisit',
-            key: 'lastVisit'
+            title: 'Email',
+            dataIndex: 'Email',
+            key: 'Email',
+            render: (text, record) => `${record?.email}`
+
         },
-        {
-            title: 'Paid',
-            dataIndex: 'paid',
-            key: 'paid',
-            align: 'right'
-        }
+      
     ];
 
-    const appointmentColumns = [
-        {
-            title: 'Doctor Name',
-            dataIndex: 'doctorName',
-            key: 'doctorName',
-            render: () => (
-                <span>
-                    <Avatar src={userImg} style={{ marginRight: 8 }} />
-                    Dr. Ruby Perrin
-                </span>
-            )
-        },
-        {
-            title: 'Speciality',
-            dataIndex: 'speciality',
-            key: 'speciality',
-            render: () => 'Dental'
-        },
-        {
-            title: 'Patient Name',
-            dataIndex: 'patientName',
-            key: 'patientName',
-            render: () => (
-                <span>
-                    <Avatar src={userImg} style={{ marginRight: 8 }} />
-                    Charlene Reed
-                </span>
-            )
-        },
-        {
-            title: 'Appointment Time',
-            dataIndex: 'appointmentTime',
-            key: 'appointmentTime',
-            render: () => (
-                <span>
-                    9 Nov 2019 <span style={{ color: 'rgb(27, 90, 144)' }}>11.00 AM - 11.15 AM</span>
-                </span>
-            )
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-            key: 'status',
-            render: () => <Switch checked />
-        },
-        {
-            title: 'Amount',
-            dataIndex: 'amount',
-            key: 'amount',
-            align: 'right',
-            render: () => '$200.00'
-        }
-    ];
+  
 
     return (
         <ConfigProvider
@@ -143,7 +90,7 @@ const AdminDashboard = () => {
                         <Card>
                             <Card.Meta
                                 avatar={<SettingFilled />}
-                                title={<h3>{data?.docCount}</h3>}
+                                title={<h3 style={{color:'black'}}>{data?.docCount}</h3>}
                                 description="Doctors"
                             />
                             <Progress percent={50} size="small" />
@@ -153,7 +100,7 @@ const AdminDashboard = () => {
                         <Card>
                             <Card.Meta
                                 avatar={<SettingFilled />}
-                                title={<h3>{data?.patientCount}</h3>}
+                                title={<h3 style={{color:'black'}}>{data?.patientCount}</h3>}
                                 description="Patients"
                             />
                             <Progress percent={50} size="small" />
@@ -163,7 +110,7 @@ const AdminDashboard = () => {
                         <Card>
                             <Card.Meta
                                 avatar={<SettingFilled />}
-                                title={<h3>{data?.appointmentCount}</h3>}
+                                title={<h3 style={{color:'black'}}>{data?.appointmentCount}</h3>}
                                 description="Appointments"
                             />
                             <Progress percent={50} size="small" />
@@ -173,7 +120,7 @@ const AdminDashboard = () => {
                         <Card>
                             <Card.Meta
                                 avatar={<SettingFilled />}
-                                title={<h3>$62523</h3>}
+                                title={<h3 style={{color:'black'}}>$62523</h3>}
                                 description="Revenue"
                             />
                             <Progress percent={50} size="small" />

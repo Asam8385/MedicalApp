@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
 console.log(userInfo)
 const Role = localStorage.getItem('adminRole')
   return userInfo?.role === 'admin' ? children : 
-  <Navigate to='/admin' state = {{from : location.pathname}} replace/>
+  <Navigate to='/' state = {{from : location.pathname}} replace/>
 };
 
 export default PrivateRoute;

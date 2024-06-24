@@ -1,7 +1,6 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from './components/Home/Home/Home';
-import SignInForm from './components/Login/SignInForm';
+
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import DoctorBooking from './components/Booking/DoctorBooking/DoctorBooking';
 import BookingSuccess from './components/Booking/BookingSuccess';
@@ -27,11 +26,6 @@ import SearchDoctor from './components/Doctor/SearchDoctor/SearchDoctor';
 import Blogs from './components/Doctor/Blogs/Blogs';
 import BlogsEdit from './components/Doctor/Blogs/BlogsEdit';
 import AddBlog from './components/Doctor/Blogs/AddBlog';
-import Blog from './components/Blog/Blog';
-import BlogDetails from './components/Blog/BlogDetails';
-import Contact from './components/Contact/Contact';
-import About from './components/About/About';
-import Service from './components/Service/Service';
 import Dashboard from './components/Doctor/Dashboard/Dashboard';
 import AppointmentPage from './components/Appointment/AppointmentPage';
 import TrackAppointment from './components/TrackAppointment/TrackAppointment';
@@ -39,27 +33,19 @@ import Treatment from './components/Doctor/Treatment/Treatment';
 import Prescription from './components/Doctor/Prescription/Prescription';
 import PrescriptionView from './components/Doctor/Prescription/PrescriptionView';
 import TreatmentEdit from './components/Doctor/Treatment/TreatmentEdit';
-import Chat from './components/chat/chat';
 import ViewAppointment from './components/Doctor/Appointments/ViewAppointment';
 import SignInFormAdmin from './components/Admin/Login/SignInForm';
 import UnverifiedDoctors from './components/Admin/Doctors/unverifiedDoc';
 import DoctorProfileSetting from './components/Doctor/ProfileSetting/DoctorProfileSetting';
 
 const router = createBrowserRouter([
-  { path: '/', element: <Home /> },
-  { path: '/blog', element: <Blog /> },
-  { path: '/blog/:id', element: <BlogDetails /> },
-  { path: '/contact', element: <Contact /> },
-  { path: '/about', element: <About /> },
-  { path: '/service', element: <Service /> },
-  { path: '/login', element: <SignInForm /> },
+
   { path: '/appointment', element: <AppointmentPage /> },
   {path: '/track-appointment', element: <TrackAppointment/>},
-  {path: '/chat', element: <Chat/>},
 
   { path: '/doctors', element: <SearchDoctor /> },
   { path: '/doctors/profile/:id', element: <DoctorProfile /> },
-  { path: '/doctor/update/as', element: <DoctorProfileSetting /> },
+
 
 
   { path: '/dashboard', element: <Dashboard /> },
@@ -86,7 +72,7 @@ const router = createBrowserRouter([
   { path: '/booking/invoice/:id', element: <BookingInvoice /> },
 
   // Dashboard
-  { path: '/admin/', element: <SignInFormAdmin /> }, 
+  { path: '/', element: <SignInFormAdmin /> }, 
   { path: '/admin/dashboard',    element: <PrivateRoute>   <AdminDashboard />    </PrivateRoute>   },
   { path: '/admin/appointments', element: <PrivateRoute>   <AdminAppointments /> </PrivateRoute>   },
   { path: '/admin/doctors',      element: <PrivateRoute>   <Doctors />           </PrivateRoute>   },
