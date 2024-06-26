@@ -103,11 +103,11 @@ const DoctorBooking = () => {
         <>
             <div className="booking-doc-img my-3 mb-3 rounded">
                 <Link to={`/doctors/${data?.id}`}>
-                    <img src={img} alt="" />
+                    <img src={data?.img} alt="" />
                 </Link>
                 <div className='text-start'>
                     <Link to={`/doctors/${data?.id}`} style={{ textDecoration: 'none' }}>Dr. {data?.firstName + ' ' + data?.lastName}</Link>
-                    <p className="form-text mb-0"><FaArchway /> {data?.specialization + ',' + data?.experienceHospitalName}</p>
+                    <p className="form-text mb-0"><FaArchway /> {data?.address + ',' + " At Healthy"}</p>
                 </div>
             </div>
         </>
