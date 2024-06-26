@@ -6,5 +6,5 @@ export const getBaseUrl = () =>{
 
 
 export const getGptUrl = () =>{
-    return   'https://medicalapp-gpt.onrender.com/chat';
+    return   'https://healthy-gpt.vercel.app/chat';
 }
