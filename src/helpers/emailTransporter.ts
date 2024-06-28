@@ -15,7 +15,7 @@ type IEmailProps = {
     subject: string,
 }
 
-export const EmailtTransporter = ({pathName,replacementObj,firstName, lastName, fromMail, toMail, subject }:IEmailProps) =>{  
+export const EmailtTransporter = ({pathName,replacementObj, firstName, lastName, fromMail, toMail, subject }:IEmailProps) =>{  
     const readHtmlFile = (path:string, callback: Function) =>{
         fs.readFile(path, {encoding: 'utf-8'}, function(err, html){
             if(err){
