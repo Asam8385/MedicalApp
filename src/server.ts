@@ -10,7 +10,7 @@ async function bootstrap(){
     const exitHandler = () =>{
         if(server){
             server.close(() =>{
-                console.log('Server Close')
+                console.log('Server Close now')
             })
         }
     };
